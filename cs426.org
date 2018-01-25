@@ -1,0 +1,54 @@
+* Chapter 1
+- program counter specifies location of next instruction to execute
+- each thread requires one program counter
+  
+- cache coherency :: in multiprocessor environments all CPUs must have the most recent value in their cache
+- spooling :: the overlapping of output of one job with input of another
+* Chapter 2
+communications
+- message passing model
+  - create and delete communication connections
+  - send and receives messages across these connections to specified host name or proess name
+  - i.e. from client to server
+- shared-memory model
+  - create and gain access to memory regions
+* Chapter 3
+Process is divided into multiple parts
+- text section :: program code
+- data section :: containing global variables
+- heap :: containing memory dynamically allocated during running time
+- stack :: containing temporary data
+
+** PCB
+Process Control Block :: contains information associated with each process
+most relevantly it contains
+- process state
+- program counter
+- cpu registers
+additionally it contains
+- cpu scheduling information
+- memory management information
+- accounting information
+- i/o status information
+ 
+- information must be stored and reloaded from pcb to allow cpu to switch from process to process
+- this process is called a context switch
+** Threads
+- like a portion of a process
+- requires its own program counter
+** Process Scheduling
+Maintains scheduling queues of processes:
+- job queue :: set of all processes in the system
+- ready queue 
+- device queues :: set of processes waiting for an i/o device
+
+Short-term scheduler or CPU scheduler :: selects which process should be executed next and allocates cpu 
+- since it is invoked frequently in must be fast
+Long-term scheduler or job scheduler :: selects which processes should be brought into the ready queue
+- controls the degree of multiprogramming
+Processes can be:
+- i/o-bound process
+- cpu-bound process
+- the long-term scheduler strives for good process mix
+Medium-term scheduler :: remove process from memory to store on disk and bring back to memory
+- can be added if degree of multiprogramming needs to be decreased

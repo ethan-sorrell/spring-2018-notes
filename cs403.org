@@ -1,0 +1,92 @@
+* Scheme Summary
+** notes
+- always think of lists in terms of their implementation as singly-linked list
+- foldl and foldr are noteworthy
+- look at optimized fib function
+- try optimizing our combinations function similarly
+** keywords
+- define, load
+- +, -, *, quotient, modulo
+- =, <, >, <=, >=
+- and, or, not
+- if, cond
+- car, cdr
+- null?, integer?, symbol?, boolean?, procedure?, eq?, equal?
+- length, append, reverse
+- list, flatten, map, fold_left (foldl), fold_right (foldr), filter, zip, zipwith
+- let, let*, letrec
+
+** concepts
+- lambda
+- variadic functions
+* Scheme
+- call function :: (functionname params)
+- define function :: (define (functionname params) body)
+- our naive fib function :: cs403/ex1.scm
+- load function definitions :: (load "filename")
+- our optimized fib function :: cs403/ex2.scm
+- representing list :: '(a b c d e f g)
+  - lists are implemented as singly linked lists
+- a few useful list functions
+  - (car List) :: returns the first element in the list
+  - (cdr List) :: returns all but the first element in the list
+  - (cadr List) :: returns the car of the cdr i.e. second element in the list
+  - (cadddr List) :: returns the car of the cdr of the cdr of the cdr
+- our length function :: cs403/ex3.scm
+- our summation function :: cs403/ex4.scm
+  - note that in a multiplication function the base-case becomes 1
+- some type checking
+  - (pair? x) :: returns true for anything constructed with cons
+  - (rational? x)
+  - (integer? x)
+  - (number? x) :: returns true if x is integer or rational
+  - (boolean? x)
+  - (null? x)
+  - (procedure? x) :: returns true if x is a function
+  - (eq? x y) :: returns true if x and y are the same (works on any type)
+    - there's actually more nuance than that though
+    - = compares value, for instance equivalent fractions
+    - eq? checks if objects are the same
+  - (equal? List1 List2) :: returns true if the provided lists contain the same elements
+    - our own implementation of equal? :: cs403/ex8.scm
+- a new list function
+  - (cons element List) :: adds element to the front of List
+- our bubble sort implementation :: cs403/ex5.scm
+- our append implementation :: cs403/ex6.scm
+- our reverse implementation :: cs403/ex7.scm
+more list functions
+- (list Element) :: equivalent to (cons Element '())
+- (flatten List) :: returns list with all nesting removed (not predefined)
+  - our flatten implementation :: cs403/ex9.scm
+- (map Procedure List) :: performs Procedure on every element in List and returns a new list of equal size
+  - our map implementation :: cs403/ex10.scm
+- (filter Predicate List) :: applies predicate to elements in List and removes those that return false
+  - our filter implementation :: cs403/ex11.scm
+- (fold-left Procedure Elemeent List) :: combines all elements in List using Procedure moving from left to right (left associative) beginning with Element
+  - our fold-left implementation :: cs403/ex12.scm
+  - what would (fold-left cons '() '(a b c d)) return?
+- (fold-right Procedure Element List) :: combines all elements in List using Procedure moving from right to left (right associative) beginning with Element
+  - our fold-right implementation :: cs403/ex12.scm
+  - what about (fold-right cons '() '(a b c d)) return?
+  - what about swapcons
+  - what about list
+- (zip List1 List2) :: creates a list of pairs from elements of List1 and List2
+  - our zip implementation :: cs403/ex13.scm
+- (zipwith Procedure List1 List2) :: creates a list by combining pairs of elements from List1 and List2 using Procedure
+  - our zipwith implementation :: cs403/ex13.scm
+Tree Traversals       
+- our tree defined as data :; cs403/ex14.scm
+- our postorder implementation :: cs403/ex14.scm
+Lambda Functions
+- (lambda (Params) (Expression)) :: returns a Procedure that takes Params and evaluates to Expression
+  - our anonymous cube function :: cs403/ex15.scm
+  - our anonymous reverse function :: cs403/ex15.scm
+  - note that all functions are actually implicitly created as lambda functions that may then be assigned to symbols
+Let
+- (let List Expr) :: List contains pairs of Symbols and Values, Expr is evaluated substituting Symbols with there corresponding values
+  - our example let expression :: cs403/ex16.scm
+  - List is "evaluated" in parallel drawing from global scope
+- (let* List Expr)
+  - List is "evaluated" sequentially
+- (letrec List Expr)
+  - 

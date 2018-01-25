@@ -1,0 +1,2 @@
+- weak entity :: an entity that can be uniquely identified within a certain context, but not in general
+  - e.g. an apartment number may be uniquely identified within a building but not in general
