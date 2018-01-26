@@ -74,6 +74,8 @@ more list functions
   - our zip implementation :: cs403/ex13.scm
 - (zipwith Procedure List1 List2) :: creates a list by combining pairs of elements from List1 and List2 using Procedure
   - our zipwith implementation :: cs403/ex13.scm
+- (invmap ListFuncts x) :: (not predefined) applies each function to x returning list of same size as ListFuncts
+  - our invmap implementation :: cs403/ex18.scm
 Tree Traversals       
 - our tree defined as data :; cs403/ex14.scm
 - our postorder implementation :: cs403/ex14.scm
@@ -87,6 +89,18 @@ Let
   - our example let expression :: cs403/ex16.scm
   - List is "evaluated" in parallel drawing from global scope
 - (let* List Expr)
-  - List is "evaluated" sequentially
+  - List is "evaluated" sequentially, drawing from previous local definitions, and global scope
 - (letrec List Expr)
-  - 
+  - our example letrec expression with brief explanation :: cs403/ex17.scm
+Cond
+- explanation has been omitted, but can be seen in class reference material
+Variadic Functions
+- (define (Name . Args) (do something)) :: Function definition where Args is a list created from all provided arguments
+- (define (plus . args) (fold-left + 0 args)) :: user defined variadic plus function
+  - this notation is used because scheme stores your function call as a linked list with the function in the head node
+More
+- functions can return other functions
+  - raisetofunct :: cs403/ex19.scm
+Object-oriented Style
+- functions that end with ! by convention, have side-effects
+- (set! Variable Value) :: changes the value of Variable to Value
