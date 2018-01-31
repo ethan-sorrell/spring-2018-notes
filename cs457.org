@@ -1,2 +1,26 @@
 - weak entity :: an entity that can be uniquely identified within a certain context, but not in general
   - e.g. an apartment number may be uniquely identified within a building but not in general
+* SQL
+- based on relational algebra
+- SQL provides data-definition language AND data manipulation language
+- basic syntax of query:
+SELECT <attribute list> FROM <table list> [WHERE <search conditions>]
+- SELECT :: chooses columns
+- FROM :: combines tables if > 1 table
+- WHERE :: chooses rows
+  - result of a query is usually considered another relation
+  - results may contain duplicate tuples
+** Some example queries and possible results
+SELECT lname FROM employee :: return a list of employee names
+
+** Select Clause
+- SELECT <attribute list>
+  - attribute list can be:
+    - column names
+    - * to list all attributes
+    - constants
+    - aggregate functions e.g. average
+- FROM <table list>
+  - table list can be:
+    - one or more table names
+    - a SELECT statement

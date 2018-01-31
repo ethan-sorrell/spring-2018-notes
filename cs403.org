@@ -93,7 +93,11 @@ Let
 - (letrec List Expr)
   - our example letrec expression with brief explanation :: cs403/ex17.scm
 Cond
+- list of pairs
+  - first item in pair is conditional
+  - second item in pair is commands, possibly multiple, enclosed in parentheses
 - explanation has been omitted, but can be seen in class reference material
+- 
 Variadic Functions
 - (define (Name . Args) (do something)) :: Function definition where Args is a list created from all provided arguments
 - (define (plus . args) (fold-left + 0 args)) :: user defined variadic plus function
@@ -104,3 +108,11 @@ More
 Object-oriented Style
 - functions that end with ! by convention, have side-effects
 - (set! Variable Value) :: changes the value of Variable to Value
+- simulating oop in scheme:
+(define (classname)
+ (let (instancevar names and vals)
+   (lambda (msg)
+     body)))
+(define instance (classname))
+- our object-oriented random number generator :: cs403/rand.scm
+- our object-oriented stack implementation ::  

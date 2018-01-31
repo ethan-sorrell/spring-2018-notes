@@ -5,13 +5,29 @@
 - cache coherency :: in multiprocessor environments all CPUs must have the most recent value in their cache
 - spooling :: the overlapping of output of one job with input of another
 * Chapter 2
-communications
-- message passing model
-  - create and delete communication connections
-  - send and receives messages across these connections to specified host name or proess name
-  - i.e. from client to server
-- shared-memory model
-  - create and gain access to memory regions
+Operating System Services:
+- User Interface
+- Program execution
+- I/O operations
+- File system manipulation
+- communications
+- error detection
+- resource allocation
+- accounting
+- protection and security
+Types of System Calls:
+- Process Control
+- File management
+- Device management
+- information maintenance
+- communications
+  - message passing model
+    - create and delete communication connections
+    - send and receives messages across these connections to specified host name or proess name
+    - i.e. from client to server
+  - shared-memory model
+    - create and gain access to memory regions
+- Protection
 * Chapter 3
 Process is divided into multiple parts
 - text section :: program code
@@ -32,7 +48,7 @@ additionally it contains
 - i/o status information
  
 - information must be stored and reloaded from pcb to allow cpu to switch from process to process
-- this process is called a context switch
+- this process is called a *context switch*
 ** Threads
 - like a portion of a process
 - requires its own program counter
@@ -52,3 +68,68 @@ Processes can be:
 - the long-term scheduler strives for good process mix
 Medium-term scheduler :: remove process from memory to store on disk and bring back to memory
 - can be added if degree of multiprogramming needs to be decreased
+** Process Creation
+- process tree created by parent processes creating child processes
+- child processes can have variable amount of dependence on parent process regarding:
+  - execution
+  - resource sharing
+- child process has its own address space with a copy of the parent's image
+** Process Termination
+Execution ends normally followed by exit() system call:
+- Resources de-allocated
+- Returns status flag from child to parent
+- PCB remains
+Execution terminated by abort() system call:
+- cascading termination of children's children
+- parent may wait for termination of child process with wait()
+  - pid = wait(&status)
+- zombie process :: process waiting for parent to call wait()
+- orphan :: parent terminated without calling wait()
+  - init will take over and call wait()
+** Interprocess Communication
+- Independent process :: cannot affect or be affected by execution of another process
+- Cooperating process :: can affect or be affected by execution of another process
+- reasons for cooperating processes:
+  - information sharing
+  - computation speedup
+  - modularity
+  - convenience
+- There are two models of IPC
+  - message passing
+  - shared memory
+*** Producer-Consumer Problem
+- paradigm for cooperating processes
+- exchange information via buffer
+  - may be bounded or unbounded
+*** Shared Memory
+- tends to be the faster solution
+- communication is under control of the user processes not the operating system
+- major issue of allowing user processes to synchronize their actions on shared memory
+  - e.g. not allowing both processes to write to the same address
+*** Message Passing
+- slower because of overhead of system calls
+- easier to implement
+- ideal for smaller amounts of data
+- many choices to be made in specific implementation details (see textbook)
+**** Synchronization
+- Message passing may be either *blocking* or *non-blocking*
+  - blocking (synchronous)
+    - blocking send :: sender is blocked until message received
+    - blocking receive :: receiver is blocked until message available
+  - non-blocking (asynchronous)
+    - non-blocking send :: sender sends message and continues
+    - non-blocking receive :: receives gets either valid message or null message
+**** Direct Communication
+- connection established between exactly two processes
+**** Indirect Communication
+- messages are directed and received from "mailboxes" (aka ports)
+- each mailbox has a unique ideal
+- mailbox must be shared
+- problems arise when mailbox shared with more than two processes
+**** Buffering
+- zero capacity :: no messages are queued on a link
+  - sender always waits for receiver (*rendezvous*)
+- bounded capacity :: finite length of n messages
+  - sender only waits if link full
+- unbounded capacity :: infinite length
+  - sender never waits
