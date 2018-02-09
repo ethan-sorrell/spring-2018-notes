@@ -1,3 +1,21 @@
+project grading guidelines
+1. submission and compilation
+2. command line input (detect zero/ negative input)
+3. code readability (comments and structure)
+4. fork usage
+5. initial shell and display format (messy display)
+6. other command execution
+7. error message display
+8. history command execution (if !! or !N not in histry)
+9. !! command execution
+10. !N command execution
+
+assignment grading guidelines
+1. submission and compilation
+2. command line input (detect zero/ negative input)
+3. code readability (comments and structure)
+4. fork usage
+5. correct results
 * Chapter 1
 - program counter specifies location of next instruction to execute
 - each thread requires one program counter
@@ -54,20 +72,19 @@ additionally it contains
 - requires its own program counter
 ** Process Scheduling
 Maintains scheduling queues of processes:
-- job queue :: set of all processes in the system
-- ready queue 
-- device queues :: set of processes waiting for an i/o device
-
-Short-term scheduler or CPU scheduler :: selects which process should be executed next and allocates cpu 
-- since it is invoked frequently in must be fast
-Long-term scheduler or job scheduler :: selects which processes should be brought into the ready queue
-- controls the degree of multiprogramming
+  - job queue :: set of all processes in the system
+  - ready queue 
+  - device queues :: set of processes waiting for an i/o device
+- Short-term scheduler or CPU scheduler :: selects which process should be executed next and allocates cpu 
+  - since it is invoked frequently in must be fast
+- Long-term scheduler or job scheduler :: selects which processes should be brought into the ready queue
+  - controls the degree of multiprogramming
 Processes can be:
-- i/o-bound process
-- cpu-bound process
-- the long-term scheduler strives for good process mix
-Medium-term scheduler :: remove process from memory to store on disk and bring back to memory
-- can be added if degree of multiprogramming needs to be decreased
+  - i/o-bound process
+  - cpu-bound process
+  - the long-term scheduler strives for good process mix
+- Medium-term scheduler :: remove process from memory to store on disk and bring back to memory
+  - can be added if degree of multiprogramming needs to be decreased
 ** Process Creation
 - process tree created by parent processes creating child processes
 - child processes can have variable amount of dependence on parent process regarding:
@@ -133,3 +150,126 @@ Execution terminated by abort() system call:
   - sender only waits if link full
 - unbounded capacity :: infinite length
   - sender never waits
+*** Examples - Windows
+- windows is message passing centric via *advanced local procedure call
+- connection ports and communication ports are created to allows processes to communicate
+- different message-passing techniques are used depending on the size of the message
+  - smaller messages use a message queue
+  - large messages passed through shared memory called a *section object*
+  - larger messages that can not fit in the section object use an API call that allows server to write directly to the address space of the client
+** Communication in client-server systems
+*** Sockets
+- socket :: an endpoint for communication
+- combination of an ip address and port
+- ports below 1024 are well known, for standard services
+- two types of sockets:
+  - connection-oriented (TCP)
+  - connectionless (UDP)
+*** Remote Procedure Calls
+- sockets are a relatively low level method of communication between processes
+- Client invokes a procedure on a remote host as if it were a local procedure
+  - ports still used for service differentiation
+  - but packets are not used
+- stubs :: client-side proxy for the actual process on server
+- client-side stub locates the server and *marshals* the parameters
+  - to resolve differences between the systems (e.g. client little-endian and server big-endian)
+  - XDR is used :: external data representation
+- server-side stub receives, unpacks the marshaled parameters and performs procedure
+Handling failure
+- the at most once semantic is generally used, but the exactly once semantic may be used here
+- the server can use at most once, but also send an ACK once the call has been executed
+- the client uses exactly once, and continues sending the call until an ACK is received
+Establishing Connection
+- OS typically provides a rendezvous or *matchmaker* daemon to connect client and server
+- alternatively a fixed-point address may be used
+* Chapter 4
+- thread :: a basic unit of cpu utilization
+  - composed of :
+    - thread ID
+    - program counter
+    - a register set
+    - a stack
+  - additionally multiple threads share:
+    - a code section
+    - a data section
+    - and other OS resources
+- When are threads useful?
+  - when an application has multiple tasks which may need to wait for I/O
+  - e.g. an application may implement threads for:
+    - updating display
+    - fetching data
+    - spell checking
+    - answering a network request
+- why not just create new processes?
+  - this incurs additional overhead which is unnecessary in many cases
+- Benefits can be broken into four categories
+  - responsiveness
+  - resource sharing
+  - economy :: reduced overhead vs process creation
+  - scalability :: a single thread can run on only a single core
+** multicore programming
+- parallelism :: ability for a system to perform more than one task simultaneously
+  - i.e. multiple tasks are running at the same time
+- concurrency :: ability for a system to allow more than one task to make progress
+  - i.e. multiple tasks are running in the same window of time
+- types of parallelism 
+  - data parallelism :: distributes subsets of the same data across multiple cores, each running a portion of the same operation
+  - task parallelism :: distributes threads across cores, each thread performing unique operation
+- user threads :: management done by user-level thread library
+- kernel threads :: managed by the kernel
+*** Multi-threading models
+- many-to-one model
+  - many user-level threads mapped to a single kernel thread
+  - entire process can be blocked by a single blocking system call
+- one-to-one model
+  - creating a user-level thread creates a kernel thread
+  - drawback is the overhead of creating kernel threads
+  - have to be careful about creating too many user-threads 
+- many-to-many model
+  - allows many user levels threads to be mapped to many kernel threads
+  - allows for creation of many user-threads without worry and supports concurrency
+*** Thread Library
+- two primary ways of implementing:
+  - library entirely in user space
+  - kernel library entirely in OS
+- pthreads :: posix standard API for thread creation and synchronization
+  - all follow the same specification not necessarily the same implementation
+*** Implicit Threading
+- creation and management of threads done by compiler rather than programmer
+- three methods explored:
+  - Thread Pools
+    - create a number of threads in a pool where they wait for use
+    - slightly faster than creating a new thread
+    - can limit number of threads by setting pool size
+  - OpenMP
+  - Grand Central Dispatch
+** Threading Issues
+- fork() and exec()
+- does fork() duplicate only the calling thread or all threads
+  - some UNIXes have two versions of fork
+- exec() usually works by replacing the running process including all threads
+** Signal Handling
+1. signal is generated by particular event
+2. signal is delivered to a process
+3. signal must be handled by either a default or user-defined signal handler (which overrides default)
+
+- synchronous signal :: generated by/delivered to the same running process
+- asynchronous signal :: generated by an external event delivered to another process
+- for single threaded process, signal delivery is straightforward
+- for multi-threaded proesses the question of which threads to deliver signal to arises
+** Thread Cancellation
+- target thread :: thread to be cancelled
+- two general approaches:
+  - asynchronous cancellation :: terminates the target thread immediately
+  - deferred cancellation :: allows target thread to periodically check if it should be cancelled
+    - termination occurs when a cancellation point is reached
+    - then a cleanup handler is invoked
+- Thread-local storage :: allows each thread to have its own copy of data
+** Lightweight Process
+- lightweight process :: allow communication between kernel and thread library
+  - each LWP is attached to a single kernel thread
+  - more like an intermediate data structure than a process
+- application schedules user threads to available LWP instead of kernel threads
+- scheduler activation provided upcalls - communication from kernel to upcall handler in thread library
+  - e.g. kernel informs a thread will be blocked, and allocate a new LWP
+  - then application can schedule another thread to the new LWP

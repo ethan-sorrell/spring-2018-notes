@@ -116,3 +116,72 @@ Object-oriented Style
 (define instance (classname))
 - our object-oriented random number generator :: cs403/rand.scm
 - our object-oriented stack implementation ::  
+* Haskell Summary
+- we can put () around an operator to use it as a function
+  - e.g. (+) 3 4
+- we can use tics to use a function as an operator
+  - e.g. 10 `mod` 3
+- let, in
+- where
+- not
+- /=, ==, &&, ||
+- if, then, else
+- +, -, *
+- quot, mod
+- head, tail, :
+- map, fold, filter, zip
+* Haskell
+- Haskell requires that function definitions are loaded from files
+  - but a single file may contain numerous function definitions
+- functions are defined recursively, with base cases then a recursive case
+- cases are checked from top to bottom
+- guards may be used in order to list certain cases earlier
+  - e.g. fact n | n > 0
+- our fibonacci function :: fib.hs
+  - includes examples of let in and where
+- an optimized fibonacci function is on the class server
+- :load filename :: load file
+- -- :: denotes the beginning of a comment
+- let, in :: keywords in haskell for beginning let blocks
+- in let and where blocks we can use braces+semicolon notation
+  - we can also use whitespace only by indenting the entire block to the same level
+- complex conditions use the same syntax as C :: && ||
+List Operations
+- [1, 2, 3] :: creates a list with elements 1 2 3
+- length List :: returns the length of List
+- [ ] :: represents the empty list
+- List1 ++ List2 :: appends List2 to List1
+- reverse List :: returns reversed List
+- if then else :: in practice they aren't required often as a result of how functions are defined
+  - our fib function using if then else :: haskell/ex1.hs
+- head :: equivalent to car
+- tail :: equivalent to cdr
+- (:) :: equivalent to cons
+- surrounding an operator with () makes it a function
+- surrounding a function with `` makes it an operator
+- our length function implementation :: haskell/length.hs
+- our append function implementation :: haskell/ex2.hs
+- our reverse function implementation :: haskell/ex2.hs
+- lambda function in haskell :: \x->expr
+  - our anonymous odd implementation :: (\x -> mod x 2 == 1)
+- foldl (+) 0 [2,3,4,5,6]
+- foldr (:) [] [1,2,3,4] :: identity function for list
+- foldl (\x -> \y -> y:x) [] [1,2,3,4] :: reverse list
+- filter functions as expected
+- zip creates a list of tuples with 2 elements from 2 lists
+- zip creates a list of tuples with 3 elements from 3 lists
+- tuple :: like a struct, does not require same type
+- zipWith is built into haskell unlike mit-scheme
+
+list comprehension
+
+- map odd [2,3,5,6,8,9]
+equivalent to
+- [ odd x | x <- [2,3,5,6,8,9] ]
+
+- filter odd [2,3,5,6,8,9]
+equivalent to 
+- [x | x <-[2,3,5,6,8,9], odd x]
+
+- [x*x | x <-[2,3,5,6,8,9], odd x]
+- [1..10] :: [1,2,3,4,5,6,7,8,9,10]
