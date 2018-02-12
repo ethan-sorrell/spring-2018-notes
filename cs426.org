@@ -273,3 +273,46 @@ Establishing Connection
 - scheduler activation provided upcalls - communication from kernel to upcall handler in thread library
   - e.g. kernel informs a thread will be blocked, and allocate a new LWP
   - then application can schedule another thread to the new LWP
+* Chapter 5
+** Background
+- processes can execute concurrently which can cause data inconsistency problems
+- if both processes modify the same value, *race condition* problems may arise
+** Critical-Section Problem
+- consider a system of n processes
+  - each process has a critical section such that only one process may be in critical section concurrently
+    - otherwise data discrepancy may arise
+- solution :: each section must ask permission to enter critical section
+  - entry section :: where permission is requested
+  - critical section
+  - exit section
+  - remainder section :: optional
+- *requirements*:
+  - mutual exclusion :: only one process may be in its critical section at a time
+  - progress :: if no process is in its critical section, we must eventually select the next process to enter critical section
+  - bounded waiting :: there must be some bound on how many items may enter their critical section after a process has requested to enter its critical section
+- two approaches to critical-section handling:
+  - preemptive :: a process in kernel mode could be preempted by another process
+    - more responsive
+    - don't have to worry about a program taking too long
+  - non-preemptive :: a process in kernel mode can not be preempted by another processes
+    - free from race conditions
+    - only one process may be in kernel mode at a time
+** Peterson's Solution
+- 
+** Synchronization Hardware      
+- locking :: protecting critical regions through the use of locks
+- atomic :: non-interruptible unit
+- for multiprocessor systems, it is inefficient to disable interrupts on all processors
+  - instead we use atomic instructions:
+    - test_and_set()
+    - compare_and_swap()
+  - see textbook, works through implementations that satisfy CSP requirements
+** Mutex Locks
+- previous solutions are quite complicated
+- mutex is a much simpler solution
+  - boolean variable indicates if lock is available or not
+  - acquire() and release() system calls
+  - calls to acquire and release must be atomic
+- problem with this solution: it introduces busy waiting
+  - busy waiting :: while a process is in its critical section, any other process attempting to enter critical section stuck on acquire()
+  - called a spinlock

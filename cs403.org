@@ -130,6 +130,7 @@ Object-oriented Style
 - quot, mod
 - head, tail, :
 - map, fold, filter, zip
+- drop, take
 * Haskell
 - Haskell requires that function definitions are loaded from files
   - but a single file may contain numerous function definitions
@@ -173,6 +174,7 @@ List Operations
 - tuple :: like a struct, does not require same type
 - zipWith is built into haskell unlike mit-scheme
 
+- there is no difference between a string and a list of characters
 list comprehension
 
 - map odd [2,3,5,6,8,9]
@@ -185,3 +187,27 @@ equivalent to
 
 - [x*x | x <-[2,3,5,6,8,9], odd x]
 - [1..10] :: [1,2,3,4,5,6,7,8,9,10]
+
+- Get the squares of odd numbers, 1 to 100:
+- [x*x| x<-[1..100], (mod x 2) /= 0]
+
+- quicksort implementation:
+- haskell/qsort.hs
+
+- more with infinite lists and recursively defined functions
+- haskell/ex3.hs
+
+- our enumerated type creation
+- haskell/ex3.hs
+
+- qualifiers (hierarchical, high numbers require lower numbers)
+1. eq :: ==, /=
+  2. ord :: <, >, <=, >=,
+    3. num :: +, -, *
+      4a. Integral div, mod
+        5aa. Int
+        5ab. Integer
+      4b. Fractional /
+        5ba. Float
+        5bb. Double
+
