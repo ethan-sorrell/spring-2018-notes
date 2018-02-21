@@ -13,7 +13,7 @@
 - car, cdr
 - null?, integer?, symbol?, boolean?, procedure?, eq?, equal?
 - length, append, reverse
-- list, flatten, map, fold_left (foldl), fold_right (foldr), filter, zip, zipwith
+- list, flatten, map, fold_left (foldl), fold_right (foldr), filtif I receive the position.er, zip, zipwith
 - let, let*, letrec
 
 ** concepts
@@ -131,6 +131,13 @@ Object-oriented Style
 - head, tail, :
 - map, fold, filter, zip
 - drop, take
+** Exam
+- defining functions
+- recursion
+- higher-order functions (map, fold)
+- infinite lists and lazy evaluation
+- user defined data-types
+- type inference & declaration
 * Haskell
 - Haskell requires that function definitions are loaded from files
   - but a single file may contain numerous function definitions
@@ -173,7 +180,10 @@ List Operations
 - zip creates a list of tuples with 3 elements from 3 lists
 - tuple :: like a struct, does not require same type
 - zipWith is built into haskell unlike mit-scheme
-
+- and List :: equivalent to foldr (&&) 1 List
+- or List :: equivalent to foldr (||) 0 List
+- any Predicate List :: equivalent to:  or (map Predicate List)
+- all Predicate List :: equivalent to:  and (map Predicate List)
 - there is no difference between a string and a list of characters
 list comprehension
 
@@ -211,3 +221,22 @@ equivalent to
         5ba. Float
         5bb. Double
 
+
+more on enumerated types
+-haskell/ex5.hs
+
+a tree implementation
+-haskell/tree.hs
+
+- defining functions:
+  - funname :: type 
+    - qualifiers =>
+    - paramtype -> returntype
+      - a -> ( a -> a )
+      - functions only take 1 param at a time
+        - think let f = max 5 in f 7
+        - this is called *currying* a function
+- uncurry Func :: takes curryied function and returns an un-curryied function
+- curry Func :: takes un-curryied function and returns an curryied function
+- flip Func :: takes a curryied function and returns one with order of params flipped
+- (func1 . func2) :: composition of f and g

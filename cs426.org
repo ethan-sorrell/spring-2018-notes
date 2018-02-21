@@ -286,10 +286,6 @@ Establishing Connection
   - critical section
   - exit section
   - remainder section :: optional
-- *requirements*:
-  - mutual exclusion :: only one process may be in its critical section at a time
-  - progress :: if no process is in its critical section, we must eventually select the next process to enter critical section
-  - bounded waiting :: there must be some bound on how many items may enter their critical section after a process has requested to enter its critical section
 - two approaches to critical-section handling:
   - preemptive :: a process in kernel mode could be preempted by another process
     - more responsive
@@ -297,9 +293,15 @@ Establishing Connection
   - non-preemptive :: a process in kernel mode can not be preempted by another processes
     - free from race conditions
     - only one process may be in kernel mode at a time
+*** *solution requirements*:
+  - mutual exclusion :: only one process may be in its critical section at a time
+  - progress :: if no process is in its critical section, we must eventually select the next process to enter critical section
+  - bounded waiting :: there must be some bound on how many items may enter their critical section after a process has requested to enter its critical section
 ** Peterson's Solution
-- 
+- software solution to CSP
+  - not guaranteed to work on modern architecture
 ** Synchronization Hardware      
+- see problems 5.8 and 5.9
 - locking :: protecting critical regions through the use of locks
 - atomic :: non-interruptible unit
 - for multiprocessor systems, it is inefficient to disable interrupts on all processors
@@ -316,3 +318,51 @@ Establishing Connection
 - problem with this solution: it introduces busy waiting
   - busy waiting :: while a process is in its critical section, any other process attempting to enter critical section stuck on acquire()
   - called a spinlock
+** Semaphore
+- may be used to solve various synchronization problems
+- an integer variable that can only be accessed through two standard atomic functions:
+  - wait() :: waits while S is 0 then decrements and finishes after
+  - signal() :: increments S
+- if S is a binary value, then we have a mutex lock
+- if S is an integer value, then we have a *Counting Semaphore*
+*** Problems
+- deadlock :: multiple processes waiting indefinitely for an event that can be caused by on the waiting processes
+- starvation :: indefinite blocking 
+  - e.g. if we use a stack to feed our implementation
+- priority inversion ::
+*** Bounded-Buffer Problem
+- semaphore mutex init to 0
+- semaphore full init to 0 :: number of buffers containing an item
+- semaphore empty init to n :: number of empty buffers
+*** Readers-Writers Problem
+- Problem:
+  - allow multiple readers simultaneously
+  - only one singer writer can access the shared data at the same time
+- Variations:
+  - no readers kept waiting unless writer has permission to use shared object
+  - once writer is ready, it performs the write ASAP
+Both variations have possible starvation problems that must be addressed
+
+- rw_mutex :: semaphore initialized to 1
+- mutex :: semaphore initialized to 1
+- read_count :: integer initialized to 0
+
+- mutex ensures mutual exclusion semaphore when read_count is update
+- read_count keeps track of how many processes are currently reading
+- rw_mutex functions as a mutual exclusion semaphore for writers
+*** Dining-Philosophers Problem
+- Problem:
+  - philosophers alternate eating and thinking
+  - to eat the philosopher needs two chopsticks
+  - they each share one chopstick with their left neighbor and one with their right neighbor
+  - they can only try to pick up one chopstick at a time
+- see textbook for more
+** Monitors
+- a high-level abstraction that helps with process synchronization
+- 
+** Semaphore implementation with no busy waiting  
+- two operations
+  - block :: place the process invoking the operation on the appropriate waiting queue
+  - wakeup :: remove one of processes in the waiting queue and place in ready queue
+basically wait() and signal() end up being calls to block() and wakeup() respectively
+
