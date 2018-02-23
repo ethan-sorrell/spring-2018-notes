@@ -365,4 +365,25 @@ Both variations have possible starvation problems that must be addressed
   - block :: place the process invoking the operation on the appropriate waiting queue
   - wakeup :: remove one of processes in the waiting queue and place in ready queue
 basically wait() and signal() end up being calls to block() and wakeup() respectively
-
+** Monitor implementation using semaphores
+- semaphore mutex
+- semaphore next
+- int next_count
+* Chapter 7
+** System Model
+- each process utilizes a resource as follows:
+  - request
+  - use
+  - release
+** Deadlock characterization
+- mutual exclusion :: only one process can use a resource ata time
+- hold and wait :: a process holding a resource is waiting to acquire additional resources held by other processors
+- no preemption :: a resource can be released only voluntarily by the process holding it
+- circular wait :: there's a set of resource in which a waits on b that waits on c that waits on d that waits on a
+** Resource-allocation graph 
+- V is partitioned into two types
+  - P :: processes
+  - R :: resources
+- E is partitioned into two types
+  - request edge :: directed edge P -> R
+  - assignment edge :: directed edge R -> P

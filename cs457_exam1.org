@@ -1,0 +1,32 @@
+* Introduction - general questions about DBs
+DBMS: -software -create and maintain a db -define types of data
+-store on disk controlled by dbms -manipulate data
+Why?: -program-data independence -data abstraction -meta data
+-multiple views -transaction processing -optimization
+3-schema architecture: -external view -conceptual schemme -internal scheme
+types:
+- high level :: er, uml, oo
+- low level :: xml
+metadata:
+structural: how objects are put together
+administrative: help manage a resource e.g. who has access
+descriptive: identification e.g. title, author               
+* Relational Model
+- table is composed of rows and columns
+- relation is a table of values (i.e. set of tuples)
+- database is a collection of relations
+- {table : relation, row : tuple, column header : attribute,
+   data type of column : domain}
+- A_i is an attribute with domain dom(A_I)
+- R(A_1,A_2,...,A_n) defines relation name R with set of attributes A_i
+- r(R) is instance r of relation R
+Domain constraint: value of each attribute must be atomic (no composite)
+Key constraint: all elements are distinct (no duplicate tuples) (maximal superkey)
+Entity Integrity constraint: no primary key value may be null
+Referential Integrity constraint: if referring to a tuple in another relation,
+that tuple must actually exist
+schema :: set of relation schemas and set of referential integrity constraints
+* SQL
+* Relational Algebra
+* ER/EER Model
+* View and Constraints
