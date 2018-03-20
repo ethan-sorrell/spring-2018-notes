@@ -1,3 +1,4 @@
+Extra Credit Quiz March 9th
 * Scheme Summary
 ** notes
 - always think of lists in terms of their implementation as singly-linked list
@@ -240,3 +241,70 @@ a tree implementation
 - curry Func :: takes un-curryied function and returns an curryied function
 - flip Func :: takes a curryied function and returns one with order of params flipped
 - (func1 . func2) :: composition of f and g
+* Prolog Summary
+* Prolog
+prolog has three basic constructs:
+- facts
+- rules
+- queries
+A collection of facts and rules is called a knowledge base (or database)
+lowercase letters denote symbols/constants
+uppercase denotes a variable
+
+an example database:
+  today(friday)
+  after(friday, saturday)
+  after(saturday, sunday)
+  threeDaysAfter(X,Y) :- after(X,Z), after(Z,W), after(W,Y)
+  etc...
+
+an example query on our database (with logical trace):
+? today(X)
+  X = friday
+? three_days_after(tuesday, D)
+  X = tuesday, Y = D
+  after(tuesday, Z), after(Z, W), after(W, D)
+  Z = wednesday
+  W = thursday
+  D = friday
+ 
+- load database using consult('filename'). 
+when a query is passed with multiple answers, ; to receive more answers
+
+- prolog uses a search algorithm like so:
+  - find the appropriate fact/rule from database, starting at the top
+  - replace formal with actual parameters
+  - create children from facts/rules in relevant rule definition
+  - work from left to right finding satisfying conditions for each child
+    - backtrack when a false statement is tried
+
+- use the is keyword to evaluate before equality-checking
+  - if we try to evaluate an expression with an undefined variable, we will throw an error
+  - limits directionality
+
+- prolog/ex1.pl :: has some math examples
+
+lists
+- [1,2,3,4,5]
+- [Head | Tail] :: equivalent to head : tail or (cons head tail)
+- [1,2 | [3,4,5]] :: [1,2,3,4,5]
+like cons, but takes any number of arguments 
+
+atomic()
+- built in predicate that succeeds for everything except non-empty list
+atom()
+- matches symbols
+
+Division
+/ :: gives floating point
+div() :: gives truncated integer
+
+Cuts
+! :: don't backtrack past here
+
+modifying db
+- asserta()
+- assertz()
+- retract()
+- retractall()
+

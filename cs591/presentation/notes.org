@@ -1,0 +1,68 @@
+* Memory Protection
+** Goal
+- Prevent unauthorized (possibly malicious) or otherwise unintended access of memory
+** How?
+- memory protection relies on principle of least privilege
+  - too much overhead to be comprehensive
+  - i.e. functionality vs security
+** High level concept of virtual memory
+- https://gruss.cc/files/kaiser.pdf
+- Physical address are translated into virtual addresses which are used instead
+  - not necessarily one step
+- two types:
+** Segmentation
+http://pages.cs.wisc.edu/~remzi/OSTEP/vm-segmentation.pdf
+1. Memory is arranged into segments.
+2. Memory location references become a segment identifier and an offset
+3. Each segments has a length and a set of permissions associated with it (e.g. read/write)
+- violating this causes segmentation fault
+** Paged virtual memory
+http://pages.cs.wisc.edu/~remzi/OSTEP/vm-paging.pdf
+1. Memory divided into equally sized blocks called pages.
+2. These blocks are contiguous in virtual memory
+- This can be used to "protect" memory
+- Just don't include virtual addresses for things you don't want accessed
+** Executable Space Protection
+- we've already talked about hardware implementations
+- windows DEP, Data Execution Prevention
+  - Windows XP SP2 
+- there is also the possibility for pure software implementation, but requires overhead
+- PaX implements this
+- remember still vulnerable to return-to-lib-attack
+https://pax.grsecurity.net/docs/segmexec.txt
+http://security.cs.rpi.edu/courses/binexp-spring2015/lectures/11/07_lecture.pdf
+** Address space layout randomization
+- helps prevent return to lib attack
+- invalidated by format string attack
+- created by PaX in 2001 kernel patch
+- enabled by default in linux kernel since 2005
+  - can be shown with $ cat /proc/self/maps
+  - this was actually the source of a vulnerability for a while
+  - http://man7.org/linux/man-pages/man5/proc.5.html
+- also used by windows since Vista (2007)
+  - entropy causes about 1 in 256 randomization
+  - http://searchsecurity.techtarget.com/definition/address-space-layout-randomization-ASLR
+- android uses library load order randomization
+  - very low entropy
+  - shows that aslr can be implemented in many different ways 
+- KASLR (Kernel ASLR) in linux since 2014
+- http://searchsecurity.techtarget.com/definition/address-space-layout-randomization-ASLR
+** Position-Independent Executable
+- required to fully utilize ASLR
+- libraries compiled using relative address bindings
+  - DLLs
+** Page Table Isolation
+- ASLR defeated with hardware exploits
+- Page table isolation introduced by PaX in June 2017
+- Meltdown discovered January 2018
+- Very quickly PTI added to linux, windows, mac
+- note principle of least privilege
+- https://techcrunch.com/2018/01/03/kernel-panic-what-are-meltdown-and-spectre-the-bugs-affecting-nearly-every-computer-and-device/
+- https://www2.cs.duke.edu/courses/spring05/cps210/projects/mmlinux.html
+- https://gruss.cc/files/kaiser.pdf
+** Conclusion
+- memory protection is an ongoing battle between developers and malicious users
+- cat and mouse
+- Tools/System used contribute to security
+  - e.g. PaX dealt with vulnerabilities years before other OS
+  - ultimately comes down to policy
