@@ -1,0 +1,23 @@
+* paper thoughts
+- start with survey of blockchain
+  - talk about its flexibility and how it can be parameterized to fit needs
+- move to finances: focus on areas with blockchain application
+  - online transactions
+  - banking
+* sources
+http://www.ijcaonline.org/archives/volume180/number3/aras-2017-ijca-915994.pdf
+- survey of blockchain technology and its applications
+- includes sections about financial industry
+
+https://www.researchgate.net/profile/Hong-Ning_Dai/publication/319058582_Blockchain_Challenges_and_Opportunities_A_Survey/links/5a80f7410f7e9be137c90695/Blockchain-Challenges-and-Opportunities-A-Survey.pdf
+- another blockchain survey
+- includes section about financial industry
+ 
+https://enigma.co/ZNP15.pdf
+- "Decentralizing Privacy: Using Blockchain to Protect Personal Data"
+
+https://public.dhe.ibm.com/common/ssi/ecm/gb/en/gbe03886usen/bridging-the-divide.pdf
+- some statistics about blockchain/business
+
+https://www.ibm.com/think/fintech/wp-content/uploads/2018/03/IBM_Research_MNC_ICA_Whitepaper.pdf
+- application of blockchain to intercompany transactions
