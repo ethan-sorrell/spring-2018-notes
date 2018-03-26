@@ -17,6 +17,23 @@ scan([L|Lt],[0|Qt]) :- scan(Lt, B), addAll(L, B, Qt).
 addAll(_, [], []).
 addAll(X, [Y|Yt], [A|At]) :- A is X+Y, addAll(X, Yt, At).
 
-%4
-child(A, B) :- parent(B, A).
-grandchild(A, B) :- child(C, B), child(A, C).
+%6
+prime(1).
+prime(N) :- M is N-1, helper2(N, M).
+
+helper2(_, 1).
+helper2(N, M) :- R is mod(N,M), R > 0, L is M-1, helper2(N, L).
+
+%7
+% currently not working for some reason
+selection_sort([], []).
+selection_sort(X, [Y|Yt]) :- min(X, Y), remove(Y, X, Z), selection_sort(Z, Yt).
+
+min([A], A).
+min([A,B|C], M) :- A<B, min([A|C], M).
+min([A,B|C], M) :- A=>B, min([B|C], M).
+
+remove(A, [A|Lat], Lat).
+remove(A, [La|Lat], [La|Lbt] :- not(A=La), remove(A, Lat, Lbt).
+
+% selection_sort([X|Xt], [Y|Yt]) :- helper3(
