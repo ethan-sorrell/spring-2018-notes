@@ -1,0 +1,41 @@
+// question 1
+db.hw6.count()
+
+// question 2
+db.hw6.find({type : "PublicEvent"}, {}).pretty()
+
+// question 3
+db.hw6.find({}, {type : 1})
+
+// question 4
+db.hw6.find({"payload.release.author.login" : "ewie"} , {_id : 0, id : 1, type : 1, created_at : 1})
+
+// question 5
+var cursor = db.hw6.find({},{_id : 0, "repo.id" : 1, "repo.name" : 1})
+cursor.next()
+cursor.next()
+cursor.next()
+cursor.next()
+cursor.next()
+
+// question 6
+var cursor2 = db.hw6.find({},{_id : 0, "repo.id" : 1, "repo.name" : 1})
+printjson(cursor.next())
+printjson(cursor.next())
+printjson(cursor.next())
+printjson(cursor.next())
+printjson(cursor.next())
+
+// question 7
+db.hw6.find({"payload.ref" : {$exists : false}}, {}).count()
+
+// question 8
+db.hw6.count({"payload.ref" : {$exists : false}})
+
+// question 9
+db.hw6.distinct("actor.url").length
+
+// question 10
+db.hw6.find({"payload.release.name" : {$lt : 1.0.1}, {$not : {"payload.release.tag_name" : "v0.1.0"}} }, {_id : 0, "payload.release.name" : 1, "payload.release.tag_name" : 1})
+
+
