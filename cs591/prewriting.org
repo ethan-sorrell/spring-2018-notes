@@ -5,7 +5,8 @@
   - online transactions
   - banking
 * sources
-http://www.ijcaonline.org/archives/volume180/number3/aras-2017-ijca-915994.pdf
+
+** http://www.ijcaonline.org/archives/volume180/number3/aras-2017-ijca-915994.pdf
 - survey of blockchain technology and its applications
 - includes sections about financial industry
 
@@ -26,17 +27,59 @@ nonpublic blockchains broken into two types:
      wish to share cost, data
  - fully-private blockchains
 
-- paper that requires ieee access, but goes through configuration of blockchain vs needs https://ieeexplore.ieee.org/document/7930224/?part=1
+- paper goes through configuration of blockchain vs needs https://ieeexplore.ieee.org/document/7930224/?part=1
 
-https://www.researchgate.net/profile/Hong-Ning_Dai/publication/319058582_Blockchain_Challenges_and_Opportunities_A_Survey/links/5a80f7410f7e9be137c90695/Blockchain-Challenges-and-Opportunities-A-Survey.pdf
-- another blockchain survey
-- includes section about financial industry
+3.1 public blockchains
+- there is typically significant savings in terms of transaction cost 
+- but proof of work is wasteful in terms of computing power
+
+3.2 private blockchains
+- consortium blockchain has limited trusted members mandatorily sign off on transactions
+- offers flexibility due to increased control over rules of transaction
+- easier to gain overall consensus to change rules of transaction
+- increase accountability as all nodes are named
+- limited network delays reduce transaction commit time (small difference?)
+- private blockchain powers Indian school's lunch program https://newsroom.accenture.com/news/accenture-labs-and-akshaya-patra-use-disruptive-technologies-to-enhance-efficiency-in-mid-day-meal-program-for-school-children.htm
+
+4. blockchain protocols
+- how a blockchain implements its consensus mechanism determines the strength of the network
+- goes into some technical details about consensus algorithms and etc https://www.itu.int/en/ITU-T/Workshops-and-Seminars/201703/Documents/Christian%20Cachin%20blockchain-itu.pdf
  
-https://enigma.co/ZNP15.pdf
-- "Decentralizing Privacy: Using Blockchain to Protect Personal Data"
+4.1 proof of work
 
-https://public.dhe.ibm.com/common/ssi/ecm/gb/en/gbe03886usen/bridging-the-divide.pdf
-- some statistics about blockchain/business
+4.2 proof of stake
+- variation called delegated proof of stake
+  - think representative democracy instead of direct democracy
+  - stakeholders elect delegates to generate and validate a block
+  - implemented by bitshares
+ 
+4.3 practical byzantine fault tolerance
+- an approach to deal with byzantine generals problem is Federate Byzantine Agreement (FBA)
+  - need to find better description of solution
+- practical byzantine fault tolerance (PBFT) is a replication algorithm which utilizes FBA
+- used by hyperledger as consensus algorithm
+- *description of this strategy is in text*
+- it has been seen that PBFT maps well to blanks, supply chain, payroll systems
+ 
+- lists several projects that apply blockchains, also risks, disregard first half of paper http://scet.berkeley.edu/wp-content/uploads/AIR-2016-Blockchain.pdf
 
-https://www.ibm.com/think/fintech/wp-content/uploads/2018/03/IBM_Research_MNC_ICA_Whitepaper.pdf
-- application of blockchain to intercompany transactions
+5.3 private data storage
+- using blockchain to protect personal data https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=7163223
+
+5.6 banking 
+- detailed look at blockchain in banking (downloaded if can't access) https://papers.ssrn.com/sol3/Papers.cfm?abstract_id=2692487
+ 
+5.7 finance
+- blockchain for pension fund, tax system https://www.pwc.co.uk/issues/futuretax/how-blockchain-technology-could-improve-tax-system.html
+** https://www.researchgate.net/profile/Hong-Ning_Dai/publication/319058582_Blockchain_Challenges_and_Opportunities_A_Survey/links/5a80f7410f7e9be137c90695/Blockchain-Challenges-and-Opportunities-A-Survey.pdf
+ - another blockchain survey
+ - includes section about financial industry
+ 
+** https://enigma.co/ZNP15.pdf
+ - "Decentralizing Privacy: Using Blockchain to Protect Personal Data"
+
+** https://public.dhe.ibm.com/common/ssi/ecm/gb/en/gbe03886usen/bridging-the-divide.pdf
+ - some statistics about blockchain/business
+
+** https://www.ibm.com/think/fintech/wp-content/uploads/2018/03/IBM_Research_MNC_ICA_Whitepaper.pdf
+ - application of blockchain to intercompany transactions
