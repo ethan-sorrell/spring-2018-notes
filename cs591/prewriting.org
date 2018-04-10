@@ -9,6 +9,25 @@ http://www.ijcaonline.org/archives/volume180/number3/aras-2017-ijca-915994.pdf
 - survey of blockchain technology and its applications
 - includes sections about financial industry
 
+solves two problems of currency based transaction:
+- double spend problem
+- byzantine generals problem
+
+four types of blockchain:
+- permissionless
+- permissioned
+- public
+- private
+
+- buterin blogpost on public vs private blockchain:  https://blog.ethereum.org/2015/08/07/on-public-and-private-blockchains/
+nonpublic blockchains broken into two types:
+ - consortium blockchains
+   - preferrable when several organizations have common goals and 
+     wish to share cost, data
+ - fully-private blockchains
+
+- paper that requires ieee access, but goes through configuration of blockchain vs needs https://ieeexplore.ieee.org/document/7930224/?part=1
+
 https://www.researchgate.net/profile/Hong-Ning_Dai/publication/319058582_Blockchain_Challenges_and_Opportunities_A_Survey/links/5a80f7410f7e9be137c90695/Blockchain-Challenges-and-Opportunities-A-Survey.pdf
 - another blockchain survey
 - includes section about financial industry
