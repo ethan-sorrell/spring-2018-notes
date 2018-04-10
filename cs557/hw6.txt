@@ -11,20 +11,15 @@ db.hw6.find({}, {type : 1})
 db.hw6.find({"payload.release.author.login" : "ewie"} , {_id : 0, id : 1, type : 1, created_at : 1})
 
 // question 5
-var cursor = db.hw6.find({},{_id : 0, "repo.id" : 1, "repo.name" : 1})
-cursor.next()
-cursor.next()
-cursor.next()
-cursor.next()
-cursor.next()
+db.hw6.find({},{_id : 0, "repo.id" : 1, "repo.name" : 1}).limit(5)
 
 // question 6
 var cursor2 = db.hw6.find({},{_id : 0, "repo.id" : 1, "repo.name" : 1})
-printjson(cursor.next())
-printjson(cursor.next())
-printjson(cursor.next())
-printjson(cursor.next())
-printjson(cursor.next())
+printjson(cursor2.next())
+printjson(cursor2.next())
+printjson(cursor2.next())
+printjson(cursor2.next())
+printjson(cursor2.next())
 
 // question 7
 db.hw6.find({"payload.ref" : {$exists : false}}, {}).count()
@@ -36,6 +31,124 @@ db.hw6.count({"payload.ref" : {$exists : false}})
 db.hw6.distinct("actor.url").length
 
 // question 10
-db.hw6.find({"payload.release.name" : {$lt : 1.0.1}, {$not : {"payload.release.tag_name" : "v0.1.0"}} }, {_id : 0, "payload.release.name" : 1, "payload.release.tag_name" : 1})
+db.hw6.find({"payload.release.name" : {$lt : "1.0.1"},  "payload.release.tag_name" : {$ne : "v0.1.0"}  }, {_id : 0, "payload.release.name" : 1, "payload.release.tag_name" : 1})
+
+// question 11
+db.hw6.find({"payload.release.name" : {$lt : "2.0.0", $ne : ""}  }, {_id : 0, "payload.release.name" : 1, "payload.release.tag_name" : 1})
+
+// question 12
+db.hw6.find({"payload.distinct_size" : {$gt : 830}, created_at : {$lte : "2015-01-01T15:00:01Z"} },{_id : 0, "payload.distinct_size" : 1, "created_at" : 1})
+
+// question 13
+db.hw6.find({},{_id : 0, "repo.id" : 1}).sort({"repo.id" : -1}).toArray() [1]
+
+// question 14
+db.hw6.aggregate([ {$project : { _id : 0, "id" : 1,  'firstcommit' : {$slice : ["$payload.commits", 0,1] }} }])
+
+// question 15
+db.hw6.aggregate([
+{$project : { _id : 0, "countlabel" : {$size : { "$ifNull"  : ["$payload.issue.labels", [] ]} } }},
+{$match : {"countlabel" : {$gt : 1} } },
+{$sort : {"countlabel" : -1} }
+])
 
 
+// question 16
+db.hw6.aggregate([
+{$group : {_id : "$type", max : {$max : "$payload.pull_request.number"} }}
+])
+
+// question 17
+db.hw6.group( {
+   key: { type: 1 },
+   reduce: function(cur, result) { result.count += 1 },
+   initial: { count: 0 }
+} )
+
+// question 18
+db.hw6.createIndex( { "payload.description" : "text" } )
+
+// question 19
+db.hw6.find({ $text: { $search: "MongoDB database" } }).count()
+
+// question 20
+db.hw6.find(
+   { $text: { $search: "MongoDB database" } },
+   { score: { $meta: "textScore" } }
+).sort( { score: { $meta: "textScore" } } ).limit(1).pretty()
+
+// question 21
+db.hw6.aggregate([
+{$project: {
+  _id: 0
+  totalColors: { $size: {"$ifNull" : ["$payload.issue.labels.color", []] } }
+  }
+},
+{$match: {
+  totalColors: {$gt : 0}
+  }
+}
+]);
+
+// question 22
+// part a
+db.movie.insertOne({MOVI: "Gump (1994)", NOVL: {AUTH: "Groom, Winston", TITLE: "Forrest Gump"}})
+db.movie.insertOne({MOVI: "Jurassic Park (1993)", BOOK: {AUTH: "Shay, Don & Duncan, Jody", TITLE: "The Making of Jurassic Park"}, NOVL: {AUTH: "Crichton, Michael", TITLE: "Jurassic Park"}})
+db.movie.insertOne({MOVI: "Rear Window (1954)", BOOK: {AUTH: "Sharff, Stefan", TITLE: "The Art of Looking"}, NOVL: {AUTH: "Woolrich, Cornell", TITLE: "It Had to Be Murder"}})
+db.movie.insertOne({MOVI: "To Kill a Mockingbird (1962)", NOVL: {AUTH: "Lee, Harper", TITLE: "To Kill a Mockingbird"}})
+db.movie.insertOne({MOVI: "A Christmas Story (1983)", NOVL: {AUTH: "Shepherd, Jean", TITLE: "In God We Trust, All Others Pay Cash"}})
+
+
+db.score.insertOne({Key: "A Christmas Story (1983)", Score: 8})
+db.score.insertOne({Key: "Gump (1994)", Score: 9})
+db.score.insertOne({Key: "Jurassic Park (1993)", Score: 5})
+db.score.insertOne({Key: "Rear Window (1954)", Score: 4})
+db.score.insertOne({Key: "To Kill a Mockingbird (1962)", Score: 1})
+
+var mapScore = function () {
+                var output= {MOVI : this.Key, NOVL_TITLE:null, NOVL_AUTH:null , Score: this.Score}
+                    emit(this.Key, output);
+                };
+ 
+var mapMovie = function () {
+ 
+                var output= {MOVI : this.MOVI, NOVL_TITLE:this.NOVL.TITLE, NOVL_AUTH:this.NOVL.AUTH , Score: null}
+                    emit(this.MOVI, output);
+                };
+ 
+var reduceF = function(key, values) {
+    var outs = {NOVL_TITLE: null, NOVL_AUTH: null, Score: null}
+ 
+    values.forEach(function(v){
+ 
+                   if(outs.NOVL_TITLE ==null){
+                        outs.NOVL_TITLE = v.NOVL_TITLE
+                    }
+                    if(outs.NOVL_AUTH ==null){
+                        outs.NOVL_AUTH = v.NOVL_AUTH
+                    }
+                    if(outs.Score ==null){
+                        outs.Score = v.Score
+                    }
+                     
+     });
+    return outs;
+};
+ 
+result = db.movie.mapReduce(mapMovie, reduceF, {out: {reduce: 'movie_score'}})
+ 
+result = db.score.mapReduce(mapScore,reduceF, {out: {reduce: 'movie_score'}})
+ 
+
+// part b
+db.movie.aggregate([
+   {
+     $lookup:
+       {
+         from: "score",
+         localField: "MOVI",
+         foreignField: "Key",
+         as: "movie_score_left_outer"
+       }
+  }
+])

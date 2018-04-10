@@ -1,0 +1,9 @@
+m1= {MOVI: "Gump (1994)", NOVL: {AUTH: "Groom, Winston", TITLE: "Forrest Gump"}}
+
+m2 = {MOVI: "Jurassic Park (1993)", BOOK: {AUTH: "Shay, Don & Duncan, Jody", TITLE: "The Making of Jurassic Park"}, NOVL: {AUTH: "Crichton, Michael", TITLE: "Jurassic Park"}}
+
+m3 = {MOVI: "Rear Window (1954)", BOOK: {AUTH: "Sharff, Stefan", TITLE: "The Art of Looking"}, NOVL: {AUTH: "Woolrich, Cornell", TITLE: "It Had to Be Murder"}}
+
+m4 = {MOVI: "To Kill a Mockingbird (1962)", NOVL: {AUTH: "Lee, Harper", TITLE: "To Kill a Mockingbird"}}
+
+m5 = {MOVI: "A Christmas Story (1983)", NOVL: {AUTH: "Shepherd, Jean", TITLE: "In God We Trust, All Others Pay Cash"}}

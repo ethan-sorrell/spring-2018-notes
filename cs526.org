@@ -396,9 +396,9 @@ basically wait() and signal() end up being calls to block() and wakeup() respect
 - short-term scheduler :: selects process in ready queue and allocates CPU
 - preemptive / non-preemptive
  
-- dispatcher module :: gives control of cpu to process selected by short-term scheduler
+  - dispatcher module :: gives control of cpu to process selected by short-term scheduler
   - *dispatch latency* :: time taken to stop one process and start another
-* scheduling criteria
+** scheduling criteria
 - cpu utilization
 - throughput :: number of processes that complete their execution per time unit
 - turnaround time :: amount of time to execute a particular processors (from arrival to finish)
@@ -434,6 +434,7 @@ basically wait() and signal() end up being calls to block() and wakeup() respect
   - foreground (interactive)
   - background (batch)
 - process permanently assigned to one of these queues
+** Multilevel feedback queue
 - multilevel feedback queue :: can go from one queue to another based on certain criteria
 - each queue has its own scheduling algorithm:
   - foreground uses RR
@@ -482,7 +483,7 @@ basically wait() and signal() end up being calls to block() and wakeup() respect
 ** Dispatcher Shell
 * Chapter 8
 - CPU can only access main memory and registers
-- Register access takes one cock, but main memory can take longer, *stall*
+- Register access takes one clock, but main memory can take longer, *stall*
 - *Cache* sits between register and main memory
 ** Base and Limit Registers
 - a pair of addresses that define the beginning and size of a partition in memory
@@ -510,5 +511,154 @@ basically wait() and signal() end up being calls to block() and wakeup() respect
   - unstructured data, allows for faster use than normal filesystem
 - roll out, roll in :: variant of swapping used for priority based scheduling
   - lower-priority process swapped out for higher-priority process
-* Exam One Review
-  - what are the different types of message-passing systems
+** MISSING NOTES!
+** Dynamic Storage-Allocation Problem
+** Fragmentation
+** Segmentation
+** Paging
+- divide physical memory into fixed-sized blocks called *frames*
+- divide logical memory into same-sized blocks called *pages*
+- *page table* allows translate logical to physical addresses
+  - page table located in pcb
+- paging eliminates external fragmentation
+- internal fragmentation:
+  - (space required) % (page size) = internal fragmentation for a particular process
+- this implies that small page size is preferred, however each page requires some overhead,
+so we will not want our pages to be too small.
+- for one, our page table must grow with number of pages
+- Typical size today is ~4K
+*** Free frames
+- operating system must store information about which frames are allocated/availalbe
+- this information is stored in a data structure called a *frame table*
+*** Implementation of Page Table 
+- page table kept in main memory
+- PTBR :: page-table base register
+  - points to the page table
+- PTLR :: page-table length register
+  - indicates size of the page table
+- when using page tables, every data/instruction access requires two memory accesses
+  - one to find physical address from page table
+  - another to access physical address
+- how can we deal with this?
+  - register to hold page table
+  - use of special, fast hardware cache called *associate memory*
+also known as *translation look-aside buffer* / *TLB*
+**** Associative memory
+- when we perform a page look up, we can load into TLB
+  - this is called a *TLB miss* when we don't already have TLB entry
+- next time we perform that page lookup, we can lookup from TLB, *TLB hit*
+- TLB is typically small
+  - replacement policies must be considered, 
+  - some entries can be *wired down* for permanent fast access
+  *Effective Access Time*
+- associate lookup time: \epsilon time units
+- memory access time: t time units
+- hit ratio: \alpha
+    Effective Access Time (EAT) =
+      (1 * t + \epsilon) * \alpha + (2 * t + \epsilon)*(1 - \alpha)
+**** Address-Space Protection
+- some TLBs store *address-space identifier (ASID)* in each TLB entry,
+- uniquely identifies each process to provide address-space protection
+  - Not matching ASID is a TLB miss
+  - allows for multiple processors
+  - otherwise TLB would need to be flushed on every context switch
+*** Memory Protections via Page Table
+- valid-invalid bit attached to each entry in page table:
+  - valid :: page is in process logical address space
+  - invalid :: page not in process' logical address space
+  - or use page-table length register
+*** Shared Pages
+shared code 
+- one copy of read-only (*reentrant*) code shared among processess
+private code and data
+- each process keeps a separate copy of this
+** Structure of Page Table
+- For a 32-bit logical address space and 4KB page size, 
+  - page table takes 4 MB
+- How do we allocate this memory?
+  - *hierarchical page table*
+  - *hashed page table*
+  - *inverted page table*
+- A hierarchical page table with many pages is also known as
+   *forward mapping page table*
+*** Hashed Page Tables 
+- common in address spaces greater than 32 bits
+- virtual page number is hashed into a page table
+- collisions are dealt with by chaining
+- A variation for this scheme has been proposed called *clustered page tables*
+  - similar to hashed page tables except:
+  - each bucket refers to several pages instead of just 1
+*** Inverted Page Table
+- create a page table based on pid that translates to a physical address
+* Chapter 9
+- program needs to be in memory to execute, but entire program not needed at same time
+- so why don't we partially-load programs?
+- would mean programs aren't limited by physical memory constraint
+- virtual memory :: separation of user logical memory from physical memory
+- virtual address space :: logical view of how process is stored in memory
+virtual memory can be implemented by:
+  - demand paging
+  - demand segmentation
+- sparse address space means that we can allocate a large logical address space,
+and we do not need to allocate physical memory for unused sections
+- also system libraries may be shared via mapping into virtual address space
+** Demand Paging
+- can bring entire process into memory at load time
+- or bring page into memory only when needed
+  - less i/o needed
+  - less memory needed
+  - faster response
+- in general free pages are allocated from a pool
+- lazy swapper :: only swaps a page into memory when page is needed
+- pager :: swapper that deals with pages
+- demand paging requires mmu functionality of valid-invalid bit
+  - valid :: memory resident
+  - invalid :: not in memory
+- if valid-invalid bit is invalid during address translation, a *page fault* occurs
+*** Page Fault
+two cases:
+- invalid reference -> abort
+- just not in memory:
+  1. find free frame
+  2. swap page into frame
+  3. reset tables to indicate page now in memory
+    - set validation bit to valid
+  4. restart the instruction that caused page fault
+*** Pure demand paging
+- start with no pages in memory
+- OS sets instruction pointer to first instruction of process -> page fault
+- a single instruction could access multiple pages, trigger multiple page faults
+  - programs tend to have *locality of reference* so performance is not like this worst case
+Hardware required for demand paging:
+- page table with validation bit
+- secondary memory (swap space)
+- instruction restart
+*** Performance of Demand Paging
+- Three major activities in page-fault service time:
+  - service the interrupt
+  - read the page - majority of time
+  - restart the process
+*** Demand Paging Optimizations
+- swap space i/o faster than file system i/o
+  - swap allocated in larger chunks than file system
+possible methods:
+- copy entire process image to swap space at load time then page in and out
+- demand page program binary from disk, but discard rather than page out when done
+*** Copy-on-write
+- allows both parent and child process to initially share the same pages in memory
+- page only copied when modified (so only modified pages ever need to be copied)
+** What if there are no free frames?
+- page replacement :: find page in memory, but not in use. Page it out
+  - what should the process do? terminate? swap out? replace the page?
+Page replacement requires:
+- modifying page-fault service routine to include page replacement
+*** Basic page replacement
+1. lookup address of desired page on disk
+2. Find a free frame
+   - if there is no free frame, use a page replacement algorithm to select a victim frame
+   - write victim frame to disk if dirty
+3. bring the desired page into the newly free frame, update page and frame table
+4. continue process
+*** page and frame replacement algorithms
+- evaluate algorithm using reference string, containing list of page number to reference
+-

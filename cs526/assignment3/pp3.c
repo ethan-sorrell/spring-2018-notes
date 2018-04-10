@@ -3,7 +3,6 @@
 #include <semaphore.h>
 #include <pthread.h>
 #include <unistd.h>
-#include "buffer.h"
 
 #define BUFFER_SIZE 5
 

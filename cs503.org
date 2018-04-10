@@ -1,4 +1,3 @@
-Extra Credit Quiz March 9th
 * Scheme Summary
 ** notes
 - always think of lists in terms of their implementation as singly-linked list
@@ -308,3 +307,174 @@ modifying db
 - retract()
 - retractall()
 
+* Smalltalk Summary
+- 'collect:' :: map
+- 'inject: id into: f' :: foldl
+- 'select: f' :: filter
+- 'reject: f' :: inverse of filter 
+- 'detect: f ifNone: [defaultValue]' :: filter, select first element
+  - 'ifNone: ' is an optional exception handling method
+  - without it, this method may cause your program to crash
+
+smalltalk keywords
+- self :: the calling object
+- nil :: null value
+- true
+- false
+- super :: the superclass of the calling object
+
+examples of these functions can be found in the collections.st file
+
+the allSelectors method will return all methods of the calling class
+e.g. 'value class allSelectors'
+
+the $ symbol denotes a character
+'' delimits strings
+
+/ precise division (can return fraction)
+// integer division
+\\ modulus
+* Smalltalk
+- assignment statement:
+    var := expression 
+- method call with no arguments:
+    receiver method
+- method call on binary operators (operator method with one argument):
+    receiver op parameter 
+- method call with arguments
+    receiver m1: p1 m2: p2 m3: p3
+
+ *method passing precedence*
+there is no operator precedence, evaluation from left to right
+however parameter-less methods are evaluated before operator methods
+(non-operator)method calls with arguments are evaluated last
+we can alter precedence using parenthesis as expected
+ 
+expressions are separated using the . character
+ like the semi-colon in c based languages
+
+
+
+- all classes have built-in class method that returns the type of that object
+- all classes are an instance of their own metaclass 
+- also superclass method
+ 
+- [] :: creates a *block*
+  - delays evaluation until absolutely necessary
+  - for instance in :and invocation, may be unnecessary to evaluate parameter
+  - in fact, :and requires instance of BlockClosure as parameter
+  - we can define variables using other variables which have not yet been defined
+  - we can evaluate at an arbitrary time using the 'value' method
+
+smalltalk is a strictly object oriented language, so
+control flow must be accomplished through methods
+
+example:
+  a<7 ifTrue: [10] ifFalse: [20]
+
+defining new classes:
+  Object sublass: #Symbol
+where Object is the superclass and Symbol is the name assigned to the class
+
+- # denotes a symbol
+- ^ denotes a return statement
+
+all classes have the 'new' method that creates a new instance of that class
+we can also pass the printNl method to print return values
+
+we can two methods of class definition in 'smalltalk/Pair.st'
+
+cascading method send
+  receiver msg; op paramater; m1 : p1 m2 : p2 
+separate the different messages to be passed with a semicolon
+
+we can do the some exploration of the class system using some built-in methods:
+- 'isMemberOf:' :: boolean, accepts only the particular class that the calling object is an instance of
+- 'isKindOf' :: like isMemberOf, but includes superclasses
+
+*** lambda functions
+block with k params: ( equivalent to a lambda function ) 
+  block := [ :p1 :p2 :p3 :pk | expression ]
+we can call this block function using the following syntax
+  block value: v1 value: v2 value: v3
+  note: that this is not a curried method
+  
+*** arrays
+an array has a fixed size once it is created 
+
+creating arrays:
+  a := #(2 3 4 5 6) 
+we can insert different types into the same array
+i.e. arrays are not typed in smalltalk
+
+we can map operations to values in an array using the following syntax:
+  a do: [:x | x printNl] 
+this would print each value from the array followed by a newline character
+this method, 'do', takes a block closure as an argument
+
+we can also use the 'at:' method to return the value at a specific index in an array
+note that smalltalk uses 1-based indexing
+
+in addition we have the at: put: method to insert to an arbitrary spot in the array
+this method replaces the value currently at that spot in the array
+
+aside from do, there are other methods of looping in smalltalk
+
+within the integer class there is a cascading method 'to: do:'
+e.g.
+  10 to: 20 do: [:x | x printNl]
+would print the values from 10 to 20, each followed by a newline character
+In a similar vein, integer has a the timesRepeat: method
+
+*** collections
+an OrderedCollection is like an array, but without a fixed-size
+
+there is a concept similar to 'map' in haskell/scheme called 'collect'
+there is an example of the use of this method in smalltalk/looping.st
+
+an array is an ordered collection
+we can convert any collection to an array using the asArray method
+  newArray := collection asArray
+sets are unordered collections
+
+we have a method to add one collection to another
+  collection1 addAll: collection2
+similarly we have a removeAll method
+  colleciton1 removeAll: collection2
+
+other collections:
+- string
+- linked list
+- ordered collection
+- dictionary
+- bag
+- sets
+- array 
+
+*** Dictionary
+uses similar syntax to array
+- dictionary at: key put: value
+
+** Account.st
+| type                | members            |
+|---------------------+--------------------|
+| instance vars       | balance            |
+|                     | income             |
+|                     | outgo              |
+|                     |                    |
+| class vars          | total              |
+|                     |                    |
+| class instance vars | subtotal           |
+|                     |                    |
+| instance methods    | open:              |
+|                     | getBalance         |
+|                     | display            |
+|                     | deposit: from:     |
+|                     | withdraw: for:     |
+|                     | totalReceivedFrom: |
+|                     | totalSpentFor:     |
+|                     |                    |
+| class methods       | new                |
+|                     | addSubtotal:       |
+|                     | getTotal           |
+|                     | getSubtotal        |

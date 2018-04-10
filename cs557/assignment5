@@ -1,0 +1,6 @@
+db.NYC.count()
+db.NYC.find({RequestID:3})
+db.NYC.find({RequestID: {$lt : 5} }).pretty()
+db.NYC.find({}, {_id : 0, ContactPhone : 1})
+db.NYC.find({ContactPhone : {$exists : 1} }, {_id : 0, ContactPhone : 1})
+db.NYC.find({AgencyName : "FIRE DEPARTMENT"}).count()
