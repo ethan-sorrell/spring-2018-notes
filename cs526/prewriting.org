@@ -1,0 +1,18 @@
+* ROS
+** http://www.ros.org/core-components/
+*** communications infrastructure
+ - anonymous message passing, called topics http://wiki.ros.org/Topics
+ - http://wiki.ros.org/Messages
+ - message passing uses publish/subscribe mechanism
+ - message passing promotes encapsulation
+
+ - this message passing is asynchronous, RPC allows synchronous http://wiki.ros.org/Services
+
+ - global key-value store http://wiki.ros.org/Parameter%20Server
+
+ - actions allow preemption when necessary http://wiki.ros.org/actionlib
+ - diagnostics http://wiki.ros.org/diagnostics
+
+** http://robohub.org/ros-101-intro-to-the-robot-operating-system/
+ - overview with several diagrams
+ 

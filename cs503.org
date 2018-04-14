@@ -478,3 +478,16 @@ uses similar syntax to array
 |                     | addSubtotal:       |
 |                     | getTotal           |
 |                     | getSubtotal        |
+* MPI
+| routine name  | description                                  |
+| mpi_init      |                                              |
+| mpi_finalize  |                                              |
+| mpi_comm_size | determines the number off process           |
+| mpi_comm_rank | determines the label of the calling process |
+| mpi_send      |                                              |
+| mpi_recv      |                                              |
+
+mpicc calls our compiler
+mpirun -np (num processes) ./process
+
+The default send and receive functions are blocking. There are also immediate versions of these routines

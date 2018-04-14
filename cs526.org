@@ -661,4 +661,29 @@ Page replacement requires:
 4. continue process
 *** page and frame replacement algorithms
 - evaluate algorithm using reference string, containing list of page number to reference
--
+some algorithms:
+1. FIFO 
+2. optimal (not actually possible, uses knowledge of future)
+3. Least recently used
+   - can be implemented using a counter associated with each page entry
+   - can be implemented using a stack
+     - updating after page reference is faster
+     - but don't have to search through list for replacement
+**** LRU Approximation Algorithm
+- since lru implementations are expensive, it is easier to approximate
+- special hardware is needed:
+  - reference bit :: associated with each page, initially 0 set to 1 on page reference
+- this results in *second-chance algorithm*
+  - FIFO, but with reference bit
+  - if page to be replaced has bit = 1, set to 0 then replace next page instead
+- this can be further enhanced by also having a modify/dirty bit
+- prioritize pages with both bits = 0
+** Allocation of Frames
+- two major allocation schemes:
+  - fixed allocation
+    - equal allocation
+    - proportional allocation :: proportional to size of process
+  - priority allocation
+** replacement   
+- global replacement :: process can take a frame from another frame as replacement
+- local replacement :: process can only select from its own allocated frames
