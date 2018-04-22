@@ -1,0 +1,91 @@
+languages to look at:
+- haskell, rust - typeclass, type families
+?
+- R
+- Plasma, /r/programminglanguages sidebar
+- http://github.com/munificent
+*Our Lang*
+* Flow Control
+** The /loop/ block
+The loop statement is followed by a block with optional *repeat* and *break* statements that return execution to the beginning of the block.
+This is the only construct for looping, but allows for a concise and natural implementation of various types of looping found in other languages.
+For instance, we may implement a loop block resembling a for loop:
+#+BEGIN_SRC 
+i = 0;
+loop
+{
+  # do something
+  i++; repeat;
+}
+#+END_SRC
+or something resembling a do-while loop: 
+#+BEGIN_SRC 
+loop
+{
+  # do something
+  (test condition)?
+    repeat;
+}
+#+END_SRC
+As a more concrete example, a factorial could be computed like so:
+#+BEGIN_SRC 
+x = # some integer
+y = 1;
+loop
+{
+  (x < 0) ?
+    break;
+  x--; y *= x; repeat;
+}
+#+END_SRC
+** Scoping
+all blocks have their own scope, but most blocks have implicit extern-> scope
+can still use local-> to access more(most?) local scope
+#+BEGIN_SRC 
+
+#+END_SRC
+
+
+** thoughts
+What do I want out of my language?
+- readability
+- lots of useful built in functions, especially for lists
+  - things like map, reverse, sort, etc. 
+- type classing, allowing for built in sort to be applied to arbitrary types/constructions (haskell)
+
+Things I like:
+- list comprehension
+- curry-ed functions
+- first-class functions
+- since functions are first class, structs be like objects with methods using the extern->variable modifier
+- overloaded operators for things like string concatenation
+- pattern matching?
+
+what about:
+- lists/arrays?
+- precedence?
+- can we support something similar to unions?
+#+BEGIN_SRC 
+fizzbuzz <- num:
+  (num % 3) ?
+    print fizz;
+  (num % 5) ?
+    print buzz;
+  not (num % 15) ?
+    print i;
+#+END_SRC
+
+* Draft
+** Lexical Conventions
+** Data Types
+*** Primitive Data Types
+*** Type class system/ Type families
+*** Structures
+** Expressions and Operators
+*** flow control
+**** conditionals
+**** looping
+*** operators
+**** overloading
+** Functions
+** Program Structure and Scope
