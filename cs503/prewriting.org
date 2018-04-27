@@ -1,3 +1,13 @@
+
+Simple object oriented semantics
+- for i in iterable:
+- typeclass based on ability to receive message
+- pass by reference w/ &, no need to dereference in function or else-where
+
+Take advantage of different paradigms without being cumbersome
+e.g. support message passing syntax for methods, but also functions 
+for a more procedural style
+
 languages to look at:
 - haskell, rust - typeclass, type families
 ?
