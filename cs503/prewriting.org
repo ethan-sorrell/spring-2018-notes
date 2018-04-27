@@ -47,6 +47,10 @@ can still use local-> to access more(most?) local scope
 
 
 ** thoughts
+allow binary functions to be used as operators using the (operator) notation
+do we want to allow other types of functions to be used as operators?
+do we want to use infix or prefix notation?
+
 What do I want out of my language?
 - readability
 - lots of useful built in functions, especially for lists
@@ -75,17 +79,3 @@ fizzbuzz <- num:
     print i;
 #+END_SRC
 
-* Draft
-** Lexical Conventions
-** Data Types
-*** Primitive Data Types
-*** Type class system/ Type families
-*** Structures
-** Expressions and Operators
-*** flow control
-**** conditionals
-**** looping
-*** operators
-**** overloading
-** Functions
-** Program Structure and Scope
