@@ -1,0 +1,37 @@
+https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3090174&download=yes
+U. Chohan, "The Double Spending Problem and Cryptocurrencies," University of New South Wales, December 19, 2017.
+https://bitcoin.org/bitcoin.pdf
+S. Nakamoto, "Bitcoin: A Peer-to-Peer Electronic Cash System," Bitcoin.org, 2008.
+https://www.ijcaonline.org/archives/volume180/number3/aras-2017-ijca-915994.pdf
+S. Aras, V. Kulkarni, "Blockchain and Its Applications - A Detailed Survey," International Journal of Computer Applications, December 2017.
+https://blog.ethereum.org/2015/08/07/on-public-and-private-blockchains/
+V. Buterin, "On Public and Private Blockchains," Ethereum Blog, August 7, 2015.
+https://github.com/monero-project/monero
+"Introduction," The Monero Project, 2018.
+https://github.com/ethereum/wiki/wiki/Proof-of-Stake-FAQ
+"Proof of Stake FAQ," Ethereum, 2018.
+http://lamport.azurewebsites.net/pubs/byz.pdf
+L. Lamport, R. Shostak, M. Pease, "The Byzantine Generals Problem," SRI International, July 1982.
+https://tendermint.readthedocs.io/en/master/introduction.html#what-is-tendermint
+"Consensus Overview," Tendermint, 2018.
+https://socrates1024.s3.amazonaws.com/consensus.pdf
+A. Miller, J, LaViola Jr. "Anonymous Byzantine Consensus from Moderately-Hard Puzzles: A Model for Bitcoin," University of Central Florida.
+https://www.monero.how/how-does-monero-work-details-in-plain-english
+"A Low-Level Explanation of the Mechanics of Monero vs Bitcoin in Plain English," Monero. 2017.
+https://ieeexplore-ieee-org.libdata.lib.ua.edu/document/8345567/
+H. Orman, "Blockchain: the Emperors new PKI?", IEEE Internet Computing, April 24, 2018.
+https://enigma.co/ZNP15.pdf
+O. Nathan, A. Pentland, G. Zyskind, "Decentralizing Privacy: Using Blockchain to Protect Personal Data," IEEE Security and Privacy Workshop, July 2015.
+
+[1] U. Chohan, "The Double Spending Problem and Cryptocurrencies," University of New South Wales, December 19, 2017.
+[2] S. Nakamoto, "Bitcoin: A Peer-to-Peer Electronic Cash System," Bitcoin.org, 2008.
+[3] S. Aras, V. Kulkarni, "Blockchain and Its Applications - A Detailed Survey," International Journal of Computer Applications, December 2017.
+[4] V. Buterin, "On Public and Private Blockchains," Ethereum Blog, August 7, 2015.
+[5] "Introduction," The Monero Project, 2018.
+[6] "Proof of Stake FAQ," Ethereum, 2018.
+[7] L. Lamport, R. Shostak, M. Pease, "The Byzantine Generals Problem," SRI International, July 1982.
+[8] "Consensus Overview," Tendermint, 2018.
+[9] A. Miller, J, LaViola Jr. "Anonymous Byzantine Consensus from Moderately-Hard Puzzles: A Model for Bitcoin," University of Central Florida.
+[10] "A Low-Level Explanation of the Mechanics of Monero vs Bitcoin in Plain English," Monero. 2017.
+[11] H. Orman, "Blockchain: the Emperors new PKI?", IEEE Internet Computing, April 24, 2018.
+[12] O. Nathan, A. Pentland, G. Zyskind, "Decentralizing Privacy: Using Blockchain to Protect Personal Data," IEEE Security and Privacy Workshop, July 2015.

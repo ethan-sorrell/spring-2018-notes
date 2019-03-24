@@ -1,0 +1,1957 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2018-04-14 Sat 01:49 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="ethan" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2017 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#org7968f4f">1. Chapter 1</a></li>
+<li><a href="#orgfb1ce53">2. Chapter 2</a></li>
+<li><a href="#org49c1c0b">3. Chapter 3</a>
+<ul>
+<li><a href="#org8e11ded">3.1. PCB</a></li>
+<li><a href="#org3f52707">3.2. Threads</a></li>
+<li><a href="#org5b18a21">3.3. Process Scheduling</a></li>
+<li><a href="#org6fea7d5">3.4. Process Creation</a></li>
+<li><a href="#org078a3f1">3.5. Process Termination</a></li>
+<li><a href="#orgb787bff">3.6. Inter-process Communication</a>
+<ul>
+<li><a href="#org1b174dd">3.6.1. Producer-Consumer Problem</a></li>
+<li><a href="#orgccdbedf">3.6.2. Shared Memory</a></li>
+<li><a href="#org3262d50">3.6.3. Message Passing</a></li>
+<li><a href="#org6dab72b">3.6.4. Examples - Windows</a></li>
+</ul>
+</li>
+<li><a href="#org2accb0d">3.7. Communication in client-server systems</a>
+<ul>
+<li><a href="#orgb6a0e5e">3.7.1. Sockets</a></li>
+<li><a href="#org5f8572a">3.7.2. Remote Procedure Calls</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org05ec336">4. Chapter 4</a>
+<ul>
+<li><a href="#orgfe471eb">4.1. multi-core programming</a>
+<ul>
+<li><a href="#org8769584">4.1.1. Multi-threading models</a></li>
+<li><a href="#org91f0ce7">4.1.2. Explicit Threading (using Thread Library)</a></li>
+<li><a href="#orgae42f1f">4.1.3. Implicit Threading</a></li>
+</ul>
+</li>
+<li><a href="#org2b83942">4.2. Threading Issues</a></li>
+<li><a href="#org4efc6ae">4.3. Signal Handling</a></li>
+<li><a href="#org0abcc51">4.4. Thread Cancellation</a></li>
+<li><a href="#org731a0d3">4.5. Lightweight Process</a></li>
+</ul>
+</li>
+<li><a href="#orgcbc9afe">5. Chapter 5 - Synchronization</a>
+<ul>
+<li><a href="#org368cfb9">5.1. Background</a></li>
+<li><a href="#org0f9ba79">5.2. Critical-Section Problem</a>
+<ul>
+<li><a href="#orgc4f709e">5.2.1. SOLUTION REQUIREMENTS:</a></li>
+</ul>
+</li>
+<li><a href="#org859f195">5.3. Peterson's Solution</a></li>
+<li><a href="#org9faa615">5.4. Synchronization Hardware</a></li>
+<li><a href="#org8f63321">5.5. Mutex Locks</a></li>
+<li><a href="#org2d9d876">5.6. Semaphore</a>
+<ul>
+<li><a href="#org6b1f897">5.6.1. Problems</a></li>
+<li><a href="#orga440855">5.6.2. Bounded-Buffer Problem</a></li>
+<li><a href="#org888bb88">5.6.3. Readers-Writers Problem</a></li>
+<li><a href="#org0528c0b">5.6.4. Dining-Philosophers Problem</a></li>
+</ul>
+</li>
+<li><a href="#orgc5eae64">5.7. Monitors</a></li>
+<li><a href="#org09bed6d">5.8. Semaphore implementation with no busy waiting</a></li>
+<li><a href="#org68bcae7">5.9. Monitor implementation using semaphores</a></li>
+</ul>
+</li>
+<li><a href="#orgbdb1895">6. Chapter 7</a>
+<ul>
+<li><a href="#orga8272fa">6.1. System Model</a></li>
+<li><a href="#org0ed6357">6.2. Deadlock characterization</a></li>
+<li><a href="#orgb457482">6.3. Resource-allocation graph</a></li>
+</ul>
+</li>
+<li><a href="#org4486516">7. Chapter 6</a>
+<ul>
+<li><a href="#orgcf2387e">7.1. scheduling criteria</a></li>
+<li><a href="#orga80c6fc">7.2. FCFS scheduling</a></li>
+<li><a href="#orgf787874">7.3. SJF scheduling</a></li>
+<li><a href="#orgf10c1e8">7.4. Priority Scheduling</a></li>
+<li><a href="#org9e42657">7.5. Round Robin</a>
+<ul>
+<li><a href="#orgb362224">7.5.1. round robin performance</a></li>
+</ul>
+</li>
+<li><a href="#org4aca0c4">7.6. Multilevel Queue</a></li>
+<li><a href="#orgfd133bf">7.7. Multilevel feedback queue</a></li>
+<li><a href="#orgb02f027">7.8. Algorithmic Evaluation</a>
+<ul>
+<li><a href="#org14fbdf4">7.8.1. Deterministic Modeling</a></li>
+<li><a href="#org4a5c176">7.8.2. Queueing Models</a></li>
+<li><a href="#org1d66f3f">7.8.3. Simulation</a></li>
+<li><a href="#orgde864b9">7.8.4. Implementation</a></li>
+</ul>
+</li>
+<li><a href="#org92c104c">7.9. Thread Scheduling</a></li>
+<li><a href="#org42e7413">7.10. Windows Scheduling</a></li>
+<li><a href="#orgd73f8ab">7.11. Dispatcher Shell</a></li>
+</ul>
+</li>
+<li><a href="#orgb775236">8. Chapter 8</a>
+<ul>
+<li><a href="#org42c32c8">8.1. Base and Limit Registers</a></li>
+<li><a href="#orge0f8d36">8.2. Address Binding</a></li>
+<li><a href="#orgf1c5c7b">8.3. Memory-Management Unit</a></li>
+<li><a href="#org77f7880">8.4. Dynamic Loading</a></li>
+<li><a href="#org4ea3da0">8.5. Dynamic Linking</a></li>
+<li><a href="#org607c94c">8.6. Swapping</a></li>
+<li><a href="#org57f923c">8.7. MISSING NOTES!</a></li>
+<li><a href="#org044b79b">8.8. Dynamic Storage-Allocation Problem</a></li>
+<li><a href="#org5343d1c">8.9. Fragmentation</a></li>
+<li><a href="#org9368b2a">8.10. Segmentation</a></li>
+<li><a href="#org0a6f956">8.11. Paging</a>
+<ul>
+<li><a href="#orgbba4026">8.11.1. Free frames</a></li>
+<li><a href="#org24dbbce">8.11.2. Implementation of Page Table</a></li>
+<li><a href="#org06a0585">8.11.3. Memory Protections via Page Table</a></li>
+<li><a href="#org59a4ac3">8.11.4. Shared Pages</a></li>
+</ul>
+</li>
+<li><a href="#orgaff73f4">8.12. Structure of Page Table</a>
+<ul>
+<li><a href="#orgb27a126">8.12.1. Hashed Page Tables</a></li>
+<li><a href="#orgc4b5107">8.12.2. Inverted Page Table</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#org5d346f8">9. Chapter 9</a>
+<ul>
+<li><a href="#org6055530">9.1. Demand Paging</a>
+<ul>
+<li><a href="#orgbe6d958">9.1.1. Page Fault</a></li>
+<li><a href="#orgfbf5753">9.1.2. Pure demand paging</a></li>
+<li><a href="#orgf3f7d27">9.1.3. Performance of Demand Paging</a></li>
+<li><a href="#orgd38412a">9.1.4. Demand Paging Optimizations</a></li>
+<li><a href="#org9e9b091">9.1.5. Copy-on-write</a></li>
+</ul>
+</li>
+<li><a href="#orgd17a49e">9.2. What if there are no free frames?</a>
+<ul>
+<li><a href="#orgf78b12b">9.2.1. Basic page replacement</a></li>
+<li><a href="#orge2b1601">9.2.2. page and frame replacement algorithms</a></li>
+</ul>
+</li>
+<li><a href="#org9b3aca0">9.3. Allocation of Frames</a></li>
+<li><a href="#org1da0c94">9.4. replacement</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+project grading guidelines
+</p>
+<ol class="org-ol">
+<li>submission and compilation</li>
+<li>command line input (detect zero/ negative input)</li>
+<li>code readability (comments and structure)</li>
+<li>fork usage</li>
+<li>initial shell and display format (messy display)</li>
+<li>other command execution</li>
+<li>error message display</li>
+<li>history command execution (if !! or !N not in histry)</li>
+<li>!! command execution</li>
+<li>!N command execution</li>
+</ol>
+
+<p>
+assignment grading guidelines
+</p>
+<ol class="org-ol">
+<li>submission and compilation</li>
+<li>command line input (detect zero/ negative input)</li>
+<li>code readability (comments and structure)</li>
+<li>fork usage</li>
+<li>correct results</li>
+</ol>
+<div id="outline-container-org7968f4f" class="outline-2">
+<h2 id="org7968f4f"><span class="section-number-2">1</span> Chapter 1</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li>program counter specifies location of next instruction to execute</li>
+<li>each thread requires one program counter</li>
+
+<li id="cache coherency">in multiprocessor environments all CPUs must have the most recent value in their cache</li>
+<li id="spooling">the overlapping of output of one job with input of another</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgfb1ce53" class="outline-2">
+<h2 id="orgfb1ce53"><span class="section-number-2">2</span> Chapter 2</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Operating System Services:
+</p>
+<ul class="org-ul">
+<li>User Interface</li>
+<li>Program execution</li>
+<li>I/O operations</li>
+<li>File system manipulation</li>
+<li>communications</li>
+<li>error detection</li>
+<li>resource allocation</li>
+<li>accounting</li>
+<li>protection and security</li>
+</ul>
+<p>
+Types of System Calls:
+</p>
+<ul class="org-ul">
+<li>Process Control</li>
+<li>File management</li>
+<li>Device management</li>
+<li>information maintenance</li>
+<li>communications
+<ul class="org-ul">
+<li>message passing model
+<ul class="org-ul">
+<li>create and delete communication connections</li>
+<li>send and receives messages across these connections to specified host name or proess name</li>
+<li>i.e. from client to server</li>
+</ul></li>
+<li>shared-memory model
+<ul class="org-ul">
+<li>create and gain access to memory regions</li>
+</ul></li>
+</ul></li>
+<li>Protection</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org49c1c0b" class="outline-2">
+<h2 id="org49c1c0b"><span class="section-number-2">3</span> Chapter 3</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Process is divided into multiple parts
+</p>
+<dl class="org-dl">
+<dt>text section</dt><dd>program code</dd>
+<dt>data section</dt><dd>containing global variables</dd>
+<dt>heap</dt><dd>containing memory dynamically allocated during running time</dd>
+<dt>stack</dt><dd>containing temporary data</dd>
+</dl>
+</div>
+
+<div id="outline-container-org8e11ded" class="outline-3">
+<h3 id="org8e11ded"><span class="section-number-3">3.1</span> PCB</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Process Control Block :: contains information associated with each process
+most relevantly it contains
+</p>
+<ul class="org-ul">
+<li>process state</li>
+<li>program counter</li>
+<li>cpu registers</li>
+</ul>
+<p>
+additionally it contains
+</p>
+<ul class="org-ul">
+<li>cpu scheduling information</li>
+<li>memory management information</li>
+<li>accounting information</li>
+<li>i/o status information</li>
+</ul>
+<ul class="org-ul">
+<li>information must be stored and reloaded from pcb to allow cpu to switch from process to process</li>
+<li>this process is called a <b>context switch</b></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org3f52707" class="outline-3">
+<h3 id="org3f52707"><span class="section-number-3">3.2</span> Threads</h3>
+<div class="outline-text-3" id="text-3-2">
+<ul class="org-ul">
+<li>like a portion of a process</li>
+<li>requires its own program counter</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org5b18a21" class="outline-3">
+<h3 id="org5b18a21"><span class="section-number-3">3.3</span> Process Scheduling</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+Maintains scheduling queues of processes:
+</p>
+<dl class="org-dl">
+<dt>job queue</dt><dd>set of all processes in the system</dd>
+<dt>(no term)</dt><dd>ready queue</dd>
+<dt>device queues</dt><dd>set of processes waiting for an i/o device</dd>
+</dl>
+<dl class="org-dl">
+<dt>Short-term scheduler or CPU scheduler</dt><dd>selects which process should be executed next and allocates cpu 
+<ul class="org-ul">
+<li>since it is invoked frequently in must be fast</li>
+</ul></dd>
+<dt>Long-term scheduler or job scheduler</dt><dd>selects which processes should be brought into the ready queue
+<ul class="org-ul">
+<li>controls the degree of multiprogramming</li>
+</ul></dd>
+</dl>
+<p>
+Processes can be:
+</p>
+<ul class="org-ul">
+<li>i/o-bound process</li>
+<li>cpu-bound process</li>
+<li>the long-term scheduler strives for good process mix</li>
+</ul>
+<dl class="org-dl">
+<dt>Medium-term scheduler</dt><dd>remove process from memory to store on disk and bring back to memory
+<ul class="org-ul">
+<li>can be added if degree of multiprogramming needs to be decreased</li>
+</ul></dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-org6fea7d5" class="outline-3">
+<h3 id="org6fea7d5"><span class="section-number-3">3.4</span> Process Creation</h3>
+<div class="outline-text-3" id="text-3-4">
+<ul class="org-ul">
+<li>process tree created by parent processes creating child processes</li>
+<li>child processes can have variable amount of dependence on parent process regarding:
+<ul class="org-ul">
+<li>execution</li>
+<li>resource sharing</li>
+</ul></li>
+<li>child process has its own address space with a copy of the parent's image</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org078a3f1" class="outline-3">
+<h3 id="org078a3f1"><span class="section-number-3">3.5</span> Process Termination</h3>
+<div class="outline-text-3" id="text-3-5">
+<p>
+Execution ends normally followed by exit() system call:
+</p>
+<ul class="org-ul">
+<li>Resources de-allocated</li>
+<li>Returns status flag from child to parent</li>
+<li>PCB remains</li>
+</ul>
+<p>
+Execution terminated by abort() system call:
+</p>
+<ul class="org-ul">
+<li>cascading termination of children's children</li>
+<li>parent may wait for termination of child process with wait()
+<ul class="org-ul">
+<li>pid = wait(&amp;status)</li>
+</ul></li>
+<li id="zombie process">process waiting for parent to call wait()</li>
+<li id="orphan">parent terminated without calling wait()
+<ul class="org-ul">
+<li>init will take over and call wait()</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgb787bff" class="outline-3">
+<h3 id="orgb787bff"><span class="section-number-3">3.6</span> Inter-process Communication</h3>
+<div class="outline-text-3" id="text-3-6">
+<dl class="org-dl">
+<dt>Independent process</dt><dd>cannot affect or be affected by execution of another process</dd>
+<dt>Cooperating process</dt><dd>can affect or be affected by execution of another process</dd>
+<dt>(no term)</dt><dd>reasons for cooperating processes:
+<ul class="org-ul">
+<li>information sharing</li>
+<li>computation speedup</li>
+<li>modularity</li>
+<li>convenience</li>
+</ul></dd>
+<dt>(no term)</dt><dd>There are two models of IPC 
+<ul class="org-ul">
+<li>message passing
+<ul class="org-ul">
+<li></li>
+</ul></li>
+<li>shared memory</li>
+</ul></dd>
+</dl>
+</div>
+<div id="outline-container-org1b174dd" class="outline-4">
+<h4 id="org1b174dd"><span class="section-number-4">3.6.1</span> Producer-Consumer Problem</h4>
+<div class="outline-text-4" id="text-3-6-1">
+<ul class="org-ul">
+<li>paradigm for cooperating processes</li>
+<li>exchange information via buffer
+<ul class="org-ul">
+<li>may be bounded or unbounded</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgccdbedf" class="outline-4">
+<h4 id="orgccdbedf"><span class="section-number-4">3.6.2</span> Shared Memory</h4>
+<div class="outline-text-4" id="text-3-6-2">
+<ul class="org-ul">
+<li>tends to be the faster solution</li>
+<li>communication is under control of the user processes not the operating system</li>
+<li>major issue of allowing user processes to synchronize their actions on shared memory
+<ul class="org-ul">
+<li>e.g. not allowing both processes to write to the same address</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org3262d50" class="outline-4">
+<h4 id="org3262d50"><span class="section-number-4">3.6.3</span> Message Passing</h4>
+<div class="outline-text-4" id="text-3-6-3">
+<ul class="org-ul">
+<li>slower because of overhead of system calls</li>
+<li>easier to implement</li>
+<li>ideal for smaller amounts of data</li>
+<li>many choices to be made in specific implementation details (see textbook)</li>
+</ul>
+</div>
+<ol class="org-ol">
+<li><a id="orgaf37fe2"></a>Synchronization<br />
+<div class="outline-text-5" id="text-3-6-3-1">
+<ul class="org-ul">
+<li>Message passing may be either <b>blocking</b> or <b>non-blocking</b>
+<ul class="org-ul">
+<li>blocking (synchronous)
+<dl class="org-dl">
+<dt>blocking send</dt><dd>sender is blocked until message received</dd>
+<dt>blocking receive</dt><dd>receiver is blocked until message available</dd>
+</dl></li>
+<li>non-blocking (asynchronous)
+<dl class="org-dl">
+<dt>non-blocking send</dt><dd>sender sends message and continues</dd>
+<dt>non-blocking receive</dt><dd>receives gets either valid message or null message</dd>
+</dl></li>
+</ul></li>
+</ul>
+</div>
+</li>
+<li><a id="org4f9fbab"></a>Direct Communication<br />
+<div class="outline-text-5" id="text-3-6-3-2">
+<ul class="org-ul">
+<li>connection established between exactly two processes</li>
+</ul>
+</div>
+</li>
+<li><a id="org1f2862c"></a>Indirect Communication<br />
+<div class="outline-text-5" id="text-3-6-3-3">
+<ul class="org-ul">
+<li>messages are directed and received from "mailboxes" (aka ports)</li>
+<li>each mailbox has a unique ideal</li>
+<li>mailbox must be shared</li>
+<li>problems arise when mailbox shared with more than two processes</li>
+</ul>
+</div>
+</li>
+<li><a id="org76cbb29"></a>Buffering<br />
+<div class="outline-text-5" id="text-3-6-3-4">
+<dl class="org-dl">
+<dt>zero capacity</dt><dd>no messages are queued on a link
+<ul class="org-ul">
+<li>sender always waits for receiver (<b>rendezvous</b>)</li>
+</ul></dd>
+<dt>bounded capacity</dt><dd>finite length of n messages
+<ul class="org-ul">
+<li>sender only waits if link full</li>
+</ul></dd>
+<dt>unbounded capacity</dt><dd>infinite length
+<ul class="org-ul">
+<li>sender never waits</li>
+</ul></dd>
+</dl>
+</div>
+</li>
+</ol>
+</div>
+<div id="outline-container-org6dab72b" class="outline-4">
+<h4 id="org6dab72b"><span class="section-number-4">3.6.4</span> Examples - Windows</h4>
+<div class="outline-text-4" id="text-3-6-4">
+<ul class="org-ul">
+<li>windows is message passing centric via *advanced local procedure call</li>
+<li>connection ports and communication ports are created to allows processes to communicate</li>
+<li>different message-passing techniques are used depending on the size of the message
+<ul class="org-ul">
+<li>smaller messages use a message queue</li>
+<li>large messages passed through shared memory called a <b>section object</b></li>
+<li>larger messages that can not fit in the section object use an API call that allows server to write directly to the address space of the client</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org2accb0d" class="outline-3">
+<h3 id="org2accb0d"><span class="section-number-3">3.7</span> Communication in client-server systems</h3>
+<div class="outline-text-3" id="text-3-7">
+</div>
+<div id="outline-container-orgb6a0e5e" class="outline-4">
+<h4 id="orgb6a0e5e"><span class="section-number-4">3.7.1</span> Sockets</h4>
+<div class="outline-text-4" id="text-3-7-1">
+<dl class="org-dl">
+<dt>socket</dt><dd>an endpoint for communication</dd>
+<dt>(no term)</dt><dd>combination of an ip address and port</dd>
+<dt>(no term)</dt><dd>ports below 1024 are well known, for standard services</dd>
+<dt>(no term)</dt><dd>two types of sockets:
+<ul class="org-ul">
+<li>connection-oriented (TCP)</li>
+<li>connectionless (UDP)</li>
+</ul></dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-org5f8572a" class="outline-4">
+<h4 id="org5f8572a"><span class="section-number-4">3.7.2</span> Remote Procedure Calls</h4>
+<div class="outline-text-4" id="text-3-7-2">
+<ul class="org-ul">
+<li>sockets are a relatively low level method of communication between processes</li>
+<li>Client invokes a procedure on a remote host as if it were a local procedure
+<ul class="org-ul">
+<li>ports still used for service differentiation</li>
+<li>but packets are not used</li>
+</ul></li>
+<li id="stubs">client-side proxy for the actual process on server</li>
+<li>client-side stub locates the server and <b>marshals</b> the parameters
+<ul class="org-ul">
+<li>to resolve differences between the systems (e.g. client little-endian and server big-endian)</li>
+<li id="XDR is used">external data representation</li>
+</ul></li>
+<li>server-side stub receives, unpacks the marshaled parameters and performs procedure</li>
+</ul>
+<p>
+Handling failure
+</p>
+<ul class="org-ul">
+<li>the at most once semantic is generally used, but the exactly once semantic may be used here</li>
+<li>the server can use at most once, but also send an ACK once the call has been executed</li>
+<li>the client uses exactly once, and continues sending the call until an ACK is received</li>
+</ul>
+<p>
+Establishing Connection
+</p>
+<ul class="org-ul">
+<li>OS typically provides a rendezvous or <b>matchmaker</b> daemon to connect client and server</li>
+<li>alternatively a fixed-point address may be used</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org05ec336" class="outline-2">
+<h2 id="org05ec336"><span class="section-number-2">4</span> Chapter 4</h2>
+<div class="outline-text-2" id="text-4">
+<dl class="org-dl">
+<dt>thread</dt><dd>a basic unit of cpu utilization
+<ul class="org-ul">
+<li>composed of :
+<ul class="org-ul">
+<li>thread ID</li>
+<li>program counter</li>
+<li>a register set</li>
+<li>a stack</li>
+</ul></li>
+<li>additionally multiple threads share:
+<ul class="org-ul">
+<li>a code section</li>
+<li>a data section</li>
+<li>and other OS resources</li>
+</ul></li>
+</ul></dd>
+<dt>(no term)</dt><dd>When are threads useful?
+<ul class="org-ul">
+<li>when an application has multiple tasks which may need to wait for I/O</li>
+<li>e.g. an application may implement threads for:
+<ul class="org-ul">
+<li>updating display</li>
+<li>fetching data</li>
+<li>spell checking</li>
+<li>answering a network request</li>
+</ul></li>
+</ul></dd>
+<dt>(no term)</dt><dd>why not just create new processes?
+<ul class="org-ul">
+<li>this incurs additional overhead which is unnecessary in many cases</li>
+</ul></dd>
+<dt>(no term)</dt><dd>Benefits of multi-threading can be broken into four categories
+<ul class="org-ul">
+<li>responsiveness</li>
+<li>resource sharing</li>
+<li id="economy">reduced overhead vs process creation</li>
+<li id="scalability">a single thread can run on only a single core</li>
+</ul></dd>
+</dl>
+</div>
+<div id="outline-container-orgfe471eb" class="outline-3">
+<h3 id="orgfe471eb"><span class="section-number-3">4.1</span> multi-core programming</h3>
+<div class="outline-text-3" id="text-4-1">
+<dl class="org-dl">
+<dt>parallelism</dt><dd>ability for a system to perform more than one task simultaneously
+<ul class="org-ul">
+<li>i.e. multiple tasks are running at the same time</li>
+</ul></dd>
+<dt>concurrency</dt><dd>ability for a system to allow more than one task to make progress
+<ul class="org-ul">
+<li>i.e. multiple tasks are running in the same window of time</li>
+</ul></dd>
+<dt>(no term)</dt><dd>types of parallelism 
+<dl class="org-dl">
+<dt>data parallelism</dt><dd>distributes subsets of the same data across multiple cores, each running a portion of the same operation</dd>
+<dt>task parallelism</dt><dd>distributes threads across cores, each thread performing unique operation</dd>
+</dl></dd>
+<dt>user threads</dt><dd>management done by user-level thread library</dd>
+<dt>kernel threads</dt><dd>managed by the kernel</dd>
+</dl>
+</div>
+<div id="outline-container-org8769584" class="outline-4">
+<h4 id="org8769584"><span class="section-number-4">4.1.1</span> Multi-threading models</h4>
+<div class="outline-text-4" id="text-4-1-1">
+<ul class="org-ul">
+<li>many-to-one model
+<ul class="org-ul">
+<li>many user-level threads mapped to a single kernel thread</li>
+<li>entire process can be blocked by a single blocking system call</li>
+</ul></li>
+<li>one-to-one model
+<ul class="org-ul">
+<li>creating a user-level thread creates a kernel thread</li>
+<li>drawback is the overhead of creating kernel threads</li>
+<li>have to be careful about creating too many user-threads</li>
+</ul></li>
+<li>many-to-many model
+<ul class="org-ul">
+<li>allows many user levels threads to be mapped to many kernel threads</li>
+<li>allows for creation of many user-threads without worry and supports concurrency</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org91f0ce7" class="outline-4">
+<h4 id="org91f0ce7"><span class="section-number-4">4.1.2</span> Explicit Threading (using Thread Library)</h4>
+<div class="outline-text-4" id="text-4-1-2">
+<ul class="org-ul">
+<li>two primary ways of implementing:
+<ul class="org-ul">
+<li>library entirely in user space</li>
+<li>kernel library entirely in OS</li>
+</ul></li>
+<li id="pthreads">posix standard API for thread creation and synchronization
+<ul class="org-ul">
+<li>all follow the same specification not necessarily the same implementation</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgae42f1f" class="outline-4">
+<h4 id="orgae42f1f"><span class="section-number-4">4.1.3</span> Implicit Threading</h4>
+<div class="outline-text-4" id="text-4-1-3">
+<ul class="org-ul">
+<li>creation and management of threads done by compiler rather than programmer</li>
+<li>three methods explored:
+<ul class="org-ul">
+<li>Thread Pools
+<ul class="org-ul">
+<li>create a number of threads in a pool where they wait for use</li>
+<li>slightly faster than creating a new thread</li>
+<li>can limit number of threads by setting pool size</li>
+</ul></li>
+<li>OpenMP</li>
+<li>Grand Central Dispatch</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org2b83942" class="outline-3">
+<h3 id="org2b83942"><span class="section-number-3">4.2</span> Threading Issues</h3>
+<div class="outline-text-3" id="text-4-2">
+<ul class="org-ul">
+<li>fork() and exec()</li>
+<li>does fork() duplicate only the calling thread or all threads
+<ul class="org-ul">
+<li>some UNIXes have two versions of fork</li>
+</ul></li>
+<li>exec() usually works by replacing the running process including all threads</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org4efc6ae" class="outline-3">
+<h3 id="org4efc6ae"><span class="section-number-3">4.3</span> Signal Handling</h3>
+<div class="outline-text-3" id="text-4-3">
+<ol class="org-ol">
+<li>signal is generated by particular event</li>
+<li>signal is delivered to a process</li>
+<li>signal must be handled by either a default or user-defined signal handler (which overrides default)</li>
+
+<li value="synchronous signal">generated by/delivered to the same running process</li>
+<li value="asynchronous signal">generated by an external event delivered to another process</li>
+<li>for single threaded process, signal delivery is straightforward</li>
+<li>for multi-threaded processes the question of which threads to deliver signal to arises</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org0abcc51" class="outline-3">
+<h3 id="org0abcc51"><span class="section-number-3">4.4</span> Thread Cancellation</h3>
+<div class="outline-text-3" id="text-4-4">
+<dl class="org-dl">
+<dt>target thread</dt><dd>thread to be cancelled</dd>
+<dt>(no term)</dt><dd>two general approaches:
+<dl class="org-dl">
+<dt>asynchronous cancellation</dt><dd>terminates the target thread immediately</dd>
+<dt>deferred cancellation</dt><dd>allows target thread to periodically check if it should be cancelled
+<ul class="org-ul">
+<li>termination occurs when a cancellation point is reached</li>
+<li>then a cleanup handler is invoked</li>
+</ul></dd>
+</dl></dd>
+<dt>Thread-local storage</dt><dd>allows each thread to have its own copy of data</dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-org731a0d3" class="outline-3">
+<h3 id="org731a0d3"><span class="section-number-3">4.5</span> Lightweight Process</h3>
+<div class="outline-text-3" id="text-4-5">
+<dl class="org-dl">
+<dt>lightweight process</dt><dd>allow communication between kernel and thread library
+<ul class="org-ul">
+<li>each LWP is attached to a single kernel thread</li>
+<li>more like an intermediate data structure than a process</li>
+</ul></dd>
+<dt>(no term)</dt><dd>application schedules user threads to available LWP instead of kernel threads</dd>
+<dt>(no term)</dt><dd>scheduler activation provided upcalls - communication from kernel to upcall handler in thread library
+<ul class="org-ul">
+<li>e.g. kernel informs a thread will be blocked, and allocate a new LWP</li>
+<li>then application can schedule another thread to the new LWP</li>
+</ul></dd>
+</dl>
+</div>
+</div>
+</div>
+<div id="outline-container-orgcbc9afe" class="outline-2">
+<h2 id="orgcbc9afe"><span class="section-number-2">5</span> Chapter 5 - Synchronization</h2>
+<div class="outline-text-2" id="text-5">
+</div>
+<div id="outline-container-org368cfb9" class="outline-3">
+<h3 id="org368cfb9"><span class="section-number-3">5.1</span> Background</h3>
+<div class="outline-text-3" id="text-5-1">
+<ul class="org-ul">
+<li>processes can execute concurrently which can cause data inconsistency problems</li>
+<li>if both processes modify the same value, <b>race condition</b> problems may arise</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0f9ba79" class="outline-3">
+<h3 id="org0f9ba79"><span class="section-number-3">5.2</span> Critical-Section Problem</h3>
+<div class="outline-text-3" id="text-5-2">
+<ul class="org-ul">
+<li>consider a system of n processes
+<ul class="org-ul">
+<li>each process has a critical section such that only one process may be in critical section concurrently
+<ul class="org-ul">
+<li>otherwise data discrepancy may arise</li>
+</ul></li>
+</ul></li>
+<li id="solution">each section must ask permission to enter critical section
+<dl class="org-dl">
+<dt>entry section</dt><dd>where permission is requested</dd>
+<dt>(no term)</dt><dd>critical section</dd>
+<dt>(no term)</dt><dd>exit section</dd>
+<dt>remainder section</dt><dd>optional</dd>
+</dl></li>
+<li>two approaches to critical-section handling:
+<dl class="org-dl">
+<dt>preemptive</dt><dd>a process in kernel mode could be preempted by another process
+<ul class="org-ul">
+<li>more responsive</li>
+<li>don't have to worry about a program taking too long</li>
+</ul></dd>
+<dt>non-preemptive</dt><dd>a process in kernel mode can not be preempted by another processes
+<ul class="org-ul">
+<li>free from race conditions</li>
+<li>only one process may be in kernel mode at a time</li>
+</ul></dd>
+</dl></li>
+</ul>
+</div>
+<div id="outline-container-orgc4f709e" class="outline-4">
+<h4 id="orgc4f709e"><span class="section-number-4">5.2.1</span> SOLUTION REQUIREMENTS:</h4>
+<div class="outline-text-4" id="text-5-2-1">
+<dl class="org-dl">
+<dt>mutual exclusion</dt><dd>only one process may be in its critical section at a time</dd>
+<dt>progress</dt><dd>if no process is in its critical section, we must eventually select the next process to enter critical section</dd>
+<dt>bounded waiting</dt><dd>there must be some bound on how many items may enter their critical section after a process has requested to enter its critical section</dd>
+</dl>
+</div>
+</div>
+</div>
+<div id="outline-container-org859f195" class="outline-3">
+<h3 id="org859f195"><span class="section-number-3">5.3</span> Peterson's Solution</h3>
+<div class="outline-text-3" id="text-5-3">
+<ul class="org-ul">
+<li>software solution to CSP
+<ul class="org-ul">
+<li>not guaranteed to work on modern architecture</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org9faa615" class="outline-3">
+<h3 id="org9faa615"><span class="section-number-3">5.4</span> Synchronization Hardware</h3>
+<div class="outline-text-3" id="text-5-4">
+<ul class="org-ul">
+<li>see problems 5.8 and 5.9</li>
+<li id="locking">protecting critical regions through the use of locks</li>
+<li id="atomic">non-interruptible unit</li>
+<li>for multiprocessor systems, it is inefficient to disable interrupts on all processors
+<ul class="org-ul">
+<li>instead we use atomic instructions:
+<ul class="org-ul">
+<li>test<sub>and</sub><sub>set</sub>()</li>
+<li>compare<sub>and</sub><sub>swap</sub>()</li>
+</ul></li>
+<li>see textbook, works through implementations that satisfy CSP requirements</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org8f63321" class="outline-3">
+<h3 id="org8f63321"><span class="section-number-3">5.5</span> Mutex Locks</h3>
+<div class="outline-text-3" id="text-5-5">
+<ul class="org-ul">
+<li>previous solutions are quite complicated</li>
+<li>mutex is a much simpler solution
+<ul class="org-ul">
+<li>boolean variable indicates if lock is available or not</li>
+<li>acquire() and release() system calls</li>
+<li>calls to acquire and release must be atomic</li>
+</ul></li>
+<li>problem with this solution: it introduces busy waiting
+<dl class="org-dl">
+<dt>busy waiting</dt><dd>while a process is in its critical section, any other process attempting to enter critical section stuck on acquire()</dd>
+<dt>(no term)</dt><dd>called a spinlock</dd>
+</dl></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2d9d876" class="outline-3">
+<h3 id="org2d9d876"><span class="section-number-3">5.6</span> Semaphore</h3>
+<div class="outline-text-3" id="text-5-6">
+<ul class="org-ul">
+<li>may be used to solve various synchronization problems</li>
+<li>an integer variable that can only be accessed through two standard atomic functions:
+<dl class="org-dl">
+<dt>wait()</dt><dd>waits while S is 0 then decrements and finishes after</dd>
+<dt>signal()</dt><dd>increments S</dd>
+</dl></li>
+<li>if S is a binary value, then we have a mutex lock</li>
+<li>if S is an integer value, then we have a <b>Counting Semaphore</b></li>
+</ul>
+</div>
+<div id="outline-container-org6b1f897" class="outline-4">
+<h4 id="org6b1f897"><span class="section-number-4">5.6.1</span> Problems</h4>
+<div class="outline-text-4" id="text-5-6-1">
+<dl class="org-dl">
+<dt>deadlock</dt><dd>multiple processes waiting indefinitely for an event that can be caused by on the waiting processes</dd>
+<dt>starvation</dt><dd>indefinite blocking 
+<ul class="org-ul">
+<li>e.g. if we use a stack to feed our implementation</li>
+</ul></dd>
+<dt>priority inversion</dt><dd></dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-orga440855" class="outline-4">
+<h4 id="orga440855"><span class="section-number-4">5.6.2</span> Bounded-Buffer Problem</h4>
+<div class="outline-text-4" id="text-5-6-2">
+<ul class="org-ul">
+<li>semaphore mutex init to 0</li>
+<li id="semaphore full init to 0">number of buffers containing an item</li>
+<li id="semaphore empty init to n">number of empty buffers</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org888bb88" class="outline-4">
+<h4 id="org888bb88"><span class="section-number-4">5.6.3</span> Readers-Writers Problem</h4>
+<div class="outline-text-4" id="text-5-6-3">
+<ul class="org-ul">
+<li>Problem:
+<ul class="org-ul">
+<li>allow multiple readers simultaneously</li>
+<li>only one singer writer can access the shared data at the same time</li>
+</ul></li>
+<li>Variations:
+<ul class="org-ul">
+<li>no readers kept waiting unless writer has permission to use shared object</li>
+<li>once writer is ready, it performs the write ASAP</li>
+</ul></li>
+</ul>
+<p>
+Both variations have possible starvation problems that must be addressed
+</p>
+
+<dl class="org-dl">
+<dt>rw<sub>mutex</sub></dt><dd>semaphore initialized to 1</dd>
+<dt>mutex</dt><dd>semaphore initialized to 1</dd>
+<dt>read<sub>count</sub></dt><dd>integer initialized to 0</dd>
+
+<dt>(no term)</dt><dd>mutex ensures mutual exclusion semaphore when read<sub>count</sub> is update</dd>
+<dt>(no term)</dt><dd>read<sub>count</sub> keeps track of how many processes are currently reading</dd>
+<dt>(no term)</dt><dd>rw<sub>mutex</sub> functions as a mutual exclusion semaphore for writers</dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-org0528c0b" class="outline-4">
+<h4 id="org0528c0b"><span class="section-number-4">5.6.4</span> Dining-Philosophers Problem</h4>
+<div class="outline-text-4" id="text-5-6-4">
+<ul class="org-ul">
+<li>Problem:
+<ul class="org-ul">
+<li>philosophers alternate eating and thinking</li>
+<li>to eat the philosopher needs two chopsticks</li>
+<li>they each share one chopstick with their left neighbor and one with their right neighbor</li>
+<li>they can only try to pick up one chopstick at a time</li>
+</ul></li>
+<li>see textbook for more</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgc5eae64" class="outline-3">
+<h3 id="orgc5eae64"><span class="section-number-3">5.7</span> Monitors</h3>
+<div class="outline-text-3" id="text-5-7">
+<ul class="org-ul">
+<li>a high-level abstraction that helps with process synchronization</li>
+<li>we have conditional variables and queues for processes waiting to enter critical section</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org09bed6d" class="outline-3">
+<h3 id="org09bed6d"><span class="section-number-3">5.8</span> Semaphore implementation with no busy waiting</h3>
+<div class="outline-text-3" id="text-5-8">
+<ul class="org-ul">
+<li>two operations
+<dl class="org-dl">
+<dt>block</dt><dd>place the process invoking the operation on the appropriate waiting queue</dd>
+<dt>wakeup</dt><dd>remove one of processes in the waiting queue and place in ready queue</dd>
+</dl></li>
+</ul>
+<p>
+basically wait() and signal() end up being calls to block() and wakeup() respectively
+</p>
+</div>
+</div>
+<div id="outline-container-org68bcae7" class="outline-3">
+<h3 id="org68bcae7"><span class="section-number-3">5.9</span> Monitor implementation using semaphores</h3>
+<div class="outline-text-3" id="text-5-9">
+<ul class="org-ul">
+<li>semaphore mutex</li>
+<li>semaphore next</li>
+<li>int next<sub>count</sub></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgbdb1895" class="outline-2">
+<h2 id="orgbdb1895"><span class="section-number-2">6</span> Chapter 7</h2>
+<div class="outline-text-2" id="text-6">
+</div>
+<div id="outline-container-orga8272fa" class="outline-3">
+<h3 id="orga8272fa"><span class="section-number-3">6.1</span> System Model</h3>
+<div class="outline-text-3" id="text-6-1">
+<ul class="org-ul">
+<li>each process utilizes a resource as follows:
+<ul class="org-ul">
+<li>request</li>
+<li>use</li>
+<li>release</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org0ed6357" class="outline-3">
+<h3 id="org0ed6357"><span class="section-number-3">6.2</span> Deadlock characterization</h3>
+<div class="outline-text-3" id="text-6-2">
+<dl class="org-dl">
+<dt>mutual exclusion</dt><dd>only one process can use a resource ata time</dd>
+<dt>hold and wait</dt><dd>a process holding a resource is waiting to acquire additional resources held by other processors</dd>
+<dt>no preemption</dt><dd>a resource can be released only voluntarily by the process holding it</dd>
+<dt>circular wait</dt><dd>there's a set of resource in which a waits on b that waits on c that waits on d that waits on a</dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-orgb457482" class="outline-3">
+<h3 id="orgb457482"><span class="section-number-3">6.3</span> Resource-allocation graph</h3>
+<div class="outline-text-3" id="text-6-3">
+<ul class="org-ul">
+<li>V is partitioned into two types
+<dl class="org-dl">
+<dt>P</dt><dd>processes</dd>
+<dt>R</dt><dd>resources</dd>
+</dl></li>
+<li>E is partitioned into two types
+<dl class="org-dl">
+<dt>request edge</dt><dd>directed edge P -&gt; R</dd>
+<dt>assignment edge</dt><dd>directed edge R -&gt; P</dd>
+</dl></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org4486516" class="outline-2">
+<h2 id="org4486516"><span class="section-number-2">7</span> Chapter 6</h2>
+<div class="outline-text-2" id="text-7">
+<ul class="org-ul">
+<li>successful scheduling involves utilizing downtime from things like blocking system calls</li>
+<li id="cpu burst">time allocated to cpu</li>
+<li id="cpu burst">time allocated to i/o</li>
+
+<li id="short-term scheduler">selects process in ready queue and allocates CPU</li>
+<li>preemptive / non-preemptive
+
+<dl class="org-dl">
+<dt>dispatcher module</dt><dd>gives control of cpu to process selected by short-term scheduler</dd>
+<dt><b>dispatch latency</b></dt><dd>time taken to stop one process and start another</dd>
+</dl></li>
+</ul>
+</div>
+<div id="outline-container-orgcf2387e" class="outline-3">
+<h3 id="orgcf2387e"><span class="section-number-3">7.1</span> scheduling criteria</h3>
+<div class="outline-text-3" id="text-7-1">
+<ul class="org-ul">
+<li>cpu utilization</li>
+<li id="throughput">number of processes that complete their execution per time unit</li>
+<li id="turnaround time">amount of time to execute a particular processors (from arrival to finish)</li>
+<li>waiting time (in ready queue)</li>
+<li>response time (from request to first response)</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orga80c6fc" class="outline-3">
+<h3 id="orga80c6fc"><span class="section-number-3">7.2</span> FCFS scheduling</h3>
+<div class="outline-text-3" id="text-7-2">
+<dl class="org-dl">
+<dt>convoy effect</dt><dd>short processes waiting for long processes</dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-orgf787874" class="outline-3">
+<h3 id="orgf787874"><span class="section-number-3">7.3</span> SJF scheduling</h3>
+<div class="outline-text-3" id="text-7-3">
+<ul class="org-ul">
+<li>if we know the length of the next CPU burst for each process, SJF is optimal</li>
+<li>the problem is that we usually will not know the length of next CPU burst</li>
+<li>we can also create a preemptive variant : shortest remaining time first</li>
+<li id="exponential average">a technique for prediction next CPU burst duration:
+t<sub>n</sub> = actual length of nth cpu burst
+tau<sub>n</sub>+1 = predicted value for n+1th cpu burst
+alpha, 0 &lt;= alpha &lt;= 1
+define: tau<sub>n</sub>+1 = alpha*t<sub>n</sub> + (1-alpha) * tau<sub>n</sub></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgf10c1e8" class="outline-3">
+<h3 id="orgf10c1e8"><span class="section-number-3">7.4</span> Priority Scheduling</h3>
+<div class="outline-text-3" id="text-7-4">
+<ul class="org-ul">
+<li>a priority number is associated with each process
+<ul class="org-ul">
+<li>smallest int is highest priority</li>
+</ul></li>
+<li>CPU is allocated to process with the highest priority</li>
+<li id="problem - <b>starvation</b>">low priority processes may never execute</li>
+<li id="solution - <b>aging</b>">increase priority with time</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org9e42657" class="outline-3">
+<h3 id="org9e42657"><span class="section-number-3">7.5</span> Round Robin</h3>
+<div class="outline-text-3" id="text-7-5">
+<ul class="org-ul">
+<li>Each process gets a small unit of CPU time (<b>time quantum</b> q)</li>
+<li>Timer interrupts after every quantum to schedule next process</li>
+</ul>
+</div>
+<div id="outline-container-orgb362224" class="outline-4">
+<h4 id="orgb362224"><span class="section-number-4">7.5.1</span> round robin performance</h4>
+<div class="outline-text-4" id="text-7-5-1">
+<ul class="org-ul">
+<li>No process waits more than (n-1) * q time</li>
+<li id="if q is large">we essentially have FIFO</li>
+<li id="if q is small">q must be large w.r.t context switch or overhead will be high</li>
+<li>heuristic : 80% of cpu bursts should be shorter than q</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org4aca0c4" class="outline-3">
+<h3 id="org4aca0c4"><span class="section-number-3">7.6</span> Multilevel Queue</h3>
+<div class="outline-text-3" id="text-7-6">
+<ul class="org-ul">
+<li>ready queue could be partitioned into separate queues e.g.
+<ul class="org-ul">
+<li>foreground (interactive)</li>
+<li>background (batch)</li>
+</ul></li>
+<li>process permanently assigned to one of these queues</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgfd133bf" class="outline-3">
+<h3 id="orgfd133bf"><span class="section-number-3">7.7</span> Multilevel feedback queue</h3>
+<div class="outline-text-3" id="text-7-7">
+<dl class="org-dl">
+<dt>multilevel feedback queue</dt><dd>can go from one queue to another based on certain criteria</dd>
+<dt>(no term)</dt><dd>each queue has its own scheduling algorithm:
+<ul class="org-ul">
+<li>foreground uses RR</li>
+<li>background uses FCFS</li>
+</ul></dd>
+<dt>(no term)</dt><dd>scheduling must be done between the queues
+<dl class="org-dl">
+<dt>Fixed priority scheduling</dt><dd>e.g. one queue always has priority (has possibility of starvation)</dd>
+<dt>time slice</dt><dd>each queue gets a certain amount of CPU time</dd>
+</dl></dd>
+<dt>(no term)</dt><dd>in another implementation we could move processes between queues
+<ul class="org-ul">
+<li>this is one way that we could implement aging</li>
+</ul></dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-orgb02f027" class="outline-3">
+<h3 id="orgb02f027"><span class="section-number-3">7.8</span> Algorithmic Evaluation</h3>
+<div class="outline-text-3" id="text-7-8">
+<ul class="org-ul">
+<li>analytic evaluation
+<ul class="org-ul">
+<li>deterministic modeling</li>
+<li>queueing models</li>
+</ul></li>
+<li>simulation</li>
+<li>implementation</li>
+</ul>
+</div>
+<div id="outline-container-org14fbdf4" class="outline-4">
+<h4 id="org14fbdf4"><span class="section-number-4">7.8.1</span> Deterministic Modeling</h4>
+<div class="outline-text-4" id="text-7-8-1">
+<ul class="org-ul">
+<li>type of analytic evaluation</li>
+<li>takes a particular predetermined workload and determines the performance of different algorithms</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org4a5c176" class="outline-4">
+<h4 id="org4a5c176"><span class="section-number-4">7.8.2</span> Queueing Models</h4>
+<div class="outline-text-4" id="text-7-8-2">
+<ul class="org-ul">
+<li>input is determined probabilistic-ally
+<ul class="org-ul">
+<li>e.g. arrival of processes, cpu burst, and i/o burst</li>
+<li>most of these things follow exponential distribution</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org1d66f3f" class="outline-4">
+<h4 id="org1d66f3f"><span class="section-number-4">7.8.3</span> Simulation</h4>
+<div class="outline-text-4" id="text-7-8-3">
+<ul class="org-ul">
+<li>programmed model of computer system</li>
+<li>clock is a variable</li>
+<li>gather statistics indicating algorithm performance</li>
+<li>instead of using probabilistic-driven input we can use a trace tape</li>
+<li id="trace tape">input recorded from actual system that can be fed into simulation</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgde864b9" class="outline-4">
+<h4 id="orgde864b9"><span class="section-number-4">7.8.4</span> Implementation</h4>
+<div class="outline-text-4" id="text-7-8-4">
+<ul class="org-ul">
+<li>implementing a new scheduler and testing in real systems is expensive and risky</li>
+<li>most flexible schedulers can be modified per-system
+<ul class="org-ul">
+<li>or provide APIs to modify priorities</li>
+<li>but environments vary</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org92c104c" class="outline-3">
+<h3 id="org92c104c"><span class="section-number-3">7.9</span> Thread Scheduling</h3>
+<div class="outline-text-3" id="text-7-9">
+<dl class="org-dl">
+<dt>process-contention scope</dt><dd>scheduling done within a process between threads</dd>
+<dt>system-contention scope</dt><dd>scheduling done between all threads in a system</dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-org42e7413" class="outline-3">
+<h3 id="org42e7413"><span class="section-number-3">7.10</span> Windows Scheduling</h3>
+<div class="outline-text-3" id="text-7-10">
+<ul class="org-ul">
+<li>32-level priority scheme (higher number is higher priority)</li>
+<li>1-15 for variable classes, 16-31 for real-time classes</li>
+<li>priority 0 for memory-management thread</li>
+<li>queue for each priority</li>
+<li>runs idle thread if no other run-able threads are available</li>
+
+<li>within each priority class there are 7 possible relative priority</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgd73f8ab" class="outline-3">
+<h3 id="orgd73f8ab"><span class="section-number-3">7.11</span> Dispatcher Shell</h3>
+</div>
+</div>
+<div id="outline-container-orgb775236" class="outline-2">
+<h2 id="orgb775236"><span class="section-number-2">8</span> Chapter 8</h2>
+<div class="outline-text-2" id="text-8">
+<ul class="org-ul">
+<li>CPU can only access main memory and registers</li>
+<li>Register access takes one clock, but main memory can take longer, <b>stall</b></li>
+<li><b>Cache</b> sits between register and main memory</li>
+</ul>
+</div>
+<div id="outline-container-org42c32c8" class="outline-3">
+<h3 id="org42c32c8"><span class="section-number-3">8.1</span> Base and Limit Registers</h3>
+<div class="outline-text-3" id="text-8-1">
+<ul class="org-ul">
+<li>a pair of addresses that define the beginning and size of a partition in memory</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orge0f8d36" class="outline-3">
+<h3 id="orge0f8d36"><span class="section-number-3">8.2</span> Address Binding</h3>
+<div class="outline-text-3" id="text-8-2">
+<dl class="org-dl">
+<dt>input queue</dt><dd>bring program to disk for execution</dd>
+<dt>compile time</dt><dd>bind symbolic addresses in source code to relocatable addresses</dd>
+<dt>load time</dt><dd>bind relocatable addresses to physical addresses</dd>
+<dt>execution time</dt><dd>bind dynamically loaded system libraries (<b>dynamic linking</b>)</dd>
+<dt>(no term)</dt><dd><b>Logical Addresses vs Physical Address</b></dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-orgf1c5c7b" class="outline-3">
+<h3 id="orgf1c5c7b"><span class="section-number-3">8.3</span> Memory-Management Unit</h3>
+<div class="outline-text-3" id="text-8-3">
+<ul class="org-ul">
+<li>Base register becomes relocation register</li>
+<li></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org77f7880" class="outline-3">
+<h3 id="org77f7880"><span class="section-number-3">8.4</span> Dynamic Loading</h3>
+<div class="outline-text-3" id="text-8-4">
+<ul class="org-ul">
+<li>Routine is not loading until it is called</li>
+<li>All routines kept on disk in relocatable load format</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org4ea3da0" class="outline-3">
+<h3 id="org4ea3da0"><span class="section-number-3">8.5</span> Dynamic Linking</h3>
+<div class="outline-text-3" id="text-8-5">
+<dl class="org-dl">
+<dt>static linking</dt><dd>system libraries and program code</dd>
+<dt>dynamic linking</dt><dd>linking postponed until execution time
+<ul class="org-ul">
+<li>particularly useful for libraries</li>
+<li>small piece of code called <b>stub</b> used to locate appropriate routine</li>
+<li>also called <b>shared libraries</b></li>
+</ul></dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-org607c94c" class="outline-3">
+<h3 id="org607c94c"><span class="section-number-3">8.6</span> Swapping</h3>
+<div class="outline-text-3" id="text-8-6">
+<dl class="org-dl">
+<dt>backing store</dt><dd>hold copies of all memory images for all users
+<ul class="org-ul">
+<li>ready queue holds ready to run processes including those in backing store</li>
+<li>unstructured data, allows for faster use than normal filesystem</li>
+</ul></dd>
+<dt>roll out, roll in</dt><dd>variant of swapping used for priority based scheduling
+<ul class="org-ul">
+<li>lower-priority process swapped out for higher-priority process</li>
+</ul></dd>
+</dl>
+</div>
+</div>
+<div id="outline-container-org57f923c" class="outline-3">
+<h3 id="org57f923c"><span class="section-number-3">8.7</span> MISSING NOTES!</h3>
+</div>
+<div id="outline-container-org044b79b" class="outline-3">
+<h3 id="org044b79b"><span class="section-number-3">8.8</span> Dynamic Storage-Allocation Problem</h3>
+</div>
+<div id="outline-container-org5343d1c" class="outline-3">
+<h3 id="org5343d1c"><span class="section-number-3">8.9</span> Fragmentation</h3>
+</div>
+<div id="outline-container-org9368b2a" class="outline-3">
+<h3 id="org9368b2a"><span class="section-number-3">8.10</span> Segmentation</h3>
+</div>
+<div id="outline-container-org0a6f956" class="outline-3">
+<h3 id="org0a6f956"><span class="section-number-3">8.11</span> Paging</h3>
+<div class="outline-text-3" id="text-8-11">
+<ul class="org-ul">
+<li>divide physical memory into fixed-sized blocks called <b>frames</b></li>
+<li>divide logical memory into same-sized blocks called <b>pages</b></li>
+<li><b>page table</b> allows translate logical to physical addresses
+<ul class="org-ul">
+<li>page table located in pcb</li>
+</ul></li>
+<li>paging eliminates external fragmentation</li>
+<li>internal fragmentation:
+<ul class="org-ul">
+<li>(space required) % (page size) = internal fragmentation for a particular process</li>
+</ul></li>
+<li>this implies that small page size is preferred, however each page requires some overhead,</li>
+</ul>
+<p>
+so we will not want our pages to be too small.
+</p>
+<ul class="org-ul">
+<li>for one, our page table must grow with number of pages</li>
+<li>Typical size today is ~4K</li>
+</ul>
+</div>
+<div id="outline-container-orgbba4026" class="outline-4">
+<h4 id="orgbba4026"><span class="section-number-4">8.11.1</span> Free frames</h4>
+<div class="outline-text-4" id="text-8-11-1">
+<ul class="org-ul">
+<li>operating system must store information about which frames are allocated/availalbe</li>
+<li>this information is stored in a data structure called a <b>frame table</b></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org24dbbce" class="outline-4">
+<h4 id="org24dbbce"><span class="section-number-4">8.11.2</span> Implementation of Page Table</h4>
+<div class="outline-text-4" id="text-8-11-2">
+<ul class="org-ul">
+<li>page table kept in main memory</li>
+<li id="PTBR">page-table base register
+<ul class="org-ul">
+<li>points to the page table</li>
+</ul></li>
+<li id="PTLR">page-table length register
+<ul class="org-ul">
+<li>indicates size of the page table</li>
+</ul></li>
+<li>when using page tables, every data/instruction access requires two memory accesses
+<ul class="org-ul">
+<li>one to find physical address from page table</li>
+<li>another to access physical address</li>
+</ul></li>
+<li>how can we deal with this?
+<ul class="org-ul">
+<li>register to hold page table</li>
+<li>use of special, fast hardware cache called <b>associate memory</b></li>
+</ul></li>
+</ul>
+<p>
+also known as <b>translation look-aside buffer</b> / <b>TLB</b>
+</p>
+</div>
+<ol class="org-ol">
+<li><a id="org4c8038f"></a>Associative memory<br />
+<div class="outline-text-5" id="text-8-11-2-1">
+<ul class="org-ul">
+<li>when we perform a page look up, we can load into TLB
+<ul class="org-ul">
+<li>this is called a <b>TLB miss</b> when we don't already have TLB entry</li>
+</ul></li>
+<li>next time we perform that page lookup, we can lookup from TLB, <b>TLB hit</b></li>
+<li><p>
+TLB is typically small
+</p>
+<ul class="org-ul">
+<li>replacement policies must be considered,</li>
+<li>some entries can be <b>wired down</b> for permanent fast access</li>
+</ul>
+<p>
+<b>Effective Access Time</b>
+</p></li>
+<li>associate lookup time: &epsilon; time units</li>
+<li>memory access time: t time units</li>
+<li>hit ratio: &alpha;
+Effective Access Time (EAT) =
+  (1 * t + &epsilon;) * &alpha; + (2 * t + &epsilon;)*(1 - &alpha;)</li>
+</ul>
+</div>
+</li>
+<li><a id="org1d49cdd"></a>Address-Space Protection<br />
+<div class="outline-text-5" id="text-8-11-2-2">
+<ul class="org-ul">
+<li>some TLBs store <b>address-space identifier (ASID)</b> in each TLB entry,</li>
+<li>uniquely identifies each process to provide address-space protection
+<ul class="org-ul">
+<li>Not matching ASID is a TLB miss</li>
+<li>allows for multiple processors</li>
+<li>otherwise TLB would need to be flushed on every context switch</li>
+</ul></li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div id="outline-container-org06a0585" class="outline-4">
+<h4 id="org06a0585"><span class="section-number-4">8.11.3</span> Memory Protections via Page Table</h4>
+<div class="outline-text-4" id="text-8-11-3">
+<ul class="org-ul">
+<li>valid-invalid bit attached to each entry in page table:
+<dl class="org-dl">
+<dt>valid</dt><dd>page is in process logical address space</dd>
+<dt>invalid</dt><dd>page not in process' logical address space</dd>
+<dt>(no term)</dt><dd>or use page-table length register</dd>
+</dl></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org59a4ac3" class="outline-4">
+<h4 id="org59a4ac3"><span class="section-number-4">8.11.4</span> Shared Pages</h4>
+<div class="outline-text-4" id="text-8-11-4">
+<p>
+shared code 
+</p>
+<ul class="org-ul">
+<li>one copy of read-only (<b>reentrant</b>) code shared among processess</li>
+</ul>
+<p>
+private code and data
+</p>
+<ul class="org-ul">
+<li>each process keeps a separate copy of this</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgaff73f4" class="outline-3">
+<h3 id="orgaff73f4"><span class="section-number-3">8.12</span> Structure of Page Table</h3>
+<div class="outline-text-3" id="text-8-12">
+<ul class="org-ul">
+<li>For a 32-bit logical address space and 4KB page size, 
+<ul class="org-ul">
+<li>page table takes 4 MB</li>
+</ul></li>
+<li>How do we allocate this memory?
+<ul class="org-ul">
+<li><b>hierarchical page table</b></li>
+<li><b>hashed page table</b></li>
+<li><b>inverted page table</b></li>
+</ul></li>
+<li>A hierarchical page table with many pages is also known as
+<b>forward mapping page table</b></li>
+</ul>
+</div>
+<div id="outline-container-orgb27a126" class="outline-4">
+<h4 id="orgb27a126"><span class="section-number-4">8.12.1</span> Hashed Page Tables</h4>
+<div class="outline-text-4" id="text-8-12-1">
+<ul class="org-ul">
+<li>common in address spaces greater than 32 bits</li>
+<li>virtual page number is hashed into a page table</li>
+<li>collisions are dealt with by chaining</li>
+<li>A variation for this scheme has been proposed called <b>clustered page tables</b>
+<ul class="org-ul">
+<li>similar to hashed page tables except:</li>
+<li>each bucket refers to several pages instead of just 1</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgc4b5107" class="outline-4">
+<h4 id="orgc4b5107"><span class="section-number-4">8.12.2</span> Inverted Page Table</h4>
+<div class="outline-text-4" id="text-8-12-2">
+<ul class="org-ul">
+<li>create a page table based on pid that translates to a physical address</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org5d346f8" class="outline-2">
+<h2 id="org5d346f8"><span class="section-number-2">9</span> Chapter 9</h2>
+<div class="outline-text-2" id="text-9">
+<ul class="org-ul">
+<li>program needs to be in memory to execute, but entire program not needed at same time</li>
+<li>so why don't we partially-load programs?</li>
+<li>would mean programs aren't limited by physical memory constraint</li>
+<li id="virtual memory">separation of user logical memory from physical memory</li>
+<li id="virtual address space">logical view of how process is stored in memory</li>
+</ul>
+<p>
+virtual memory can be implemented by:
+</p>
+<ul class="org-ul">
+<li>demand paging</li>
+<li>demand segmentation</li>
+</ul>
+<ul class="org-ul">
+<li>sparse address space means that we can allocate a large logical address space,</li>
+</ul>
+<p>
+and we do not need to allocate physical memory for unused sections
+</p>
+<ul class="org-ul">
+<li>also system libraries may be shared via mapping into virtual address space</li>
+</ul>
+</div>
+<div id="outline-container-org6055530" class="outline-3">
+<h3 id="org6055530"><span class="section-number-3">9.1</span> Demand Paging</h3>
+<div class="outline-text-3" id="text-9-1">
+<ul class="org-ul">
+<li>can bring entire process into memory at load time</li>
+<li>or bring page into memory only when needed
+<ul class="org-ul">
+<li>less i/o needed</li>
+<li>less memory needed</li>
+<li>faster response</li>
+</ul></li>
+<li>in general free pages are allocated from a pool</li>
+<li id="lazy swapper">only swaps a page into memory when page is needed</li>
+<li id="pager">swapper that deals with pages</li>
+<li>demand paging requires mmu functionality of valid-invalid bit
+<dl class="org-dl">
+<dt>valid</dt><dd>memory resident</dd>
+<dt>invalid</dt><dd>not in memory</dd>
+</dl></li>
+<li>if valid-invalid bit is invalid during address translation, a <b>page fault</b> occurs</li>
+</ul>
+</div>
+<div id="outline-container-orgbe6d958" class="outline-4">
+<h4 id="orgbe6d958"><span class="section-number-4">9.1.1</span> Page Fault</h4>
+<div class="outline-text-4" id="text-9-1-1">
+<p>
+two cases:
+</p>
+<ul class="org-ul">
+<li>invalid reference -&gt; abort</li>
+<li>just not in memory:
+<ol class="org-ol">
+<li>find free frame</li>
+<li>swap page into frame</li>
+<li>reset tables to indicate page now in memory
+<ul class="org-ul">
+<li>set validation bit to valid</li>
+</ul></li>
+<li>restart the instruction that caused page fault</li>
+</ol></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgfbf5753" class="outline-4">
+<h4 id="orgfbf5753"><span class="section-number-4">9.1.2</span> Pure demand paging</h4>
+<div class="outline-text-4" id="text-9-1-2">
+<ul class="org-ul">
+<li>start with no pages in memory</li>
+<li>OS sets instruction pointer to first instruction of process -&gt; page fault</li>
+<li>a single instruction could access multiple pages, trigger multiple page faults
+<ul class="org-ul">
+<li>programs tend to have <b>locality of reference</b> so performance is not like this worst case</li>
+</ul></li>
+</ul>
+<p>
+Hardware required for demand paging:
+</p>
+<ul class="org-ul">
+<li>page table with validation bit</li>
+<li>secondary memory (swap space)</li>
+<li>instruction restart</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgf3f7d27" class="outline-4">
+<h4 id="orgf3f7d27"><span class="section-number-4">9.1.3</span> Performance of Demand Paging</h4>
+<div class="outline-text-4" id="text-9-1-3">
+<ul class="org-ul">
+<li>Three major activities in page-fault service time:
+<ul class="org-ul">
+<li>service the interrupt</li>
+<li>read the page - majority of time</li>
+<li>restart the process</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgd38412a" class="outline-4">
+<h4 id="orgd38412a"><span class="section-number-4">9.1.4</span> Demand Paging Optimizations</h4>
+<div class="outline-text-4" id="text-9-1-4">
+<ul class="org-ul">
+<li>swap space i/o faster than file system i/o
+<ul class="org-ul">
+<li>swap allocated in larger chunks than file system</li>
+</ul></li>
+</ul>
+<p>
+possible methods:
+</p>
+<ul class="org-ul">
+<li>copy entire process image to swap space at load time then page in and out</li>
+<li>demand page program binary from disk, but discard rather than page out when done</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org9e9b091" class="outline-4">
+<h4 id="org9e9b091"><span class="section-number-4">9.1.5</span> Copy-on-write</h4>
+<div class="outline-text-4" id="text-9-1-5">
+<ul class="org-ul">
+<li>allows both parent and child process to initially share the same pages in memory</li>
+<li>page only copied when modified (so only modified pages ever need to be copied)</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd17a49e" class="outline-3">
+<h3 id="orgd17a49e"><span class="section-number-3">9.2</span> What if there are no free frames?</h3>
+<div class="outline-text-3" id="text-9-2">
+<dl class="org-dl">
+<dt>page replacement</dt><dd>find page in memory, but not in use. Page it out
+<ul class="org-ul">
+<li>what should the process do? terminate? swap out? replace the page?</li>
+</ul></dd>
+</dl>
+<p>
+Page replacement requires:
+</p>
+<ul class="org-ul">
+<li>modifying page-fault service routine to include page replacement</li>
+</ul>
+</div>
+<div id="outline-container-orgf78b12b" class="outline-4">
+<h4 id="orgf78b12b"><span class="section-number-4">9.2.1</span> Basic page replacement</h4>
+<div class="outline-text-4" id="text-9-2-1">
+<ol class="org-ol">
+<li>lookup address of desired page on disk</li>
+<li>Find a free frame
+<ul class="org-ul">
+<li>if there is no free frame, use a page replacement algorithm to select a victim frame</li>
+<li>write victim frame to disk if dirty</li>
+</ul></li>
+<li>bring the desired page into the newly free frame, update page and frame table</li>
+<li>continue process</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-orge2b1601" class="outline-4">
+<h4 id="orge2b1601"><span class="section-number-4">9.2.2</span> page and frame replacement algorithms</h4>
+<div class="outline-text-4" id="text-9-2-2">
+<ul class="org-ul">
+<li>evaluate algorithm using reference string, containing list of page number to reference</li>
+</ul>
+<p>
+some algorithms:
+</p>
+<ol class="org-ol">
+<li>FIFO</li>
+<li>optimal (not actually possible, uses knowledge of future)</li>
+<li>Least recently used
+<ul class="org-ul">
+<li>can be implemented using a counter associated with each page entry</li>
+<li>can be implemented using a stack
+<ul class="org-ul">
+<li>updating after page reference is faster</li>
+<li>but don't have to search through list for replacement</li>
+</ul></li>
+</ul></li>
+</ol>
+</div>
+<ol class="org-ol">
+<li><a id="orge8e8163"></a>LRU Approximation Algorithm<br />
+<div class="outline-text-5" id="text-9-2-2-1">
+<ul class="org-ul">
+<li>since lru implementations are expensive, it is easier to approximate</li>
+<li>special hardware is needed:
+<dl class="org-dl">
+<dt>reference bit</dt><dd>associated with each page, initially 0 set to 1 on page reference</dd>
+</dl></li>
+<li>this results in <b>second-chance algorithm</b>
+<ul class="org-ul">
+<li>FIFO, but with reference bit</li>
+<li>if page to be replaced has bit = 1, set to 0 then replace next page instead</li>
+</ul></li>
+<li>this can be further enhanced by also having a modify/dirty bit</li>
+<li>prioritize pages with both bits = 0</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div id="outline-container-org9b3aca0" class="outline-3">
+<h3 id="org9b3aca0"><span class="section-number-3">9.3</span> Allocation of Frames</h3>
+<div class="outline-text-3" id="text-9-3">
+<ul class="org-ul">
+<li>two major allocation schemes:
+<ul class="org-ul">
+<li>fixed allocation
+<ul class="org-ul">
+<li>equal allocation</li>
+<li id="proportional allocation">proportional to size of process</li>
+</ul></li>
+<li>priority allocation</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org1da0c94" class="outline-3">
+<h3 id="org1da0c94"><span class="section-number-3">9.4</span> replacement</h3>
+<div class="outline-text-3" id="text-9-4">
+<dl class="org-dl">
+<dt>global replacement</dt><dd>process can take a frame from another frame as replacement</dd>
+<dt>local replacement</dt><dd>process can only select from its own allocated frames</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: ethan</p>
+<p class="date">Created: 2018-04-14 Sat 01:49</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

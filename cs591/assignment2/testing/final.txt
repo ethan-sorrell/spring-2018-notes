@@ -1,0 +1,39 @@
+
+pwn:     file format elf32-i386
+
+
+Disassembly of section .text:
+
+08048060 <_start>:
+ 8048060:	eb 19                	jmp    804807b <ender>
+
+08048062 <starter>:
+ 8048062:	31 c0                	xor    %eax,%eax
+ 8048064:	31 db                	xor    %ebx,%ebx
+ 8048066:	31 d2                	xor    %edx,%edx
+ 8048068:	31 c9                	xor    %ecx,%ecx
+ 804806a:	b0 04                	mov    $0x4,%al
+ 804806c:	b3 01                	mov    $0x1,%bl
+ 804806e:	59                   	pop    %ecx
+ 804806f:	b2 17                	mov    $0x17,%dl
+ 8048071:	cd 80                	int    $0x80
+ 8048073:	31 c0                	xor    %eax,%eax
+ 8048075:	b0 01                	mov    $0x1,%al
+ 8048077:	31 db                	xor    %ebx,%ebx
+ 8048079:	cd 80                	int    $0x80
+
+0804807b <ender>:
+ 804807b:	e8 e2 ff ff ff       	call   8048062 <starter>
+ 8048080:	4e                   	dec    %esi
+ 8048081:	6f                   	outsl  %ds:(%esi),(%dx)
+ 8048082:	77 20                	ja     80480a4 <ender+0x29>
+ 8048084:	49                   	dec    %ecx
+ 8048085:	20 70 77             	and    %dh,0x77(%eax)
+ 8048088:	6e                   	outsb  %ds:(%esi),(%dx)
+ 8048089:	20 79 6f             	and    %bh,0x6f(%ecx)
+ 804808c:	75 72                	jne    8048100 <ender+0x85>
+ 804808e:	20 63 6f             	and    %ah,0x6f(%ebx)
+ 8048091:	6d                   	insl   (%dx),%es:(%edi)
+ 8048092:	70 75                	jo     8048109 <ender+0x8e>
+ 8048094:	74 65                	je     80480fb <ender+0x80>
+ 8048096:	72                   	.byte 0x72

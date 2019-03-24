@@ -1,0 +1,1260 @@
+% Created 2018-04-14 Sat 01:47
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\author{ethan}
+\date{\today}
+\title{}
+\hypersetup{
+ pdfauthor={ethan},
+ pdftitle={},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 25.1.1 (Org mode 9.1)}, 
+ pdflang={English}}
+\begin{document}
+
+\tableofcontents
+
+project grading guidelines
+\begin{enumerate}
+\item submission and compilation
+\item command line input (detect zero/ negative input)
+\item code readability (comments and structure)
+\item fork usage
+\item initial shell and display format (messy display)
+\item other command execution
+\item error message display
+\item history command execution (if !! or !N not in histry)
+\item !! command execution
+\item !N command execution
+\end{enumerate}
+
+assignment grading guidelines
+\begin{enumerate}
+\item submission and compilation
+\item command line input (detect zero/ negative input)
+\item code readability (comments and structure)
+\item fork usage
+\item correct results
+\end{enumerate}
+\section{Chapter 1}
+\label{sec:org043aef6}
+\begin{itemize}
+\item program counter specifies location of next instruction to execute
+\item each thread requires one program counter
+
+\item[{cache coherency}] in multiprocessor environments all CPUs must have the most recent value in their cache
+\item[{spooling}] the overlapping of output of one job with input of another
+\end{itemize}
+\section{Chapter 2}
+\label{sec:orgdf5cb59}
+Operating System Services:
+\begin{itemize}
+\item User Interface
+\item Program execution
+\item I/O operations
+\item File system manipulation
+\item communications
+\item error detection
+\item resource allocation
+\item accounting
+\item protection and security
+\end{itemize}
+Types of System Calls:
+\begin{itemize}
+\item Process Control
+\item File management
+\item Device management
+\item information maintenance
+\item communications
+\begin{itemize}
+\item message passing model
+\begin{itemize}
+\item create and delete communication connections
+\item send and receives messages across these connections to specified host name or proess name
+\item i.e. from client to server
+\end{itemize}
+\item shared-memory model
+\begin{itemize}
+\item create and gain access to memory regions
+\end{itemize}
+\end{itemize}
+\item Protection
+\end{itemize}
+\section{Chapter 3}
+\label{sec:orgc3e65e9}
+Process is divided into multiple parts
+\begin{description}
+\item[{text section}] program code
+\item[{data section}] containing global variables
+\item[{heap}] containing memory dynamically allocated during running time
+\item[{stack}] containing temporary data
+\end{description}
+
+\subsection{PCB}
+\label{sec:org2e62d9f}
+Process Control Block :: contains information associated with each process
+most relevantly it contains
+\begin{itemize}
+\item process state
+\item program counter
+\item cpu registers
+\end{itemize}
+additionally it contains
+\begin{itemize}
+\item cpu scheduling information
+\item memory management information
+\item accounting information
+\item i/o status information
+\end{itemize}
+\begin{itemize}
+\item information must be stored and reloaded from pcb to allow cpu to switch from process to process
+\item this process is called a \textbf{context switch}
+\end{itemize}
+\subsection{Threads}
+\label{sec:org977d2ec}
+\begin{itemize}
+\item like a portion of a process
+\item requires its own program counter
+\end{itemize}
+\subsection{Process Scheduling}
+\label{sec:org07a4145}
+Maintains scheduling queues of processes:
+\begin{description}
+\item[{job queue}] set of all processes in the system
+\item ready queue
+\item[{device queues}] set of processes waiting for an i/o device
+\end{description}
+\begin{description}
+\item[{Short-term scheduler or CPU scheduler}] selects which process should be executed next and allocates cpu 
+\begin{itemize}
+\item since it is invoked frequently in must be fast
+\end{itemize}
+\item[{Long-term scheduler or job scheduler}] selects which processes should be brought into the ready queue
+\begin{itemize}
+\item controls the degree of multiprogramming
+\end{itemize}
+\end{description}
+Processes can be:
+\begin{itemize}
+\item i/o-bound process
+\item cpu-bound process
+\item the long-term scheduler strives for good process mix
+\end{itemize}
+\begin{description}
+\item[{Medium-term scheduler}] remove process from memory to store on disk and bring back to memory
+\begin{itemize}
+\item can be added if degree of multiprogramming needs to be decreased
+\end{itemize}
+\end{description}
+\subsection{Process Creation}
+\label{sec:orgcb7e291}
+\begin{itemize}
+\item process tree created by parent processes creating child processes
+\item child processes can have variable amount of dependence on parent process regarding:
+\begin{itemize}
+\item execution
+\item resource sharing
+\end{itemize}
+\item child process has its own address space with a copy of the parent's image
+\end{itemize}
+\subsection{Process Termination}
+\label{sec:org1512e8a}
+Execution ends normally followed by exit() system call:
+\begin{itemize}
+\item Resources de-allocated
+\item Returns status flag from child to parent
+\item PCB remains
+\end{itemize}
+Execution terminated by abort() system call:
+\begin{itemize}
+\item cascading termination of children's children
+\item parent may wait for termination of child process with wait()
+\begin{itemize}
+\item pid = wait(\&status)
+\end{itemize}
+\item[{zombie process}] process waiting for parent to call wait()
+\item[{orphan}] parent terminated without calling wait()
+\begin{itemize}
+\item init will take over and call wait()
+\end{itemize}
+\end{itemize}
+\subsection{Inter-process Communication}
+\label{sec:orgd145718}
+\begin{description}
+\item[{Independent process}] cannot affect or be affected by execution of another process
+\item[{Cooperating process}] can affect or be affected by execution of another process
+\item reasons for cooperating processes:
+\begin{itemize}
+\item information sharing
+\item computation speedup
+\item modularity
+\item convenience
+\end{itemize}
+\item There are two models of IPC 
+\begin{itemize}
+\item message passing
+\begin{itemize}
+\item 
+\end{itemize}
+\item shared memory
+\end{itemize}
+\end{description}
+\subsubsection{Producer-Consumer Problem}
+\label{sec:org51dea55}
+\begin{itemize}
+\item paradigm for cooperating processes
+\item exchange information via buffer
+\begin{itemize}
+\item may be bounded or unbounded
+\end{itemize}
+\end{itemize}
+\subsubsection{Shared Memory}
+\label{sec:orgb8769b8}
+\begin{itemize}
+\item tends to be the faster solution
+\item communication is under control of the user processes not the operating system
+\item major issue of allowing user processes to synchronize their actions on shared memory
+\begin{itemize}
+\item e.g. not allowing both processes to write to the same address
+\end{itemize}
+\end{itemize}
+\subsubsection{Message Passing}
+\label{sec:orgc71e9e9}
+\begin{itemize}
+\item slower because of overhead of system calls
+\item easier to implement
+\item ideal for smaller amounts of data
+\item many choices to be made in specific implementation details (see textbook)
+\end{itemize}
+\begin{enumerate}
+\item Synchronization
+\label{sec:org0348c13}
+\begin{itemize}
+\item Message passing may be either \textbf{blocking} or \textbf{non-blocking}
+\begin{itemize}
+\item blocking (synchronous)
+\begin{description}
+\item[{blocking send}] sender is blocked until message received
+\item[{blocking receive}] receiver is blocked until message available
+\end{description}
+\item non-blocking (asynchronous)
+\begin{description}
+\item[{non-blocking send}] sender sends message and continues
+\item[{non-blocking receive}] receives gets either valid message or null message
+\end{description}
+\end{itemize}
+\end{itemize}
+\item Direct Communication
+\label{sec:org4952e54}
+\begin{itemize}
+\item connection established between exactly two processes
+\end{itemize}
+\item Indirect Communication
+\label{sec:org9cdf6c8}
+\begin{itemize}
+\item messages are directed and received from "mailboxes" (aka ports)
+\item each mailbox has a unique ideal
+\item mailbox must be shared
+\item problems arise when mailbox shared with more than two processes
+\end{itemize}
+\item Buffering
+\label{sec:org6433312}
+\begin{description}
+\item[{zero capacity}] no messages are queued on a link
+\begin{itemize}
+\item sender always waits for receiver (\textbf{rendezvous})
+\end{itemize}
+\item[{bounded capacity}] finite length of n messages
+\begin{itemize}
+\item sender only waits if link full
+\end{itemize}
+\item[{unbounded capacity}] infinite length
+\begin{itemize}
+\item sender never waits
+\end{itemize}
+\end{description}
+\end{enumerate}
+\subsubsection{Examples - Windows}
+\label{sec:orgcfe51c3}
+\begin{itemize}
+\item windows is message passing centric via *advanced local procedure call
+\item connection ports and communication ports are created to allows processes to communicate
+\item different message-passing techniques are used depending on the size of the message
+\begin{itemize}
+\item smaller messages use a message queue
+\item large messages passed through shared memory called a \textbf{section object}
+\item larger messages that can not fit in the section object use an API call that allows server to write directly to the address space of the client
+\end{itemize}
+\end{itemize}
+\subsection{Communication in client-server systems}
+\label{sec:orgdca6661}
+\subsubsection{Sockets}
+\label{sec:org81fea25}
+\begin{description}
+\item[{socket}] an endpoint for communication
+\item combination of an ip address and port
+\item ports below 1024 are well known, for standard services
+\item two types of sockets:
+\begin{itemize}
+\item connection-oriented (TCP)
+\item connectionless (UDP)
+\end{itemize}
+\end{description}
+\subsubsection{Remote Procedure Calls}
+\label{sec:org142d674}
+\begin{itemize}
+\item sockets are a relatively low level method of communication between processes
+\item Client invokes a procedure on a remote host as if it were a local procedure
+\begin{itemize}
+\item ports still used for service differentiation
+\item but packets are not used
+\end{itemize}
+\item[{stubs}] client-side proxy for the actual process on server
+\item client-side stub locates the server and \textbf{marshals} the parameters
+\begin{itemize}
+\item to resolve differences between the systems (e.g. client little-endian and server big-endian)
+\item[{XDR is used}] external data representation
+\end{itemize}
+\item server-side stub receives, unpacks the marshaled parameters and performs procedure
+\end{itemize}
+Handling failure
+\begin{itemize}
+\item the at most once semantic is generally used, but the exactly once semantic may be used here
+\item the server can use at most once, but also send an ACK once the call has been executed
+\item the client uses exactly once, and continues sending the call until an ACK is received
+\end{itemize}
+Establishing Connection
+\begin{itemize}
+\item OS typically provides a rendezvous or \textbf{matchmaker} daemon to connect client and server
+\item alternatively a fixed-point address may be used
+\end{itemize}
+\section{Chapter 4}
+\label{sec:orgec92b69}
+\begin{description}
+\item[{thread}] a basic unit of cpu utilization
+\begin{itemize}
+\item composed of :
+\begin{itemize}
+\item thread ID
+\item program counter
+\item a register set
+\item a stack
+\end{itemize}
+\item additionally multiple threads share:
+\begin{itemize}
+\item a code section
+\item a data section
+\item and other OS resources
+\end{itemize}
+\end{itemize}
+\item When are threads useful?
+\begin{itemize}
+\item when an application has multiple tasks which may need to wait for I/O
+\item e.g. an application may implement threads for:
+\begin{itemize}
+\item updating display
+\item fetching data
+\item spell checking
+\item answering a network request
+\end{itemize}
+\end{itemize}
+\item why not just create new processes?
+\begin{itemize}
+\item this incurs additional overhead which is unnecessary in many cases
+\end{itemize}
+\item Benefits of multi-threading can be broken into four categories
+\begin{itemize}
+\item responsiveness
+\item resource sharing
+\item[{economy}] reduced overhead vs process creation
+\item[{scalability}] a single thread can run on only a single core
+\end{itemize}
+\end{description}
+\subsection{multi-core programming}
+\label{sec:org11e4207}
+\begin{description}
+\item[{parallelism}] ability for a system to perform more than one task simultaneously
+\begin{itemize}
+\item i.e. multiple tasks are running at the same time
+\end{itemize}
+\item[{concurrency}] ability for a system to allow more than one task to make progress
+\begin{itemize}
+\item i.e. multiple tasks are running in the same window of time
+\end{itemize}
+\item types of parallelism 
+\begin{description}
+\item[{data parallelism}] distributes subsets of the same data across multiple cores, each running a portion of the same operation
+\item[{task parallelism}] distributes threads across cores, each thread performing unique operation
+\end{description}
+\item[{user threads}] management done by user-level thread library
+\item[{kernel threads}] managed by the kernel
+\end{description}
+\subsubsection{Multi-threading models}
+\label{sec:org63f6a35}
+\begin{itemize}
+\item many-to-one model
+\begin{itemize}
+\item many user-level threads mapped to a single kernel thread
+\item entire process can be blocked by a single blocking system call
+\end{itemize}
+\item one-to-one model
+\begin{itemize}
+\item creating a user-level thread creates a kernel thread
+\item drawback is the overhead of creating kernel threads
+\item have to be careful about creating too many user-threads
+\end{itemize}
+\item many-to-many model
+\begin{itemize}
+\item allows many user levels threads to be mapped to many kernel threads
+\item allows for creation of many user-threads without worry and supports concurrency
+\end{itemize}
+\end{itemize}
+\subsubsection{Explicit Threading (using Thread Library)}
+\label{sec:orgf037ee8}
+\begin{itemize}
+\item two primary ways of implementing:
+\begin{itemize}
+\item library entirely in user space
+\item kernel library entirely in OS
+\end{itemize}
+\item[{pthreads}] posix standard API for thread creation and synchronization
+\begin{itemize}
+\item all follow the same specification not necessarily the same implementation
+\end{itemize}
+\end{itemize}
+\subsubsection{Implicit Threading}
+\label{sec:org6f25d14}
+\begin{itemize}
+\item creation and management of threads done by compiler rather than programmer
+\item three methods explored:
+\begin{itemize}
+\item Thread Pools
+\begin{itemize}
+\item create a number of threads in a pool where they wait for use
+\item slightly faster than creating a new thread
+\item can limit number of threads by setting pool size
+\end{itemize}
+\item OpenMP
+\item Grand Central Dispatch
+\end{itemize}
+\end{itemize}
+\subsection{Threading Issues}
+\label{sec:org0b2a017}
+\begin{itemize}
+\item fork() and exec()
+\item does fork() duplicate only the calling thread or all threads
+\begin{itemize}
+\item some UNIXes have two versions of fork
+\end{itemize}
+\item exec() usually works by replacing the running process including all threads
+\end{itemize}
+\subsection{Signal Handling}
+\label{sec:org73fe777}
+\begin{enumerate}
+\item signal is generated by particular event
+\item signal is delivered to a process
+\item signal must be handled by either a default or user-defined signal handler (which overrides default)
+
+\item[{synchronous signal}] generated by/delivered to the same running process
+\item[{asynchronous signal}] generated by an external event delivered to another process
+\item for single threaded process, signal delivery is straightforward
+\item for multi-threaded processes the question of which threads to deliver signal to arises
+\end{enumerate}
+\subsection{Thread Cancellation}
+\label{sec:org2ef7e88}
+\begin{description}
+\item[{target thread}] thread to be cancelled
+\item two general approaches:
+\begin{description}
+\item[{asynchronous cancellation}] terminates the target thread immediately
+\item[{deferred cancellation}] allows target thread to periodically check if it should be cancelled
+\begin{itemize}
+\item termination occurs when a cancellation point is reached
+\item then a cleanup handler is invoked
+\end{itemize}
+\end{description}
+\item[{Thread-local storage}] allows each thread to have its own copy of data
+\end{description}
+\subsection{Lightweight Process}
+\label{sec:orge4a7cef}
+\begin{description}
+\item[{lightweight process}] allow communication between kernel and thread library
+\begin{itemize}
+\item each LWP is attached to a single kernel thread
+\item more like an intermediate data structure than a process
+\end{itemize}
+\item application schedules user threads to available LWP instead of kernel threads
+\item scheduler activation provided upcalls - communication from kernel to upcall handler in thread library
+\begin{itemize}
+\item e.g. kernel informs a thread will be blocked, and allocate a new LWP
+\item then application can schedule another thread to the new LWP
+\end{itemize}
+\end{description}
+\section{Chapter 5 - Synchronization}
+\label{sec:org1bfa190}
+\subsection{Background}
+\label{sec:org6de80b4}
+\begin{itemize}
+\item processes can execute concurrently which can cause data inconsistency problems
+\item if both processes modify the same value, \textbf{race condition} problems may arise
+\end{itemize}
+\subsection{Critical-Section Problem}
+\label{sec:orgce86dde}
+\begin{itemize}
+\item consider a system of n processes
+\begin{itemize}
+\item each process has a critical section such that only one process may be in critical section concurrently
+\begin{itemize}
+\item otherwise data discrepancy may arise
+\end{itemize}
+\end{itemize}
+\item[{solution}] each section must ask permission to enter critical section
+\begin{description}
+\item[{entry section}] where permission is requested
+\item critical section
+\item exit section
+\item[{remainder section}] optional
+\end{description}
+\item two approaches to critical-section handling:
+\begin{description}
+\item[{preemptive}] a process in kernel mode could be preempted by another process
+\begin{itemize}
+\item more responsive
+\item don't have to worry about a program taking too long
+\end{itemize}
+\item[{non-preemptive}] a process in kernel mode can not be preempted by another processes
+\begin{itemize}
+\item free from race conditions
+\item only one process may be in kernel mode at a time
+\end{itemize}
+\end{description}
+\end{itemize}
+\subsubsection{SOLUTION REQUIREMENTS:}
+\label{sec:orgdcef8cb}
+\begin{description}
+\item[{mutual exclusion}] only one process may be in its critical section at a time
+\item[{progress}] if no process is in its critical section, we must eventually select the next process to enter critical section
+\item[{bounded waiting}] there must be some bound on how many items may enter their critical section after a process has requested to enter its critical section
+\end{description}
+\subsection{Peterson's Solution}
+\label{sec:org03be973}
+\begin{itemize}
+\item software solution to CSP
+\begin{itemize}
+\item not guaranteed to work on modern architecture
+\end{itemize}
+\end{itemize}
+\subsection{Synchronization Hardware}
+\label{sec:orgb465a1e}
+\begin{itemize}
+\item see problems 5.8 and 5.9
+\item[{locking}] protecting critical regions through the use of locks
+\item[{atomic}] non-interruptible unit
+\item for multiprocessor systems, it is inefficient to disable interrupts on all processors
+\begin{itemize}
+\item instead we use atomic instructions:
+\begin{itemize}
+\item test\(_{\text{and}}\)\(_{\text{set}}\)()
+\item compare\(_{\text{and}}\)\(_{\text{swap}}\)()
+\end{itemize}
+\item see textbook, works through implementations that satisfy CSP requirements
+\end{itemize}
+\end{itemize}
+\subsection{Mutex Locks}
+\label{sec:org20c9321}
+\begin{itemize}
+\item previous solutions are quite complicated
+\item mutex is a much simpler solution
+\begin{itemize}
+\item boolean variable indicates if lock is available or not
+\item acquire() and release() system calls
+\item calls to acquire and release must be atomic
+\end{itemize}
+\item problem with this solution: it introduces busy waiting
+\begin{description}
+\item[{busy waiting}] while a process is in its critical section, any other process attempting to enter critical section stuck on acquire()
+\item called a spinlock
+\end{description}
+\end{itemize}
+\subsection{Semaphore}
+\label{sec:org582d3bd}
+\begin{itemize}
+\item may be used to solve various synchronization problems
+\item an integer variable that can only be accessed through two standard atomic functions:
+\begin{description}
+\item[{wait()}] waits while S is 0 then decrements and finishes after
+\item[{signal()}] increments S
+\end{description}
+\item if S is a binary value, then we have a mutex lock
+\item if S is an integer value, then we have a \textbf{Counting Semaphore}
+\end{itemize}
+\subsubsection{Problems}
+\label{sec:orgb28df4d}
+\begin{description}
+\item[{deadlock}] multiple processes waiting indefinitely for an event that can be caused by on the waiting processes
+\item[{starvation}] indefinite blocking 
+\begin{itemize}
+\item e.g. if we use a stack to feed our implementation
+\end{itemize}
+\item[{priority inversion}] 
+\end{description}
+\subsubsection{Bounded-Buffer Problem}
+\label{sec:org26d735c}
+\begin{itemize}
+\item semaphore mutex init to 0
+\item[{semaphore full init to 0}] number of buffers containing an item
+\item[{semaphore empty init to n}] number of empty buffers
+\end{itemize}
+\subsubsection{Readers-Writers Problem}
+\label{sec:org2d74081}
+\begin{itemize}
+\item Problem:
+\begin{itemize}
+\item allow multiple readers simultaneously
+\item only one singer writer can access the shared data at the same time
+\end{itemize}
+\item Variations:
+\begin{itemize}
+\item no readers kept waiting unless writer has permission to use shared object
+\item once writer is ready, it performs the write ASAP
+\end{itemize}
+\end{itemize}
+Both variations have possible starvation problems that must be addressed
+
+\begin{description}
+\item[{rw\(_{\text{mutex}}\)}] semaphore initialized to 1
+\item[{mutex}] semaphore initialized to 1
+\item[{read\(_{\text{count}}\)}] integer initialized to 0
+
+\item mutex ensures mutual exclusion semaphore when read\(_{\text{count}}\) is update
+\item read\(_{\text{count}}\) keeps track of how many processes are currently reading
+\item rw\(_{\text{mutex}}\) functions as a mutual exclusion semaphore for writers
+\end{description}
+\subsubsection{Dining-Philosophers Problem}
+\label{sec:org653cdcf}
+\begin{itemize}
+\item Problem:
+\begin{itemize}
+\item philosophers alternate eating and thinking
+\item to eat the philosopher needs two chopsticks
+\item they each share one chopstick with their left neighbor and one with their right neighbor
+\item they can only try to pick up one chopstick at a time
+\end{itemize}
+\item see textbook for more
+\end{itemize}
+\subsection{Monitors}
+\label{sec:org0c8db90}
+\begin{itemize}
+\item a high-level abstraction that helps with process synchronization
+\item we have conditional variables and queues for processes waiting to enter critical section
+\end{itemize}
+\subsection{Semaphore implementation with no busy waiting}
+\label{sec:org92b72f5}
+\begin{itemize}
+\item two operations
+\begin{description}
+\item[{block}] place the process invoking the operation on the appropriate waiting queue
+\item[{wakeup}] remove one of processes in the waiting queue and place in ready queue
+\end{description}
+\end{itemize}
+basically wait() and signal() end up being calls to block() and wakeup() respectively
+\subsection{Monitor implementation using semaphores}
+\label{sec:org0b0fa3a}
+\begin{itemize}
+\item semaphore mutex
+\item semaphore next
+\item int next\(_{\text{count}}\)
+\end{itemize}
+\section{Chapter 7}
+\label{sec:org9106cc1}
+\subsection{System Model}
+\label{sec:orgaae62eb}
+\begin{itemize}
+\item each process utilizes a resource as follows:
+\begin{itemize}
+\item request
+\item use
+\item release
+\end{itemize}
+\end{itemize}
+\subsection{Deadlock characterization}
+\label{sec:org66bad5f}
+\begin{description}
+\item[{mutual exclusion}] only one process can use a resource ata time
+\item[{hold and wait}] a process holding a resource is waiting to acquire additional resources held by other processors
+\item[{no preemption}] a resource can be released only voluntarily by the process holding it
+\item[{circular wait}] there's a set of resource in which a waits on b that waits on c that waits on d that waits on a
+\end{description}
+\subsection{Resource-allocation graph}
+\label{sec:org916f2e2}
+\begin{itemize}
+\item V is partitioned into two types
+\begin{description}
+\item[{P}] processes
+\item[{R}] resources
+\end{description}
+\item E is partitioned into two types
+\begin{description}
+\item[{request edge}] directed edge P -> R
+\item[{assignment edge}] directed edge R -> P
+\end{description}
+\end{itemize}
+\section{Chapter 6}
+\label{sec:org982d3a8}
+\begin{itemize}
+\item successful scheduling involves utilizing downtime from things like blocking system calls
+\item[{cpu burst}] time allocated to cpu
+\item[{cpu burst}] time allocated to i/o
+
+\item[{short-term scheduler}] selects process in ready queue and allocates CPU
+\item preemptive / non-preemptive
+
+\begin{description}
+\item[{dispatcher module}] gives control of cpu to process selected by short-term scheduler
+\item[{\textbf{dispatch latency}}] time taken to stop one process and start another
+\end{description}
+\end{itemize}
+\subsection{scheduling criteria}
+\label{sec:org21a5613}
+\begin{itemize}
+\item cpu utilization
+\item[{throughput}] number of processes that complete their execution per time unit
+\item[{turnaround time}] amount of time to execute a particular processors (from arrival to finish)
+\item waiting time (in ready queue)
+\item response time (from request to first response)
+\end{itemize}
+\subsection{FCFS scheduling}
+\label{sec:org7834760}
+\begin{description}
+\item[{convoy effect}] short processes waiting for long processes
+\end{description}
+\subsection{SJF scheduling}
+\label{sec:org3da4c92}
+\begin{itemize}
+\item if we know the length of the next CPU burst for each process, SJF is optimal
+\item the problem is that we usually will not know the length of next CPU burst
+\item we can also create a preemptive variant : shortest remaining time first
+\item[{exponential average}] a technique for prediction next CPU burst duration:
+t\(_{\text{n}}\) = actual length of nth cpu burst
+tau\(_{\text{n}}\)+1 = predicted value for n+1th cpu burst
+alpha, 0 <= alpha <= 1
+define: tau\(_{\text{n}}\)+1 = alpha*t\(_{\text{n}}\) + (1-alpha) * tau\(_{\text{n}}\)
+\end{itemize}
+\subsection{Priority Scheduling}
+\label{sec:org4361a65}
+\begin{itemize}
+\item a priority number is associated with each process
+\begin{itemize}
+\item smallest int is highest priority
+\end{itemize}
+\item CPU is allocated to process with the highest priority
+\item[{problem - \textbf{starvation}}] low priority processes may never execute
+\item[{solution - \textbf{aging}}] increase priority with time
+\end{itemize}
+\subsection{Round Robin}
+\label{sec:org4150ec3}
+\begin{itemize}
+\item Each process gets a small unit of CPU time (\textbf{time quantum} q)
+\item Timer interrupts after every quantum to schedule next process
+\end{itemize}
+\subsubsection{round robin performance}
+\label{sec:org1d1cad1}
+\begin{itemize}
+\item No process waits more than (n-1) * q time
+\item[{if q is large}] we essentially have FIFO
+\item[{if q is small}] q must be large w.r.t context switch or overhead will be high
+\item heuristic : 80\% of cpu bursts should be shorter than q
+\end{itemize}
+\subsection{Multilevel Queue}
+\label{sec:org256f523}
+\begin{itemize}
+\item ready queue could be partitioned into separate queues e.g.
+\begin{itemize}
+\item foreground (interactive)
+\item background (batch)
+\end{itemize}
+\item process permanently assigned to one of these queues
+\end{itemize}
+\subsection{Multilevel feedback queue}
+\label{sec:orgdc67136}
+\begin{description}
+\item[{multilevel feedback queue}] can go from one queue to another based on certain criteria
+\item each queue has its own scheduling algorithm:
+\begin{itemize}
+\item foreground uses RR
+\item background uses FCFS
+\end{itemize}
+\item scheduling must be done between the queues
+\begin{description}
+\item[{Fixed priority scheduling}] e.g. one queue always has priority (has possibility of starvation)
+\item[{time slice}] each queue gets a certain amount of CPU time
+\end{description}
+\item in another implementation we could move processes between queues
+\begin{itemize}
+\item this is one way that we could implement aging
+\end{itemize}
+\end{description}
+\subsection{Algorithmic Evaluation}
+\label{sec:org3bc5235}
+\begin{itemize}
+\item analytic evaluation
+\begin{itemize}
+\item deterministic modeling
+\item queueing models
+\end{itemize}
+\item simulation
+\item implementation
+\end{itemize}
+\subsubsection{Deterministic Modeling}
+\label{sec:orgc234ec0}
+\begin{itemize}
+\item type of analytic evaluation
+\item takes a particular predetermined workload and determines the performance of different algorithms
+\end{itemize}
+\subsubsection{Queueing Models}
+\label{sec:org69fb3db}
+\begin{itemize}
+\item input is determined probabilistic-ally
+\begin{itemize}
+\item e.g. arrival of processes, cpu burst, and i/o burst
+\item most of these things follow exponential distribution
+\end{itemize}
+\end{itemize}
+\subsubsection{Simulation}
+\label{sec:org53a1893}
+\begin{itemize}
+\item programmed model of computer system
+\item clock is a variable
+\item gather statistics indicating algorithm performance
+\item instead of using probabilistic-driven input we can use a trace tape
+\item[{trace tape}] input recorded from actual system that can be fed into simulation
+\end{itemize}
+\subsubsection{Implementation}
+\label{sec:org38e8fc5}
+\begin{itemize}
+\item implementing a new scheduler and testing in real systems is expensive and risky
+\item most flexible schedulers can be modified per-system
+\begin{itemize}
+\item or provide APIs to modify priorities
+\item but environments vary
+\end{itemize}
+\end{itemize}
+\subsection{Thread Scheduling}
+\label{sec:org3685c07}
+\begin{description}
+\item[{process-contention scope}] scheduling done within a process between threads
+\item[{system-contention scope}] scheduling done between all threads in a system
+\end{description}
+\subsection{Windows Scheduling}
+\label{sec:org0737c85}
+\begin{itemize}
+\item 32-level priority scheme (higher number is higher priority)
+\item 1-15 for variable classes, 16-31 for real-time classes
+\item priority 0 for memory-management thread
+\item queue for each priority
+\item runs idle thread if no other run-able threads are available
+
+\item within each priority class there are 7 possible relative priority
+\end{itemize}
+
+\subsection{Dispatcher Shell}
+\label{sec:org0882241}
+\section{Chapter 8}
+\label{sec:org8859ca0}
+\begin{itemize}
+\item CPU can only access main memory and registers
+\item Register access takes one clock, but main memory can take longer, \textbf{stall}
+\item \textbf{Cache} sits between register and main memory
+\end{itemize}
+\subsection{Base and Limit Registers}
+\label{sec:orge61c99f}
+\begin{itemize}
+\item a pair of addresses that define the beginning and size of a partition in memory
+\end{itemize}
+\subsection{Address Binding}
+\label{sec:orgb97dbd4}
+\begin{description}
+\item[{input queue}] bring program to disk for execution
+\item[{compile time}] bind symbolic addresses in source code to relocatable addresses
+\item[{load time}] bind relocatable addresses to physical addresses
+\item[{execution time}] bind dynamically loaded system libraries (\textbf{dynamic linking})
+\item \textbf{Logical Addresses vs Physical Address}
+\end{description}
+\subsection{Memory-Management Unit}
+\label{sec:org2d1389b}
+\begin{itemize}
+\item Base register becomes relocation register
+\item 
+\end{itemize}
+\subsection{Dynamic Loading}
+\label{sec:org5855443}
+\begin{itemize}
+\item Routine is not loading until it is called
+\item All routines kept on disk in relocatable load format
+\end{itemize}
+\subsection{Dynamic Linking}
+\label{sec:org4e007fd}
+\begin{description}
+\item[{static linking}] system libraries and program code
+\item[{dynamic linking}] linking postponed until execution time
+\begin{itemize}
+\item particularly useful for libraries
+\item small piece of code called \textbf{stub} used to locate appropriate routine
+\item also called \textbf{shared libraries}
+\end{itemize}
+\end{description}
+\subsection{Swapping}
+\label{sec:org91b7182}
+\begin{description}
+\item[{backing store}] hold copies of all memory images for all users
+\begin{itemize}
+\item ready queue holds ready to run processes including those in backing store
+\item unstructured data, allows for faster use than normal filesystem
+\end{itemize}
+\item[{roll out, roll in}] variant of swapping used for priority based scheduling
+\begin{itemize}
+\item lower-priority process swapped out for higher-priority process
+\end{itemize}
+\end{description}
+\subsection{MISSING NOTES!}
+\label{sec:org2a9933f}
+\subsection{Dynamic Storage-Allocation Problem}
+\label{sec:org37b5947}
+\subsection{Fragmentation}
+\label{sec:org7ba4d58}
+\subsection{Segmentation}
+\label{sec:orgd553114}
+\subsection{Paging}
+\label{sec:orgdd37d4e}
+\begin{itemize}
+\item divide physical memory into fixed-sized blocks called \textbf{frames}
+\item divide logical memory into same-sized blocks called \textbf{pages}
+\item \textbf{page table} allows translate logical to physical addresses
+\begin{itemize}
+\item page table located in pcb
+\end{itemize}
+\item paging eliminates external fragmentation
+\item internal fragmentation:
+\begin{itemize}
+\item (space required) \% (page size) = internal fragmentation for a particular process
+\end{itemize}
+\item this implies that small page size is preferred, however each page requires some overhead,
+\end{itemize}
+so we will not want our pages to be too small.
+\begin{itemize}
+\item for one, our page table must grow with number of pages
+\item Typical size today is \textasciitilde{}4K
+\end{itemize}
+\subsubsection{Free frames}
+\label{sec:org5bf6c7b}
+\begin{itemize}
+\item operating system must store information about which frames are allocated/availalbe
+\item this information is stored in a data structure called a \textbf{frame table}
+\end{itemize}
+\subsubsection{Implementation of Page Table}
+\label{sec:org41ee103}
+\begin{itemize}
+\item page table kept in main memory
+\item[{PTBR}] page-table base register
+\begin{itemize}
+\item points to the page table
+\end{itemize}
+\item[{PTLR}] page-table length register
+\begin{itemize}
+\item indicates size of the page table
+\end{itemize}
+\item when using page tables, every data/instruction access requires two memory accesses
+\begin{itemize}
+\item one to find physical address from page table
+\item another to access physical address
+\end{itemize}
+\item how can we deal with this?
+\begin{itemize}
+\item register to hold page table
+\item use of special, fast hardware cache called \textbf{associate memory}
+\end{itemize}
+\end{itemize}
+also known as \textbf{translation look-aside buffer} / \textbf{TLB}
+\begin{enumerate}
+\item Associative memory
+\label{sec:org6ca9e6c}
+\begin{itemize}
+\item when we perform a page look up, we can load into TLB
+\begin{itemize}
+\item this is called a \textbf{TLB miss} when we don't already have TLB entry
+\end{itemize}
+\item next time we perform that page lookup, we can lookup from TLB, \textbf{TLB hit}
+\item TLB is typically small
+\begin{itemize}
+\item replacement policies must be considered,
+\item some entries can be \textbf{wired down} for permanent fast access
+\end{itemize}
+\textbf{Effective Access Time}
+\item associate lookup time: \(\epsilon\) time units
+\item memory access time: t time units
+\item hit ratio: \(\alpha\)
+Effective Access Time (EAT) =
+  (1 * t + \(\epsilon\)) * \(\alpha\) + (2 * t + \(\epsilon\))*(1 - \(\alpha\))
+\end{itemize}
+\item Address-Space Protection
+\label{sec:org3314a89}
+\begin{itemize}
+\item some TLBs store \textbf{address-space identifier (ASID)} in each TLB entry,
+\item uniquely identifies each process to provide address-space protection
+\begin{itemize}
+\item Not matching ASID is a TLB miss
+\item allows for multiple processors
+\item otherwise TLB would need to be flushed on every context switch
+\end{itemize}
+\end{itemize}
+\end{enumerate}
+\subsubsection{Memory Protections via Page Table}
+\label{sec:org5c7bd34}
+\begin{itemize}
+\item valid-invalid bit attached to each entry in page table:
+\begin{description}
+\item[{valid}] page is in process logical address space
+\item[{invalid}] page not in process' logical address space
+\item or use page-table length register
+\end{description}
+\end{itemize}
+\subsubsection{Shared Pages}
+\label{sec:org562d82e}
+shared code 
+\begin{itemize}
+\item one copy of read-only (\textbf{reentrant}) code shared among processess
+\end{itemize}
+private code and data
+\begin{itemize}
+\item each process keeps a separate copy of this
+\end{itemize}
+\subsection{Structure of Page Table}
+\label{sec:org2184513}
+\begin{itemize}
+\item For a 32-bit logical address space and 4KB page size, 
+\begin{itemize}
+\item page table takes 4 MB
+\end{itemize}
+\item How do we allocate this memory?
+\begin{itemize}
+\item \textbf{hierarchical page table}
+\item \textbf{hashed page table}
+\item \textbf{inverted page table}
+\end{itemize}
+\item A hierarchical page table with many pages is also known as
+\textbf{forward mapping page table}
+\end{itemize}
+\subsubsection{Hashed Page Tables}
+\label{sec:orged9fe00}
+\begin{itemize}
+\item common in address spaces greater than 32 bits
+\item virtual page number is hashed into a page table
+\item collisions are dealt with by chaining
+\item A variation for this scheme has been proposed called \textbf{clustered page tables}
+\begin{itemize}
+\item similar to hashed page tables except:
+\item each bucket refers to several pages instead of just 1
+\end{itemize}
+\end{itemize}
+\subsubsection{Inverted Page Table}
+\label{sec:org55cf5f6}
+\begin{itemize}
+\item create a page table based on pid that translates to a physical address
+\end{itemize}
+\section{Chapter 9}
+\label{sec:orgfe94637}
+\begin{itemize}
+\item program needs to be in memory to execute, but entire program not needed at same time
+\item so why don't we partially-load programs?
+\item would mean programs aren't limited by physical memory constraint
+\item[{virtual memory}] separation of user logical memory from physical memory
+\item[{virtual address space}] logical view of how process is stored in memory
+\end{itemize}
+virtual memory can be implemented by:
+\begin{itemize}
+\item demand paging
+\item demand segmentation
+\end{itemize}
+\begin{itemize}
+\item sparse address space means that we can allocate a large logical address space,
+\end{itemize}
+and we do not need to allocate physical memory for unused sections
+\begin{itemize}
+\item also system libraries may be shared via mapping into virtual address space
+\end{itemize}
+\subsection{Demand Paging}
+\label{sec:org71b3748}
+\begin{itemize}
+\item can bring entire process into memory at load time
+\item or bring page into memory only when needed
+\begin{itemize}
+\item less i/o needed
+\item less memory needed
+\item faster response
+\end{itemize}
+\item in general free pages are allocated from a pool
+\item[{lazy swapper}] only swaps a page into memory when page is needed
+\item[{pager}] swapper that deals with pages
+\item demand paging requires mmu functionality of valid-invalid bit
+\begin{description}
+\item[{valid}] memory resident
+\item[{invalid}] not in memory
+\end{description}
+\item if valid-invalid bit is invalid during address translation, a \textbf{page fault} occurs
+\end{itemize}
+\subsubsection{Page Fault}
+\label{sec:orga36483a}
+two cases:
+\begin{itemize}
+\item invalid reference -> abort
+\item just not in memory:
+\begin{enumerate}
+\item find free frame
+\item swap page into frame
+\item reset tables to indicate page now in memory
+\begin{itemize}
+\item set validation bit to valid
+\end{itemize}
+\item restart the instruction that caused page fault
+\end{enumerate}
+\end{itemize}
+\subsubsection{Pure demand paging}
+\label{sec:org42de1b4}
+\begin{itemize}
+\item start with no pages in memory
+\item OS sets instruction pointer to first instruction of process -> page fault
+\item a single instruction could access multiple pages, trigger multiple page faults
+\begin{itemize}
+\item programs tend to have \textbf{locality of reference} so performance is not like this worst case
+\end{itemize}
+\end{itemize}
+Hardware required for demand paging:
+\begin{itemize}
+\item page table with validation bit
+\item secondary memory (swap space)
+\item instruction restart
+\end{itemize}
+\subsubsection{Performance of Demand Paging}
+\label{sec:org7312392}
+\begin{itemize}
+\item Three major activities in page-fault service time:
+\begin{itemize}
+\item service the interrupt
+\item read the page - majority of time
+\item restart the process
+\end{itemize}
+\end{itemize}
+\subsubsection{Demand Paging Optimizations}
+\label{sec:org742e22a}
+\begin{itemize}
+\item swap space i/o faster than file system i/o
+\begin{itemize}
+\item swap allocated in larger chunks than file system
+\end{itemize}
+\end{itemize}
+possible methods:
+\begin{itemize}
+\item copy entire process image to swap space at load time then page in and out
+\item demand page program binary from disk, but discard rather than page out when done
+\end{itemize}
+\subsubsection{Copy-on-write}
+\label{sec:org2d402ca}
+\begin{itemize}
+\item allows both parent and child process to initially share the same pages in memory
+\item page only copied when modified (so only modified pages ever need to be copied)
+\end{itemize}
+\subsection{What if there are no free frames?}
+\label{sec:org641542d}
+\begin{description}
+\item[{page replacement}] find page in memory, but not in use. Page it out
+\begin{itemize}
+\item what should the process do? terminate? swap out? replace the page?
+\end{itemize}
+\end{description}
+Page replacement requires:
+\begin{itemize}
+\item modifying page-fault service routine to include page replacement
+\end{itemize}
+\subsubsection{Basic page replacement}
+\label{sec:org7544edd}
+\begin{enumerate}
+\item lookup address of desired page on disk
+\item Find a free frame
+\begin{itemize}
+\item if there is no free frame, use a page replacement algorithm to select a victim frame
+\item write victim frame to disk if dirty
+\end{itemize}
+\item bring the desired page into the newly free frame, update page and frame table
+\item continue process
+\end{enumerate}
+\subsubsection{page and frame replacement algorithms}
+\label{sec:orged6c4bd}
+\begin{itemize}
+\item evaluate algorithm using reference string, containing list of page number to reference
+\end{itemize}
+some algorithms:
+\begin{enumerate}
+\item FIFO
+\item optimal (not actually possible, uses knowledge of future)
+\item Least recently used
+\begin{itemize}
+\item can be implemented using a counter associated with each page entry
+\item can be implemented using a stack
+\begin{itemize}
+\item updating after page reference is faster
+\item but don't have to search through list for replacement
+\end{itemize}
+\end{itemize}
+\end{enumerate}
+\begin{enumerate}
+\item LRU Approximation Algorithm
+\label{sec:orgc16ef0c}
+\begin{itemize}
+\item since lru implementations are expensive, it is easier to approximate
+\item special hardware is needed:
+\begin{description}
+\item[{reference bit}] associated with each page, initially 0 set to 1 on page reference
+\end{description}
+\item this results in \textbf{second-chance algorithm}
+\begin{itemize}
+\item FIFO, but with reference bit
+\item if page to be replaced has bit = 1, set to 0 then replace next page instead
+\end{itemize}
+\item this can be further enhanced by also having a modify/dirty bit
+\item prioritize pages with both bits = 0
+\end{itemize}
+\end{enumerate}
+\subsection{Allocation of Frames}
+\label{sec:org7d0883c}
+\begin{itemize}
+\item two major allocation schemes:
+\begin{itemize}
+\item fixed allocation
+\begin{itemize}
+\item equal allocation
+\item[{proportional allocation}] proportional to size of process
+\end{itemize}
+\item priority allocation
+\end{itemize}
+\end{itemize}
+\subsection{replacement}
+\label{sec:orgfa8ee74}
+\begin{description}
+\item[{global replacement}] process can take a frame from another frame as replacement
+\item[{local replacement}] process can only select from its own allocated frames
+\end{description}
+\end{document}

@@ -123,46 +123,4 @@ SavingsAccount getSubtotal printNl.
 Transcript cr.
 
 a1 deposit: 1000 from: 'dad'.
-a1 withdraw: 400 for: 'car'.
-a1 deposit: 800 from: 'mom'.
-a1 withdraw: 100 for: 'party'.
-a1 deposit: 700 from: 'dad'.
-a1 withdraw: 200 for: 'car'.
-Transcript display: 'Total from dad='; display: (a1 totalReceivedFrom: 'dad'); cr.
-Transcript display: 'Total for car='; display: (a1 totalSpentFor: 'car'); cr.
-a1 display.
-
-Transcript cr.
-
-c1 deposit: 3000 from: 'inheritance'.
-c1 newChecks: 100.
-c1 writeCheck: 800 for: 'vacation'.
-c1 writeCheck: 400 for: 'vacation'.
-c1 display.
-
-Transcript cr.
-
-s1 setRate: 2.00.
-s1 deposit: 2000 from: 'paycheck'.
-s1 earnInterest.
-s1 deposit: 300 from: 'cash'.
-s1 earnInterest.
-s1 display.
-
-Transcript cr.
-
-a1 getBalance printNl.
-a2 getBalance printNl.
-c1 getBalance printNl.
-c2 getBalance printNl.
-s1 getBalance printNl.
-s2 getBalance printNl.
-
-Transcript cr.
-
-Account getTotal printNl.
-Account getSubtotal printNl.
-CheckingAccount getTotal printNl.
-CheckingAccount getSubtotal printNl.
-SavingsAccount getTotal printNl.
-SavingsAccount getSubtotal printNl.
+a1 from: 'dad' deposit: 1000.

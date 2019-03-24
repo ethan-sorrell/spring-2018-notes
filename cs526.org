@@ -687,3 +687,143 @@ some algorithms:
 ** replacement   
 - global replacement :: process can take a frame from another frame as replacement
 - local replacement :: process can only select from its own allocated frames
+** Thrashing
+- Many page faults leads to low CPU utilization 
+- Operating system thinks it needs to increase degree of multiprogramming,
+bring in more processes
+- So each process has less pages, makes the problem worse.
+- This leads to *Thrashing* :: when a process is busy swapping pages in and out
+- Locality Model :: a set of pages actively used together.
+- process migrates localities throughout execution/time
+- if size of locality is greater than total memory size -> thrashing occurs
+** Working-set Model
+- working-set window = pages with a fixed number of page references
+- use this to approximate locality, more importantly the size of the locality
+** Allocating Kernel Memory
+- often allocated from a free-memory pool
+  - some kernel memory needs to be contiguous
+*** Buddy System
+- Allocates memory from fixed-size segment consisting of physically-contiguous pages
+- memory allocated using power-of-2 allocator
+  - requests fulfilled in units sized as power of 2
+  - request rounded up to nearest power of 2
+*** Slab Allocator
+- Slab :: one or more physically contiguous pages
+- Cache :: consists of one or more slabs
+  - single cache for each unique kernel data structure
+  - filled with empty data structure objects marked free
+  - marked used when structure is stored
+  - when slab is full, start using next empty slab, otherwise allocate new slab
+** Other Considerations   
+*** Prepaging
+- to reduce page faults at start up, prepage some pages process will need
+*** Page size
+affects: 
+- fragmentation
+- page table size
+- i/o overhead
+- number of page faults
+- etc.
+*** TLB Reach
+- TLB Reach = TLB Size * Page Size
+*** Program Structure
+* Chapter 10 
+** Overview of Mass Storage Structure
+- Magnetic disks using moving-head disk mechanism
+- Has some transfer rate
+- And some positioning time (random-access time) to move disk arm
+  - includes seek time
+  - and rotational latency
+- Chance of *head crash* :: disk head making contact w/ disk surface
+- results in bad sectors, systems to deal w/ this
+- Drive attach to computer via I/O bus
+  - host controller in computer uses bus to talk to disk controller in drive
+** Hard Disk Performance
+- Average latency = average access time = average seek time + average rotational latency
+- Average I/O time = average access time + time to transfer + controller overhead
+** Disk Structure
+- disk address :: cylinder #, track #, sector #
+- we can see it as large 1-dimensional array of logical blocks
+- low-level formatting creates mapping of logical blocks to sequential sectors
+- constant linear velocity (clv)
+  - less sectors on inner track, more toward edge
+  - drive increases rotation speed when head moves toward inner track to maintain data rate
+- constant angular velocity 
+  - disk rotates constantly
+  - denser bits at inner tracks to keep the data rate constant
+  - better deals w/ random access sense speed doesn't vary
+** Disk Scheduling 
+- we want to minimize seek time
+- seek time ~= seek distance
+*** Shortest Seek Time First (SSTF)
+- selects the request w/ minimum seek time from the current head position.
+- may cause starvation, is a form of SJF scheduling
+*** SCAN
+- the disk arm starts at one end of the disk and move towards the end then
+  head is reversed and comes back. Servicing requests along the way
+- sometimes called elevator algorithm
+*** C-SCAN
+- the head does not read while moving back to start
+- slower, but shows less bias for values on middle of disk
+*** Look and C-Look
+- like SCAN, but don't move all the way to the edge of disk
+- only go as far as most extreme address that needs to be read
+** Selection A Disk-Scheduling Algorithm
+- SSTF is a natural choice but has starvation possible
+- Look algorithms are also good
+** Disk Management
+- Low-level formatting
+  - divides a disk into sectors that the disk controller can r/w
+  - each sector can hold header information, data, and error correction code
+- to use a disk, the OS still needs to record its own data structures
+  - partition
+  - logical formatting (free and allocated spaces)
+  - for increased efficiency most file system group blocks into *clusters*
+** Bad Blocks 
+- simple way: find bad blocks upon formatting or by command or when flagged
+- replacement schemes:
+  - sector sparing
+  - sector slipping
+** Swap-space Management
+- usually in a separate raw partition
+* Chapter 11
+** File Attributes
+- files contain a lot of metadata
+** Open files
+- Open-file table needed to track open files
+  - file pointer
+  - file-open count
+  - disk location of the files 
+  - access rights
+** Open file locking
+- Shared or exclusive locking
+- mandatory or advisory lock
+** Disk structure
+* Chapter 12
+** File System Implementation 
+- Boot control block :: contains info needed to boot OS from volume
+- Volume Control block :: contains volume details like # blocks, size of blocks, etc
+  - also contains directory structure
+- per file:
+  - File Control Block ::
+** Directory Implementation
+- Linear list
+  - B+ Tree
+  - Linked List
+- Hash Table
+** Allocation Methods 
+- Contiguous Allocation
+  - Extent
+- Linked Allocation :: like a linked list of blocks
+  - reliability can be a problem, lost pointer causes loss of rest of file
+*** File-Allocation Table (FAT) 
+ - Beginning of volume has table, indexed by block number
+ - Linked list, but faster on disk and cacheable
+*** Indexed Allocation
+- Each file has its own index block of pointers to its data blocks
+- Like paging, what if all pointers can't fit in a single block?
+  - multi-level index
+** Free-space Management
+- File system maintains free-space list
+- Bitmap
+- Linked List (free list)

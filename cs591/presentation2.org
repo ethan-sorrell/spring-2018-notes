@@ -1,0 +1,79 @@
+* Blockchain
+** Motivation
+- each of the big four accounting firms are experimenting with blockchain
+- a lot of tech companies, ibm thinks blockchain has potential for managing intercompany transactions
+- indian school system used it to allocate funds internally
+  - also used to store feedback (logistic)
+** Security issues
+- Currency based transactions need to first solve a fundamental problem:
+  - double spending problem
+- Trying to spend balance at two places at very nearly the same time
+*** Types of blockchains
+- public :: anyone can read and submit transactions
+- private :: restricted access to transaction data and ability to submit transactions
+- permissionless :: anyone can participate in the verification process
+- permissisoned :: verification nodes are preselected by controlling authority
+
+- In general most permissionless blockchains are public
+- most permissioned blockchains are intended for private use i.e. school system example
+                  
+- permissioned blockchains solving double spending is straightforward
+- permissionless solve double spending
+
+*** Consensus Algorithms
+- proof-of-work
+  - new transaction shared with the network
+  - miners include transactions in blocks which link to previous blocks
+  - can't double spend within a single block
+  - transaction made legitimate once it is part of the block-chain
+  - in fact block-chain transactions are how balances are calculated
+  - uses a hash function that is quite difficult
+  - once a certain number of blocks deep, very very unlikely that another chain
+    will overtake
+  - WHY NOT START YOUR OWN FORK?
+  - miners only work on the longest chain
+   
+- proof-of-stake
+  - ability to add new blocks linked to how much currency is held
+also delegated proof-of-stake
+
+- Byzantine Generals Problem
+  - Any actor could be a traitor
+  - A general must send an order to his lieutenants such that
+    - all loyal lieutenants obey the same order
+    - if the general is loyal, all loyal lieutenants obey his order
+- Byzantine Fault Tolerance
+  - commander sends his command to every lieutenant
+  - each lieutenant sends his value to all other lieutenants, 
+    or default value if none received
+  - each lieutenants acts on majority decision
+
+- Practice byzantine fault tolerance (nodes)
+  - There are designated validator nodes (primary nodes)
+  - primary nodes are each associated with a group of nodes
+  - primary is responsible for sharing data with other nodes in its group
+  - operation valid if received approval from over 1/3 of group
+  - if a client doesn't receive a reply from primary, sends request to all in group
+  - primary is responsible for ordering transactions and each in group commits transactions in same order
+- Decentralized also has to solve Byzantine Generals problem
+** C I A
+in case of centralized transaction service, all three of these things
+are dependent on security of central service
+
+- confidentiality :: there are implementations, still relies on public-key cryptography
+- integrity :: immutable, entirely
+- availability :: distributed, should be accessable
+** Confidential Transactions
+- Monero
+  - public address and private key
+  - hold funds in random addresses
+  - send funds to random address that is attached to receiver
+  - also funds shuffled around simultaneously
+** Smart Contracts
+- one of the interesting applications of blockchain technology is smart contracts
+- Ethereum implemented smart contracts that such that:
+  - code exists in the block chain
+  - runs on ethereum virtual machine
+  - once uploaded, code cannot be updated
+  - very difficult to test
+  - writing in new languages that run in foreign environment, often interact with other contracts

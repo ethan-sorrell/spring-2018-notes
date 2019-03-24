@@ -479,15 +479,53 @@ uses similar syntax to array
 |                     | getTotal           |
 |                     | getSubtotal        |
 * MPI
-| routine name  | description                                  |
-| mpi_init      |                                              |
-| mpi_finalize  |                                              |
-| mpi_comm_size | determines the number off process           |
-| mpi_comm_rank | determines the label of the calling process |
-| mpi_send      |                                              |
-| mpi_recv      |                                              |
+  message-passing (distributed)
+| routine name  | description                                                       |
+| mpi_init      |                                                                   |
+| mpi_finalize  |                                                                   |
+| mpi_comm_size | obtains the number of process                                     |
+| mpi_comm_rank | obtains the label of the calling process                          |
+|---------------+-------------------------------------------------------------------|
+| mpi_send      | blocking send                                                     |
+| mpi_recv      | blocking receive                                                  |
+|---------------+-------------------------------------------------------------------|
+| mpi_isend     | non-blocking/immediate send                                       |
+| mpi_irecv     | non-blocking/immediate receive                                    |
+| mpi_test      | queries if an operation has been completed                        |
+| mpi_wait      | waits until an operation is completed                             |
+| mpi_waitAll   | waits until all operations(send/receive) are complete             |
+|---------------+-------------------------------------------------------------------|
+| mpi_Barrier   | waits until all processes call this function                      |
+| mpi_Bcast     | sends data from src, all other processes receive from src         |
+| mpi_Scatter   | src sends each process a different contiguous section of data     |
+| mpi_Gather    | all processes send data which is collected (concatenated) at dest |
+| mpi_Reduce    | like gather, but aggregates using an op before being received     |
+| mpi_Scan      | on each call, data is aggregated and stored by calling proc       |
+|               |                                                                   |
 
 mpicc calls our compiler
 mpirun -np (num processes) ./process
 
 The default send and receive functions are blocking. There are also immediate versions of these routines
+* OpenMP
+Multi-processing (shared memory)
+threads rather than processes
+| omp_set_num_threads                    |                                                                                           |
+| #pragma omp parallel                   | runs the next block on each thread                                                        |
+| #pragma omp parallel for               | distributes loops across processes                                                        |
+| #pragma omp parallel num_threads()     |                                                                                           |
+| omp_get_thread_num                     |                                                                                           |
+| omp_get_num_threads                    |                                                                                           |
+| #pragma omp critical                   | denotes that the next block is a critical section (only one thread can execute at a time) |
+| #pragma omp atomic                     | performs the next block as an atomic instruction                                          |
+| #pragma omp for nowait                 |                                                                                           |
+| #pragma omp reduction(+:count)         | would sum values for count                                                                |
+| #pragma omp default(shared) private(x) | makes variables shared by default (redundant), but x not shared                           |
+|                                        |                                                                                           |
+
+
+gcc -fopenmp
+
+8 questions,
+  4 coding
+  4 tracing/conceptual questions
